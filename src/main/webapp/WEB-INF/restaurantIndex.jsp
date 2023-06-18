@@ -11,17 +11,14 @@
 </head>
 <body>
 	<div class="registration-form">
-		<h1>Register as User</h1>
-		<form:form action="/register" method="post" modelAttribute="newUser" >
-			<form:label class="form-label" path="firstName">First Name:</form:label>
-			<form:errors path="firstName"/>
-			<form:input class="form-control-sm" path="firstName"/><br><br>
-			<form:label class="form-label" path="lastName">Last Name:</form:label>
-			<form:errors path="lastName"/>
-			<form:input class="form-control-sm" path="lastName"/><br><br>
-			<form:label class="form-label" path="email">Email:</form:label>
-			<form:errors path="email"/>
-			<form:input class="form-control-sm" type="email" path="email"/><br><br>
+		<h1>Register as Restaurant</h1>
+		<form:form action="/registerRestaurant" method="post" modelAttribute="newRestaurant" >
+			<form:label class="form-label" path="restaurantName">Restaurant Name:</form:label>
+			<form:errors path="restaurantName"/>
+			<form:input class="form-control-sm" path="restaurantName"/><br><br>
+			<form:label class="form-label" path="restaurantEmail">Restaurant Email:</form:label>
+			<form:errors path="restaurantEmail"/>
+			<form:input class="form-control-sm" type="email" path="restaurantEmail"/><br><br>
 			<form:label class="form-label" path="password">Password:</form:label>
 			<form:errors path="password"/>
 			<form:input class="form-control-sm" type="password" path="password"/><br><br>
@@ -33,11 +30,11 @@
 	</div>
 	
 	<div class="login-form">
-		<h1>Log in as User</h1>
-		<form:form action="/login" method="post" modelAttribute="newLogin">
-			<form:label class="form-label" path="email">Email:</form:label>
-			<form:errors path="email"/>
-			<form:input class="form-control-sm" type="email" path="email"/><br><br>
+		<h1>Log in as Restaurant</h1>
+		<form:form action="/loginRestaurant" method="post" modelAttribute="newLoginRestaurant">
+			<form:label class="form-label" path="restaurantEmail">Restaurant Email:</form:label>
+			<form:errors path="restaurantEmail"/>
+			<form:input class="form-control-sm" type="email" path="restaurantEmail"/><br><br>
 			<form:label class="form-label" path="password">Password:</form:label>
 			<form:errors path="password"/>
 			<form:input class="form-control-sm" type="password" path="password"/><br><br>
@@ -45,6 +42,6 @@
 		</form:form>
 	</div>
 	
-	<h2>Not a user? Log in as <a href="/restaurant">restaurant</a></h2>
+	<h2>Not a restaurant? Log in as <a href="/">user</a></h2>
 </body>
 </html>

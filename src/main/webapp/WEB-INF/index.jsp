@@ -13,9 +13,12 @@
 	<div class="login-form">
 		<h1 class="display-4 text-center">Register</h1>
 		<form:form action="/register" method="post" modelAttribute="newUser" >
-			<form:label class="form-label" path="name">Name:</form:label>
-			<form:errors path="name"/>
-			<form:input class="form-control-sm" path="name"/><br><br>
+			<form:label class="form-label" path="firstName">First Name:</form:label>
+			<form:errors path="firstName"/>
+			<form:input class="form-control-sm" path="firstName"/><br><br>
+			<form:label class="form-label" path="lastName">Last Name:</form:label>
+			<form:errors path="lastName"/>
+			<form:input class="form-control-sm" path="lastName"/><br><br>
 			<form:label class="form-label" path="email">Email:</form:label>
 			<form:errors path="email"/>
 			<form:input class="form-control-sm" type="email" path="email"/><br><br>

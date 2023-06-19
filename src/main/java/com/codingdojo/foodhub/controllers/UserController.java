@@ -19,7 +19,7 @@ import com.codingdojo.foodhub.services.UserService;
 
 
 @Controller
-public class MainController {
+public class UserController {
 	@Autowired
 	public UserService uServ;
 	
@@ -38,7 +38,7 @@ public class MainController {
 	}
 	
 	@PostMapping("/register")
-	public String registerUser(@Valid @ModelAttribute("newUser") User user, BindingResult result, Model model, HttpSession session) {
+	public String register(@Valid @ModelAttribute("newUser") User user, BindingResult result, Model model, HttpSession session) {
 		User newUser = uServ.register(user, result);
 		if(result.hasErrors()) {
 			model.addAttribute("newLogin", new LoginUser());
@@ -49,14 +49,32 @@ public class MainController {
 		}
 	}
 	
+	@PostMapping("/login")
+	public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
+		User user = uServ.login(newLogin, result);
+		if(result.hasErrors()) {
+			model.addAttribute("newUser", new User());
+			return "index.jsp";
+		} else {
+			session.setAttribute("userId", user.getId());
+			return "redirect:/dashboard";
+		}
+	}
+	
 	@GetMapping("/dashboard")
 	public String userDash(HttpSession session, Model model) {
 		if(session.getAttribute("userId") == null) {
-			return "redirect:/";
+			return "redirect:/logout";
 		} else {
 			User user = uServ.findUserById((Long) session.getAttribute("userId"));
 			model.addAttribute("user", user);
 			return "userDashboard.jsp";
 		}
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("userId");
+		return "redirect:/";
 	}
 }

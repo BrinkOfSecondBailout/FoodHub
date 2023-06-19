@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Welcome, <a href="/users/${user.id}">${user.firstName}!</h1></a>
+	<h2>All Restaurants</h2>
 </body>
 </html>

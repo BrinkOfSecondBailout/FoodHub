@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -23,11 +24,11 @@ public class Restaurant {
 	private Long id;
 	
 	@NotEmpty(message="Restaurant name cannot be empty")
-	private String restaurantName;
+	private String name;
 	
 	@Email
 	@NotEmpty(message="Restaurant email cannot be empty")
-	private String restaurantEmail;
+	private String email;
 	
 	@Size(min=5, message="Password must contain at least 5 characters")
 	private String password;
@@ -43,63 +44,96 @@ public class Restaurant {
     
 	public Restaurant() {}
 
+	
+	
 	public Long getId() {
 		return id;
 	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getRestaurantName() {
-		return restaurantName;
+
+
+	public String getName() {
+		return name;
 	}
 
-	public void setRestaurantName(String restaurantName) {
-		this.restaurantName = restaurantName;
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getRestaurantEmail() {
-		return restaurantEmail;
+
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setRestaurantEmail(String restaurantEmail) {
-		this.restaurantEmail = restaurantEmail;
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 	public String getConfirmPw() {
 		return confirmPw;
 	}
 
+
+
 	public void setConfirmPw(String confirmPw) {
 		this.confirmPw = confirmPw;
 	}
+
+
 
 	public Date getCreatedAt() {
 		return createdAt;
 	}
 
+
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
+
 
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
+
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
-	
+
+
+
+	@PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
     
     
 }

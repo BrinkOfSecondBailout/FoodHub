@@ -13,12 +13,12 @@
 	<div class="registration-form">
 		<h1>Register as Restaurant</h1>
 		<form:form action="/registerRestaurant" method="post" modelAttribute="newRestaurant" >
-			<form:label class="form-label" path="restaurantName">Restaurant Name:</form:label>
-			<form:errors path="restaurantName"/>
-			<form:input class="form-control-sm" path="restaurantName"/><br><br>
-			<form:label class="form-label" path="restaurantEmail">Restaurant Email:</form:label>
-			<form:errors path="restaurantEmail"/>
-			<form:input class="form-control-sm" type="email" path="restaurantEmail"/><br><br>
+			<form:label class="form-label" path="name">Restaurant Name:</form:label>
+			<form:errors path="name"/>
+			<form:input class="form-control-sm" path="name"/><br><br>
+			<form:label class="form-label" path="email">Restaurant Email:</form:label>
+			<form:errors path="email"/>
+			<form:input class="form-control-sm" type="email" path="email"/><br><br>
 			<form:label class="form-label" path="password">Password:</form:label>
 			<form:errors path="password"/>
 			<form:input class="form-control-sm" type="password" path="password"/><br><br>
@@ -32,9 +32,9 @@
 	<div class="login-form">
 		<h1>Log in as Restaurant</h1>
 		<form:form action="/loginRestaurant" method="post" modelAttribute="newLoginRestaurant">
-			<form:label class="form-label" path="restaurantEmail">Restaurant Email:</form:label>
-			<form:errors path="restaurantEmail"/>
-			<form:input class="form-control-sm" type="email" path="restaurantEmail"/><br><br>
+			<form:label class="form-label" path="email">Restaurant Email:</form:label>
+			<form:errors path="email"/>
+			<form:input class="form-control-sm" type="email" path="email"/><br><br>
 			<form:label class="form-label" path="password">Password:</form:label>
 			<form:errors path="password"/>
 			<form:input class="form-control-sm" type="password" path="password"/><br><br>

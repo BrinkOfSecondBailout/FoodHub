@@ -9,4 +9,6 @@ import com.codingdojo.foodhub.services.RestaurantService;
 public class RestaurantController {
 	@Autowired
 	public RestaurantService rServ;
+	
+	
 }

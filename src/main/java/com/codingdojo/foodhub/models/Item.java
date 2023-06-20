@@ -1,5 +1,6 @@
 package com.codingdojo.foodhub.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,16 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="restaurants")
-public class Restaurant {
+@Table(name="items")
+public class Item {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -26,15 +26,17 @@ public class Restaurant {
 	@NotEmpty(message="Restaurant name cannot be empty")
 	private String name;
 	
-	@Email
-	@NotEmpty(message="Restaurant email cannot be empty")
-	private String email;
+	@NotNull
+	@Min(1)
+	private BigDecimal price;
 	
-	@Size(min=5, message="Password must contain at least 5 characters")
-	private String password;
+	@NotEmpty(message="Please type a description for the menu item")
+	private String description;
 	
-	@Transient
-	private String confirmPw;
+	@NotEmpty(message="Please type a category for the menu item")
+	private String category;
+	
+	private String image;
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -42,11 +44,11 @@ public class Restaurant {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updated_at;
     
-	public Restaurant() {}
-
-	
-	
-	public Long getId() {
+    public Item() {};
+    
+    
+    
+    public Long getId() {
 		return id;
 	}
 
@@ -70,43 +72,51 @@ public class Restaurant {
 
 
 
-	public String getEmail() {
-		return email;
+	public BigDecimal getPrice() {
+		return price;
 	}
 
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 
 
-	public String getPassword() {
-		return password;
+	public String getDescription() {
+		return description;
 	}
 
 
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
 
-	public String getConfirmPw() {
-		return confirmPw;
+	public String getCategory() {
+		return category;
 	}
 
 
 
-	public void setConfirmPw(String confirmPw) {
-		this.confirmPw = confirmPw;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 
-	
 
+	public String getImage() {
+		return image;
+	}
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 
 
@@ -138,6 +148,4 @@ public class Restaurant {
     protected void onCreate(){
         this.created_at = new Date();
     }
-    
-    
 }

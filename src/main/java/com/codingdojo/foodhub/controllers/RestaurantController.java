@@ -71,6 +71,17 @@ public class RestaurantController {
 		}
 	}
 	
+	@GetMapping("/restaurants/edit")
+	public String editRestProfile(HttpSession session, Model model) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logoutRestaurant";
+		} else {
+			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+			model.addAttribute("restaurant", restaurant);
+			return "editRestaurantProfile.jsp";
+		}
+	}
+	
 	@GetMapping("/logoutRestaurant")
 	public String logout(HttpSession session) {
 		session.removeAttribute("restaurantId");

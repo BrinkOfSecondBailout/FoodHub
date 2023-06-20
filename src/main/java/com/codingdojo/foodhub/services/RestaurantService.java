@@ -68,4 +68,21 @@ public class RestaurantService {
 		}
 		return restaurant;
 	}
+	
+	public Restaurant findRestaurantById(Long id) {
+		Optional <Restaurant> potentialRest = rRepo.findById(id);
+		if(potentialRest.isEmpty()) {
+			return null;
+		} else {
+			return potentialRest.get();
+		}
+	}
+	
+	public Restaurant updateRestaurant(Restaurant restaurant) {
+		return rRepo.save(restaurant);
+	}
+	
+	public void delete(Long id) {
+		rRepo.deleteById(id);
+	}
 }

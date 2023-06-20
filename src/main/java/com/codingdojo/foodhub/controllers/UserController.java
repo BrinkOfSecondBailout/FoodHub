@@ -30,12 +30,6 @@ public class UserController {
 		return "index.jsp";
 	}
 	
-	@GetMapping("/restaurant")
-	public String indexRestaurant(Model model) {
-		model.addAttribute("newRestaurant", new Restaurant());
-		model.addAttribute("newLoginRestaurant", new LoginRestaurant());
-		return "restaurantIndex.jsp";
-	}
 	
 	@PostMapping("/register")
 	public String register(@Valid @ModelAttribute("newUser") User user, BindingResult result, Model model, HttpSession session) {

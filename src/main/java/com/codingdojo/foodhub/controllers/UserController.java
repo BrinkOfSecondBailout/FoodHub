@@ -1,5 +1,7 @@
 package com.codingdojo.foodhub.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import com.codingdojo.foodhub.models.LoginRestaurant;
 import com.codingdojo.foodhub.models.LoginUser;
 import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.User;
+import com.codingdojo.foodhub.services.RestaurantService;
 import com.codingdojo.foodhub.services.UserService;
 
 
@@ -22,6 +25,8 @@ import com.codingdojo.foodhub.services.UserService;
 public class UserController {
 	@Autowired
 	public UserService uServ;
+	@Autowired
+	public RestaurantService rServ;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -61,7 +66,9 @@ public class UserController {
 			return "redirect:/logout";
 		} else {
 			User user = uServ.findUserById((Long) session.getAttribute("userId"));
+			List <Restaurant> restaurants = rServ.findAllRestaurants();
 			model.addAttribute("user", user);
+			model.addAttribute("restaurants", restaurants);
 			return "userDashboard.jsp";
 		}
 	}

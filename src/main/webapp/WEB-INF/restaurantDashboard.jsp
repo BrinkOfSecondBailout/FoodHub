@@ -7,13 +7,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User Dashboard</title>
+<title>Restaurant Dashboard</title>
 </head>
 <body>
-	<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
-	<h2>All Delicious Restaurants</h2>
-	<c:forEach var="restaurant" items="${restaurants}">
-		<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
+	<h1>Welcome, <a href="/restaurants/${restaurant.id}">${restaurant.name}!</h1></a>
+	<h2>All Hungry Users</h2>
+	<c:forEach var="user" items="${users}">
+		<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
 	</c:forEach>
 </body>
 </html>

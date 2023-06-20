@@ -24,10 +24,10 @@ public class User {
 	private Long id;
 	
 	@NotEmpty(message="First name cannot be empty")
-	private String firstName;
+	private String first_name;
 	
 	@NotEmpty(message="Last name cannot be empty")
-	private String lastName;
+	private String last_name;
 	
 	@Email
 	@NotEmpty(message="Email cannot be empty")
@@ -41,79 +41,181 @@ public class User {
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
+    private Date created_at;
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date updatedAt;
+    private Date updated_at;
     
     public User() {}
+
+	
+    
+	
+
+
 
 	public Long getId() {
 		return id;
 	}
 
+
+
+
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+
+
+
+
+
+
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+
+
+
+
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
 
-	public String getLastName() {
-		return lastName;
+
+
+
+
+
+
+	public String getLast_name() {
+		return last_name;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+
+
+
+
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
+
+
+
+
+
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
+
+
+
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
+
+
+
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
+
+
+
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
+
+
+
+
 
 	public String getConfirmPw() {
 		return confirmPw;
 	}
 
+
+
+
+
+
+
 	public void setConfirmPw(String confirmPw) {
 		this.confirmPw = confirmPw;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+
+
+
+
+
+
+	public Date getCreated_at() {
+		return created_at;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+
+
+
+
+
+
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
 	}
 
-	public Date getUpdatedAt() {
-		return updatedAt;
+
+
+
+
+
+
+	public Date getUpdated_at() {
+		return updated_at;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
+
+
+
+
+
+
+	public void setUpdated_at(Date updated_at) {
+		this.updated_at = updated_at;
 	}
-    
+
+
+
+
+
+
+
 	@PrePersist
     protected void onCreate(){
-        this.createdAt = new Date();
+        this.created_at = new Date();
     }
 
 }

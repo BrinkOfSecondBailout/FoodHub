@@ -59,7 +59,7 @@ public class RestaurantService {
 			return null;
 		}
 		Restaurant restaurant = potentialRest.get();
-		if(BCrypt.checkpw(newLogin.getPassword(), restaurant.getPassword())) {
+		if(!BCrypt.checkpw(newLogin.getPassword(), restaurant.getPassword())) {
 			result.rejectValue("password", "Matches", "Invalid password, please try again");
 			return null;
 		}

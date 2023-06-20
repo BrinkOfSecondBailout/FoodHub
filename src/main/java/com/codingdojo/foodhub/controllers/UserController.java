@@ -73,6 +73,17 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/users/edit")
+	public String editProfile(HttpSession session, Model model) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		} else {
+			User user = uServ.findUserById((Long) session.getAttribute("userId"));
+			model.addAttribute("user", user);
+			return "editUserProfile.jsp";
+		}
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("userId");

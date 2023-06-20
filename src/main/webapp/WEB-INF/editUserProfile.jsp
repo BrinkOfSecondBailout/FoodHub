@@ -7,14 +7,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>User Dashboard</title>
+<title>Edit Profile</title>
 </head>
 <body>
-	<h1>Welcome, <a href="/users/edit">${user.first_name}!</h1></a>
-	<h2>All Delicious Restaurants</h2>
-	<c:forEach var="restaurant" items="${restaurants}">
-		<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
-	</c:forEach>
-	<a href="/logout"><button>Logout</button></a>
+	<h1>Edit Your Profile, ${user.first_name}</h1>
 </body>
 </html>

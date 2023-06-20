@@ -15,5 +15,6 @@
 	<c:forEach var="user" items="${users}">
 		<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
 	</c:forEach>
+	<a href="/logoutRestaurant"><button>Logout</button></a>
 </body>
 </html>

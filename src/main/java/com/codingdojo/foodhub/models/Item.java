@@ -36,7 +36,7 @@ public class Item {
 	@NotEmpty(message="Please type a category for the menu item")
 	private String category;
 	
-	private String image;
+	private String file;
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -107,15 +107,14 @@ public class Item {
 	}
 
 
-
-	public String getImage() {
-		return image;
+	public String getFile() {
+		return file;
 	}
 
 
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setFile(String file) {
+		this.file = file;
 	}
 
 

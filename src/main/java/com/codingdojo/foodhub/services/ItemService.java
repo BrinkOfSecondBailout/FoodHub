@@ -28,7 +28,7 @@ public class ItemService {
 			System.out.println("Not a valid file");
 		}
 		try {
-			item.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+			item.setFile(Base64.getEncoder().encodeToString(file.getBytes()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,6 +37,7 @@ public class ItemService {
 		item.setPrice(price);
 		item.setDescription(description);
 		item.setCategory(category);
+		iRepo.save(item);
 	}
 	
 }

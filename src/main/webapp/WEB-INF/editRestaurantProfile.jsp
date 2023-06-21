@@ -11,5 +11,6 @@
 </head>
 <body>
 	<h1>Edit Your Profile, ${restaurant.name}</h1>
+	<a href="/menu/add"><button>Add an item to your menu!</button></a>
 </body>
 </html>

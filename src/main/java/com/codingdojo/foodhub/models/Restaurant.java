@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -39,6 +40,11 @@ public class Restaurant {
 	@Transient
 	private String confirmPw;
 	
+	@Lob
+	@Column(columnDefinition="MEDIUMTEXT")
+	private String profile;
+	
+	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date created_at;
@@ -53,6 +59,18 @@ public class Restaurant {
 
 	
 	
+	public String getProfile() {
+		return profile;
+	}
+
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
+
 	public List<Item> getItems() {
 		return items;
 	}

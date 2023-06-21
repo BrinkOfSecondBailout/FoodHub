@@ -70,9 +70,11 @@ public class RestaurantController {
 		} else {
 			Long id = (Long) session.getAttribute("restaurantId");
 			Restaurant restaurant = rServ.findRestaurantById(id);
+			List <Restaurant> restaurants = rServ.findAllNotById(id);
 			List <User> users = uServ.findAllUsers();
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			model.addAttribute("restaurant", restaurant);
+			model.addAttribute("restaurants", restaurants);
 			model.addAttribute("users", users);
 			model.addAttribute("items", items);
 			return "restaurantDashboard.jsp";

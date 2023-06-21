@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.codingdojo.foodhub.models.Item;
+import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.repositories.ItemRepository;
 
 @Service
@@ -21,7 +22,7 @@ public class ItemService {
 		this.iRepo = iRepo;
 	}
 	
-	public void saveItemToDB(MultipartFile file, String name, BigDecimal price, String description, String category) {
+	public void saveItemToDB(MultipartFile file, String name, BigDecimal price, String description, String category, Restaurant restaurant) {
 		Item item = new Item();
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if(fileName.contains("..")) {
@@ -37,6 +38,7 @@ public class ItemService {
 		item.setPrice(price);
 		item.setDescription(description);
 		item.setCategory(category);
+		item.setRestaurant(restaurant);
 		iRepo.save(item);
 	}
 	

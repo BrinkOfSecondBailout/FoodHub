@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -43,6 +46,12 @@ public class Item {
     private Date created_at;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updated_at;
+    
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="restaurant_id")
+    private Restaurant restaurant;
+    
     
     public Item() {};
     
@@ -139,6 +148,18 @@ public class Item {
 
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
+	}
+
+	
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 

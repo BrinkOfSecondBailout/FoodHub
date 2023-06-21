@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -39,6 +40,8 @@ public class Item {
 	@NotEmpty(message="Please type a category for the menu item")
 	private String category;
 	
+	@Lob
+	@Column(columnDefinition="MEDIUMTEXT")
 	private String file;
 	
 	@Column(updatable=false)

@@ -34,7 +34,7 @@
 		</form:select><br><br>
 		<form:label path="file">Upload a picture:</form:label>
 		<form:errors path="file"/>
-		<form:input type="file" path="file"/><br><br>
+		<form:input type="file" path="file" accept="image/png, image/jpeg, image/jpg"/><br><br>
 		<input type="submit" value="Submit"/>
 	</form:form>
 </body>

@@ -3,6 +3,7 @@ package com.codingdojo.foodhub.services;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,4 +43,11 @@ public class ItemService {
 		iRepo.save(item);
 	}
 	
+	public List <Item> findAllItems() {
+		return iRepo.findAll();
+	}
+	
+	public List <Item> findAllItemsByRestaurantId(Long id) {
+		return iRepo.findAllItemsByRestaurant(id);
+	}
 }

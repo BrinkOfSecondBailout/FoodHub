@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.LoginRestaurant;
 import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.User;
+import com.codingdojo.foodhub.services.ItemService;
 import com.codingdojo.foodhub.services.RestaurantService;
 import com.codingdojo.foodhub.services.UserService;
 
@@ -25,6 +27,8 @@ public class RestaurantController {
 	public RestaurantService rServ;
 	@Autowired
 	public UserService uServ;
+	@Autowired
+	public ItemService iServ;
 	
 	@GetMapping("/restaurant")
 	public String indexRestaurant(Model model) {
@@ -63,10 +67,13 @@ public class RestaurantController {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logoutRestaurant";
 		} else {
-			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+			Long id = (Long) session.getAttribute("restaurantId");
+			Restaurant restaurant = rServ.findRestaurantById(id);
 			List <User> users = uServ.findAllUsers();
+			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("users", users);
+			model.addAttribute("items", items);
 			return "restaurantDashboard.jsp";
 		}
 	}

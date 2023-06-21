@@ -47,11 +47,10 @@ public class ItemController {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logoutRestaurant";
 		} else {
-			if (result.hasErrors()) {
-				System.out.println("A");
-				return "newItem.jsp";
-			}
-			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId")); 
+//			if (result.hasErrors()) {
+//				return "newItem.jsp";
+//			}
+			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
 			iServ.saveItemToDB(file, name, price, description, category, restaurant);
 			return "redirect:/restaurants/edit";			
 		}

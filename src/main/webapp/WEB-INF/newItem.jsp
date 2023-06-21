@@ -6,12 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Add New Item</title>
 </head>
 <body>
 	<h1>New Menu Item:</h1>
-	<form:form action="/menu/newItem" method="post" modelAttribute="item" enctype="multipart/form-data">
+	<form:form action="/items/new" method="post" modelAttribute="item" enctype="multipart/form-data">
 		<form:label path="name">Item Name:</form:label>
 		<form:errors path="name"/>
 		<form:input path="name"/><br><br>

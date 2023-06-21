@@ -8,10 +8,13 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
-<title>Edit Restaurant</title>
+<title>Item Display</title>
 </head>
 <body>
-	<h1>Edit Your Profile, <a href="/restaurantDashboard">${restaurant.name}</h1></a>
-	<a href="/items/edit/${restaurant.id}">Make changes to menu</a>
+	<h1>${item.name}</h1>
+	<h4>${item.category}</h4>
+	<img src="data:image/jpg;base64,${item.file}" class="item-thumb-display"/>
+	<p>${item.description}</p>
+	<p>$${item.price}</p>
 </body>
 </html>

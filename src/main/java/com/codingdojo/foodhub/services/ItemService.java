@@ -50,4 +50,8 @@ public class ItemService {
 	public List <Item> findAllItemsByRestaurantId(Long id) {
 		return iRepo.findAllItemsByRestaurant(id);
 	}
+	
+	public Item findItemById(Long id) {
+		return iRepo.findItemById(id);
+	}
 }

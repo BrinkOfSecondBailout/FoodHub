@@ -1,0 +1,36 @@
+@charset "ISO-8859-1";
+
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* restaurant dash board */
+
+.item-thumb {
+	width: 150px;
+	height: 150px;
+	border-radius: 10px;
+}
+
+.my-items {
+	display: flex;
+}
+
+.one-item {
+	text-align: center;
+}
+
+/* edit menu */
+
+.one-edit-item {
+	display: flex;
+	flex-direction: column;
+}
+
+/* item display */
+
+.item-thumb-display {
+	width: 350px;
+	height: 350px;
+}

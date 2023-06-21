@@ -16,6 +16,10 @@
 	<c:forEach var="restaurant" items="${restaurants}">
 		<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
 	</c:forEach>
+	<h2>All Hungry Eaters</h2>
+	<c:forEach var="user" items="${users}">
+		<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
+	</c:forEach>
 	<a href="/logout"><button>Logout</button></a>
 </body>
 </html>

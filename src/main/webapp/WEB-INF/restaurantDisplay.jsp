@@ -8,18 +8,22 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
-<title>Edit Your Menu</title>
+<title>Restaurant Display</title>
 </head>
 <body>
-	<h1>Edit Your Menu, <a href="/restaurantDashboard">${restaurant.name}</a></h1>
+	<h1>${restaurant.name}</h1>
 	<c:forEach var="item" items="${items}">
-		<div class="one-edit-item">
-			<p><c:out value="${item.name}"/></p>
-			<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
-			<a href="/items/item/edit/${item.id}"><button>Modify</button></a>
-			<a href="/items/item/delete/${item.id}"><button>Delete</button></a>		
+		<div>
+			<a href="/items/${item.id}"><p><c:out value="${item.name}"/></p>
+			<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/></a>
 		</div>
 	</c:forEach>
-	<a href="/items/add"><button>Add New Item</button></a>
+	
+	<c:if test="${userId != null}">
+		<h3>Looks yummy?</h3>
+		<button>Start ordering!</button>
+		<button>I'll pass...</button>	
+	</c:if>
+	
 </body>
 </html>

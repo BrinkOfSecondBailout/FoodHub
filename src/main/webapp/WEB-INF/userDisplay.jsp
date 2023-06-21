@@ -8,17 +8,9 @@
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
-<title>Item Display</title>
+<title>Eater Display</title>
 </head>
 <body>
-	<h1>${item.name}</h1>
-	<h4>${item.category}</h4>
-	<img src="data:image/jpg;base64,${item.file}" class="item-thumb-display"/>
-	<p>${item.description}</p>
-	<p>$${item.price}</p>
-	<c:if test="${item.restaurant.id == restaurantId}">
-		<a href="/items/item/edit/${item.id}"><button>Modify</button></a>
-		<a href="/items/item/delete/${item.id}"><button>Delete</button></a>
-	</c:if>
+	<h1>${user.first_name} ${user.last_name}</h1>
 </body>
 </html>

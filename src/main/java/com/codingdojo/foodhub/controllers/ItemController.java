@@ -32,7 +32,7 @@ public class ItemController {
 	@GetMapping("/items/add")
 	public String addItem(@ModelAttribute("item") Item item, HttpSession session) {
 		if(session.getAttribute("restaurantId") == null) {
-			return "redirect:/logoutRestaurant";
+			return "redirect:/logout";
 		} else {
 			return "newItem.jsp";			
 		}
@@ -48,7 +48,7 @@ public class ItemController {
 			@RequestParam("category") String category) 
 	{
 		if(session.getAttribute("restaurantId") == null) {
-			return "redirect:/logoutRestaurant";
+			return "redirect:/logout";
 		} else {
 //			if (result.hasErrors()) {
 //				return "newItem.jsp";
@@ -62,10 +62,10 @@ public class ItemController {
 	@GetMapping("/items/edit/{id}")
 	public String editMenu(@PathVariable("id") Long id, HttpSession session, Model model) {
 		if(session.getAttribute("restaurantId") == null) {
-			return "redirect:/logoutRestaurant";
+			return "redirect:/logout";
 		}
 		if(id != session.getAttribute("restaurantId")) {
-			return "redirect:/logoutRestaurant";
+			return "redirect:/logout";
 		} else {
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			Restaurant restaurant = rServ.findRestaurantById(id);
@@ -77,11 +77,13 @@ public class ItemController {
 	
 	@GetMapping("/items/{id}")
 	public String displayItem(@PathVariable("id") Long id, HttpSession session, Model model) {
-		if(session.getAttribute("restaurantId") == null) {
-			return "redirect:/logoutRestaurant";
+		if(session.getAttribute("restaurantId") == null && session.getAttribute("userId") == null) {
+			return "redirect:/logout";
 		} else {
+			Long restaurantId = (Long) session.getAttribute("restaurantId");
 			Item item = iServ.findItemById(id);
 			model.addAttribute("item", item);
+			model.addAttribute("restaurantId", restaurantId);
 			return "itemDisplay.jsp";
 		}
 	}

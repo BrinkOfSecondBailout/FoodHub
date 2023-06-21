@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.codingdojo.foodhub.models.LoginRestaurant;
@@ -65,9 +66,12 @@ public class UserController {
 		if(session.getAttribute("userId") == null) {
 			return "redirect:/logout";
 		} else {
-			User user = uServ.findUserById((Long) session.getAttribute("userId"));
+			Long userId = (Long) session.getAttribute("userId");
+			User user = uServ.findUserById(userId);
+			List <User> users = uServ.findAllUsersNotById(userId);
 			List <Restaurant> restaurants = rServ.findAllRestaurants();
 			model.addAttribute("user", user);
+			model.addAttribute("users", users);
 			model.addAttribute("restaurants", restaurants);
 			return "userDashboard.jsp";
 		}
@@ -84,9 +88,20 @@ public class UserController {
 		}
 	}
 	
+	@GetMapping("/users/{id}")
+	public String userDisplay(@PathVariable("id") Long id, HttpSession session, Model model) {
+		if(session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		} else {
+			User user = uServ.findUserById(id);
+			model.addAttribute("user", user);
+			return "userDisplay.jsp";
+		}
+	}
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("userId");
+		session.invalidate();
 		return "redirect:/";
 	}
 }

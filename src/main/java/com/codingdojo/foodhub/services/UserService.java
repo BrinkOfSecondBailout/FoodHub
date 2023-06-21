@@ -78,6 +78,10 @@ public class UserService {
 		}
 	}
 	
+	public List <User> findAllUsersNotById (Long id) {
+		return uRepo.findAllUsersNotById(id);
+	}
+	
 	public User updateUser (User user) {
 		return uRepo.save(user);
 	}

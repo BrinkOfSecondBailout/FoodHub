@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.codingdojo.foodhub.models.Item;
@@ -65,7 +66,7 @@ public class RestaurantController {
 	@GetMapping("/restaurantDashboard")
 	public String restaurantDash(HttpSession session, Model model) {
 		if(session.getAttribute("restaurantId") == null) {
-			return "redirect:/logoutRestaurant";
+			return "redirect:/logout";
 		} else {
 			Long id = (Long) session.getAttribute("restaurantId");
 			Restaurant restaurant = rServ.findRestaurantById(id);
@@ -81,7 +82,7 @@ public class RestaurantController {
 	@GetMapping("/restaurants/edit")
 	public String editRestProfile(HttpSession session, Model model) {
 		if(session.getAttribute("restaurantId") == null) {
-			return "redirect:/logoutRestaurant";
+			return "redirect:/logout";
 		} else {
 			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
 			model.addAttribute("restaurant", restaurant);
@@ -89,9 +90,26 @@ public class RestaurantController {
 		}
 	}
 	
-	@GetMapping("/logoutRestaurant")
-	public String logout(HttpSession session) {
-		session.removeAttribute("restaurantId");
-		return "redirect:/restaurant";
+	@GetMapping("/restaurants/{id}")
+	public String displayRestaurant(@PathVariable("id") Long id, HttpSession session, Model model) {
+		if(session.getAttribute("restaurantId") == null && session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		} else {
+			Restaurant restaurant = rServ.findRestaurantById(id);
+			List <Item> items = iServ.findAllItemsByRestaurantId(id);
+			// if viewer is a user
+			if (session.getAttribute("userId") != null) {
+				Long userId = (Long) session.getAttribute("userId");
+				model.addAttribute("restaurant", restaurant);
+				model.addAttribute("items", items);
+				model.addAttribute("userId", userId);
+				return "restaurantDisplay.jsp";
+			}
+			// if viewer is a restaurant
+			model.addAttribute("restaurant", restaurant);
+			model.addAttribute("items", items);
+			return "restaurantDisplay.jsp";
+		}
 	}
+	
 }

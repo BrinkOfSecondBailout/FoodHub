@@ -22,10 +22,10 @@
 		</c:forEach>	
 	</div>
 	<a href="/items/edit/${restaurant.id}"><button>Edit Your Menu</button></a>
-	<h2>All Hungry Users</h2>
+	<h2>All Hungry Eaters</h2>
 	<c:forEach var="user" items="${users}">
 		<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
 	</c:forEach>
-	<a href="/logoutRestaurant"><button>Logout</button></a>
+	<a href="/logout"><button>Logout</button></a>
 </body>
 </html>

@@ -3,6 +3,7 @@
 * {
 	margin: 0 auto;
 	padding: 0;
+	text-align: center;
 }
 
 /* restaurant dash board */
@@ -19,6 +20,12 @@
 
 .one-item {
 	text-align: center;
+}
+
+.avatar-thumb-sm {
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
 }
 
 /* restaurant edit profile */

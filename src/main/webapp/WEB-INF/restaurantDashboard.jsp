@@ -31,7 +31,16 @@
 	
 	<h2>All Other Restaurants</h2>
 	<c:forEach var="restaurant" items="${restaurants}">
-		<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
+		<div class="one-item">
+			<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p>
+			<c:if test = "${ restaurant.profile == null }">
+				<img class="avatar-thumb-sm" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/>
+			</c:if>
+			<c:if test = "${ restaurant.profile != null }">
+				<img class="avatar-thumb-sm" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+			</c:if>
+			</a>
+		</div>
 	</c:forEach>
 	
 	<h2>All Hungry Eaters</h2>

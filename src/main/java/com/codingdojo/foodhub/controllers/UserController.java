@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.codingdojo.foodhub.models.LoginRestaurant;
 import com.codingdojo.foodhub.models.LoginUser;
@@ -87,6 +90,20 @@ public class UserController {
 			return "editUserProfile.jsp";
 		}
 	}
+	
+	@PutMapping("/users/newprofile")
+	public String newProfilePicture(@Valid @ModelAttribute("user") User user,
+			BindingResult result, HttpSession session,
+			@RequestParam("profile") MultipartFile file) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		} else {
+			Long id = (Long) session.getAttribute("userId");
+			uServ.addProfilePicture(id, file);
+			return "redirect:/users/edit";
+		}
+	}
+	
 	
 	@GetMapping("/users/{id}")
 	public String userDisplay(@PathVariable("id") Long id, HttpSession session, Model model) {

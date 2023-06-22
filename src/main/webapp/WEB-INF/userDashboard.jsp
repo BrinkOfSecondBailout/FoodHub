@@ -12,13 +12,35 @@
 </head>
 <body>
 	<h1>Welcome, <a href="/users/edit">${user.first_name}!</h1></a>
+	<c:if test = "${ user.profile == null }">
+		<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+	</c:if>
+	<c:if test = "${ user.profile != null }">
+		<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+	</c:if>
 	<h2>All Delicious Restaurants</h2>
 	<c:forEach var="restaurant" items="${restaurants}">
-		<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
+		<div class="one-item">
+			<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
+			<c:if test = "${ restaurant.profile == null }">
+				<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+			</c:if>
+			<c:if test = "${ restaurant.profile != null }">
+				<img class="avatar-thumb-sm" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+			</c:if>
+		</div>
 	</c:forEach>
 	<h2>All Hungry Eaters</h2>
 	<c:forEach var="user" items="${users}">
-		<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
+		<div class="one-item">
+			<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
+			<c:if test = "${ user.profile == null }">
+				<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+			</c:if>
+			<c:if test = "${ user.profile != null }">
+				<img class="avatar-thumb-sm" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+			</c:if>
+		</div>
 	</c:forEach>
 	<a href="/logout"><button>Logout</button></a>
 </body>

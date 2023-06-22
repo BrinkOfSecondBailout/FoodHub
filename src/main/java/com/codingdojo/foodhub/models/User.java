@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -33,6 +34,10 @@ public class User {
 	@NotEmpty(message="Email cannot be empty")
 	private String email;
 	
+	@Lob
+	@Column(columnDefinition="MEDIUMTEXT")
+	private String profile;
+	
 	@Size(min=5, message="Password must contain at least 5 characters")
 	private String password;
 	
@@ -50,6 +55,26 @@ public class User {
 	
     
 	
+    
+
+
+	public String getProfile() {
+		return profile;
+	}
+
+
+
+
+
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+
+
+
 
 
 

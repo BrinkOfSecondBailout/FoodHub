@@ -104,7 +104,6 @@ public class RestaurantController {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
-			System.out.println("A");
 			Long id = (Long) session.getAttribute("restaurantId");
 			rServ.addProfilePicture(id, file);
 			return "redirect:/restaurants/edit";

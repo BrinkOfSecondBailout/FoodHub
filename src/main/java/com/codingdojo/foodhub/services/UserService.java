@@ -1,12 +1,16 @@
 package com.codingdojo.foodhub.services;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.codingdojo.foodhub.models.LoginUser;
 import com.codingdojo.foodhub.models.User;
@@ -76,6 +80,21 @@ public class UserService {
 		} else {
 			return potentialUser.get();
 		}
+	}
+	
+	public void addProfilePicture(Long id, MultipartFile file) {
+		User u = uRepo.findUserById(id);
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if(fileName.contains("..")) {
+			System.out.println("Not a valid file");
+		}
+		try {
+			u.setProfile(Base64.getEncoder().encodeToString(file.getBytes()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		uRepo.save(u);
 	}
 	
 	public List <User> findAllUsersNotById (Long id) {

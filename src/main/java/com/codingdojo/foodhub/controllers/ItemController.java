@@ -64,8 +64,8 @@ public class ItemController {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		}
-		if(id != session.getAttribute("restaurantId")) {
-			return "redirect:/logout";
+		if(!id.equals(session.getAttribute("restaurantId"))) {
+			return "redirect:/restaurantDashboard";
 		} else {
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			Restaurant restaurant = rServ.findRestaurantById(id);

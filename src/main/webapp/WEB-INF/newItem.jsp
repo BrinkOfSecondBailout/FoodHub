@@ -18,7 +18,7 @@
 		<form:input path="name"/><br><br>
 		<form:label path="price">Item Price:</form:label>
 		<form:errors path="price"/>
-		<form:input type="number" path="price"/><br><br>
+		<form:input type="number" path="price" value="0"/><br><br>
 		<form:label path="description">Item Description:</form:label>
 		<form:errors path="description"/>
 		<form:input path="description"/><br><br>
@@ -33,9 +33,7 @@
 			<form:option value="Drinks">Drinks</form:option>
 			<form:option value="Others">Others</form:option>
 		</form:select><br><br>
-		<form:label path="file">Upload a picture:</form:label>
-		<form:errors path="file"/>
-		<form:input type="file" path="file" accept="image/png, image/jpeg, image/jpg"/><br><br>
+		
 		<input type="submit" value="Submit"/>
 	</form:form>
 </body>

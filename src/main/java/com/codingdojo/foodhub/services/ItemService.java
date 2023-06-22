@@ -43,6 +43,25 @@ public class ItemService {
 		iRepo.save(item);
 	}
 	
+	public void addItemPicture(MultipartFile file, Item item) {
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if(fileName.contains("..")) {
+			System.out.println("Not a valid file");
+		}
+		try {
+			item.setFile(Base64.getEncoder().encodeToString(file.getBytes()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		iRepo.save(item);
+	}
+	
+	public Item createItem(Item item, Restaurant restaurant) {
+		item.setRestaurant(restaurant);
+		return iRepo.save(item);
+	}
+	
 	public List <Item> findAllItems() {
 		return iRepo.findAll();
 	}

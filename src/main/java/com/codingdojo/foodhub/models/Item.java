@@ -14,7 +14,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -30,8 +31,9 @@ public class Item {
 	@NotEmpty(message="Restaurant name cannot be empty")
 	private String name;
 	
-	@NotNull
-	@Min(1)
+	@NotNull(message = "Price is required")
+	@DecimalMin(value = "0.50", inclusive = false, message = "Price must be greater than 0.50")
+	@Digits(integer = 3, fraction = 2, message = "Price must have at most 3 digits in total and 2 decimal places")
 	private BigDecimal price;
 	
 	@NotEmpty(message="Please type a description for the menu item")
@@ -39,6 +41,7 @@ public class Item {
 	
 	@NotEmpty(message="Please type a category for the menu item")
 	private String category;
+	
 	
 	@Lob
 	@Column(columnDefinition="MEDIUMTEXT")
@@ -117,6 +120,9 @@ public class Item {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+
+
 
 
 	public String getFile() {

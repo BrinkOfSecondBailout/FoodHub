@@ -21,7 +21,12 @@
 	<c:forEach var="item" items="${items}">
 		<div class="one-edit-item">
 			<p><c:out value="${item.name}"/></p>
-			<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+			<c:if test = "${ item.file == null }">
+				<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+			</c:if>
+			<c:if test = "${ item.file != null }">
+				<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>			
+			</c:if>
 			<a href="/items/item/edit/${item.id}"><button>Modify</button></a>
 			<a href="/items/item/delete/${item.id}"><button>Delete</button></a>		
 		</div>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,26 +39,51 @@ public class ItemController {
 		}
 	}
 	
+	
+	
 	@PostMapping("/items/new")
-	public String addNewItem(@Valid @ModelAttribute("item") Item item, BindingResult result, 
-			HttpSession session, 
-			@RequestParam("file") MultipartFile file,
-			@RequestParam("name") String name, 
-			@RequestParam("price") BigDecimal price, 
-			@RequestParam("description") String description, 
-			@RequestParam("category") String category) 
-	{
+	public String newItem(@Valid @ModelAttribute("item") Item item, BindingResult result,
+			HttpSession session) {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
-//			if (result.hasErrors()) {
-//				return "newItem.jsp";
-//			}
-			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
-			iServ.saveItemToDB(file, name, price, description, category, restaurant);
-			return "redirect:/restaurants/edit";			
+			if (result.hasErrors()) {
+				return "newItem.jsp";
+			} else {
+				Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+				Long id = (Long) iServ.createItem(item, restaurant).getId();
+				return "redirect:/items/picture/" + id;
+			}
 		}
 	}
+	
+	@GetMapping("/items/picture/{id}")
+	public String addPicture(@PathVariable("id") Long id, HttpSession session, Model model) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		}
+		Item item = iServ.findItemById(id);
+		if(!item.getRestaurant().getId().equals(session.getAttribute("restaurantId"))) {
+			return "redirect:/restaurantDashboard";
+		} else {
+			model.addAttribute("item", item);
+			return "addItemPicture.jsp";
+		}
+	}
+	
+	@PutMapping("/items/processpicture/")
+	public String processPicture(@Valid @ModelAttribute("item") Item item, 
+			BindingResult result,
+			HttpSession session,
+			@RequestParam("file") MultipartFile file) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		} else {
+			iServ.addItemPicture(file, item);
+			return "redirect:/items/edit/" + (Long) session.getAttribute("restaurantId");
+		}
+	}
+	
 	
 	@GetMapping("/items/edit/{id}")
 	public String editMenu(@PathVariable("id") Long id, HttpSession session, Model model) {

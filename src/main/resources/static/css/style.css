@@ -49,3 +49,21 @@
 	width: 350px;
 	height: 350px;
 }
+
+/* add a picture to item */
+
+.no-image-display {
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+}
+
+/* user dashboard */
+
+.all-restaurants {
+	display: flex;
+}
+
+.all-users {
+	display: flex;
+}

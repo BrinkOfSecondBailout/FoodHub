@@ -21,7 +21,13 @@
 	<c:forEach var="item" items="${items}">
 		<div>
 			<a href="/items/${item.id}"><p><c:out value="${item.name}"/></p>
-			<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/></a>
+			<c:if test = "${ item.file == null }">
+				<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+			</c:if>
+			<c:if test = "${ item.file != null }">
+				<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+			</c:if>
+			</a>
 		</div>
 	</c:forEach>
 	

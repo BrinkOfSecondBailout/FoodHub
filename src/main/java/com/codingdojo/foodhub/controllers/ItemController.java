@@ -1,6 +1,5 @@
 package com.codingdojo.foodhub.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -71,7 +70,7 @@ public class ItemController {
 		}
 	}
 	
-	@PutMapping("/items/processpicture/")
+	@PutMapping("/items/processpicture")
 	public String processPicture(@Valid @ModelAttribute("item") Item item, 
 			BindingResult result,
 			HttpSession session,

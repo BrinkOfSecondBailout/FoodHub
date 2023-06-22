@@ -13,7 +13,12 @@
 <body>
 	<h1>${item.name}</h1>
 	<h4>${item.category}</h4>
-	<img src="data:image/jpg;base64,${item.file}" class="item-thumb-display"/>
+	<c:if test = "${ item.file == null }">
+		<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb-display"/>
+	</c:if>
+	<c:if test = "${ item.file != null }">
+		<img src="data:image/jpg;base64,${item.file}" class="item-thumb-display"/>
+	</c:if>
 	<p>${item.description}</p>
 	<p>$${item.price}</p>
 	<c:if test="${item.restaurant.id == restaurantId}">

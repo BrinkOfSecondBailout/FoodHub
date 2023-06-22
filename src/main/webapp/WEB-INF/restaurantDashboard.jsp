@@ -12,6 +12,12 @@
 </head>
 <body>
 	<h1>Welcome, <a href="/restaurants/edit">${restaurant.name}!</h1></a>
+	<c:if test = "${ restaurant.profile == null }">
+		<img class="avatar-thumb" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/>
+	</c:if>
+	<c:if test = "${ restaurant.profile != null }">
+		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+	</c:if>
 	<h2>Your Menu</h2>
 	<div class="my-items">
 		<c:forEach var="item" items="${items}">

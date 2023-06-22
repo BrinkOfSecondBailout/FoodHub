@@ -3,6 +3,7 @@
 <%@ page isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,25 @@
 <title>Edit Restaurant</title>
 </head>
 <body>
-	<h1>Edit Your Profile, <a href="/restaurantDashboard">${restaurant.name}</h1></a>
-	<a href="/items/edit/${restaurant.id}">Make changes to menu</a>
+	<h1>Edit Your Profile, <a href="/restaurantDashboard">${restaurant.name}</a></h1>
+	<c:if test = "${ restaurant.profile == null }">
+		<img class="avatar-thumb" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/>
+	</c:if>
+	<c:if test = "${ restaurant.profile != null }">
+		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+	</c:if>
+	
+	<form:form action="/restaurants/newprofile" modelAttribute="restaurant" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="_method" value="put"/>
+		
+		<form:label path="profile">Change profile picture:</form:label><br>
+		<form:errors path="profile"/>
+		<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/><br><br>
+		<input type="submit" value="Submit"/>	
+	</form:form>
+	
+	<div>
+		<a href="/items/edit/${restaurant.id}">Make changes to menu</a>
+	</div>
 </body>
 </html>

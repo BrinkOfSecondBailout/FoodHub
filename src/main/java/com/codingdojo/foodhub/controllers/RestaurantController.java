@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.LoginRestaurant;
@@ -91,6 +94,24 @@ public class RestaurantController {
 			return "editRestaurantProfile.jsp";
 		}
 	}
+	
+	
+	
+	@PutMapping("/restaurants/newprofile")
+	public String updateProfilePicture(@Valid @ModelAttribute("restaurant") Restaurant restaurant, 
+			BindingResult result, HttpSession session,
+			@RequestParam("profile") MultipartFile file) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		} else {
+			System.out.println("A");
+			Long id = (Long) session.getAttribute("restaurantId");
+			rServ.addProfilePicture(id, file);
+			return "redirect:/restaurants/edit";
+		}
+	}
+	
+	
 	
 	@GetMapping("/restaurants/{id}")
 	public String displayRestaurant(@PathVariable("id") Long id, HttpSession session, Model model) {

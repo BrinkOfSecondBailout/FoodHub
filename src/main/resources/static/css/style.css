@@ -21,6 +21,14 @@
 	text-align: center;
 }
 
+/* restaurant edit profile */
+
+.avatar-thumb {
+	width: 250px;
+	height: 250px;
+	border-radius: 100%;
+}
+
 /* edit menu */
 
 .one-edit-item {

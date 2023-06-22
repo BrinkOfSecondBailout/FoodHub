@@ -70,15 +70,16 @@ public class ItemController {
 		}
 	}
 	
-	@PutMapping("/items/processpicture")
+	@PutMapping("/items/processpicture/{id}")
 	public String processPicture(@Valid @ModelAttribute("item") Item item, 
 			BindingResult result,
 			HttpSession session,
+			@PathVariable("id") Long id,
 			@RequestParam("file") MultipartFile file) {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
-			iServ.addItemPicture(file, item);
+			iServ.addItemPicture(id, file);
 			return "redirect:/items/edit/" + (Long) session.getAttribute("restaurantId");
 		}
 	}

@@ -19,7 +19,7 @@
 	<h2>Looks great! Want to add a picture?</h2>
 	<h5>Tips: An awesome picture tends to make eaters salivate more</h5>
 	
-	<form:form action="/items/processpicture" modelAttribute="item" method="post" enctype="multipart/form-data">
+	<form:form action="/items/processpicture/${item.id}" modelAttribute="item" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="_method" value="put"/>
 		<form:label path="file">Upload a picture:</form:label><br>
 		<form:errors path="file"/>

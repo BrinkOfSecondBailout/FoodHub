@@ -43,7 +43,8 @@ public class ItemService {
 		iRepo.save(item);
 	}
 	
-	public void addItemPicture(MultipartFile file, Item item) {
+	public void addItemPicture(Long id, MultipartFile file) {
+		Item item = iRepo.findItemById(id);
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if(fileName.contains("..")) {
 			System.out.println("Not a valid file");

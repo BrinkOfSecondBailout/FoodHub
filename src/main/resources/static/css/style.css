@@ -72,4 +72,50 @@
 .review-text-area {
 	width: 400px;
 	height: 200px;
+	border-radius: 10px;
+}
+
+.ratings {
+	display: flex;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%) rotateY(180deg);
+}
+
+.ratings input[type="radio"] {
+}
+
+.ratings label {
+	display: block;
+	cursor: pointer;
+	width: 50px;
+}
+
+.ratings label:before {
+	content: '\f005';
+	font-family: fontAwesome;
+	position: relative;
+	display: block;
+	font-size: 50px;
+	color: #101010;
+}
+
+.ratings label:after {
+	content: '\f005';
+	font-family: fontAwesome;
+	position: absolute;
+	display: block;
+	font-size: 50px;
+	color: #1f9cff;
+	top: 0;
+	margin-left: 2px;
+	opacity: 0;
+	transition: .5s;
+	text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.ratings label:hover:after,
+.ratings label:hover ~ label:after,
+.ratings input:checked ~ label:after {
+	opacity: 1;	
 }

@@ -8,6 +8,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<script src="https://use.fontawesome.com/10c872287a.js"></script>
+
 <meta charset="ISO-8859-1">
 <title>New Review</title>
 </head>
@@ -26,15 +28,19 @@
 		<form:errors path="review_text"/>
 		<form:input type="textarea" path="review_text" class="review-text-area"/><br><br>
 		
-		<form:label path="stars">How many stars would you give ${restaurant.name}?</form:label><br>
+		<p>How many stars would you give ${restaurant.name}?</p><br>
 		
-		<form:radiobutton path="stars" value="1"/>
-		<form:radiobutton path="stars" value="2"/>
-		<form:radiobutton path="stars" value="3"/>
-		<form:radiobutton path="stars" value="4"/>
-		<form:radiobutton path="stars" value="5"/><br>
+		<div class="ratings">
+			<form:radiobutton path="stars" value="1" /><form:label path="stars" id="star1"/>
+			<form:radiobutton path="stars" value="2" /><form:label path="stars" id="star2"/>
+			<form:radiobutton path="stars" value="3" /><form:label path="stars" id="star3"/>
+			<form:radiobutton path="stars" value="4" /><form:label path="stars" id="star4"/>
+			<form:radiobutton path="stars" value="5" /><form:label path="stars" id="star5"/><br>		
+		</div>
 		
-		<input type="submit" value="Submit"/>
+		
+		
+		<br><br><input type="submit" value="Submit"/>
 	</form:form>
 </body>
 </html>

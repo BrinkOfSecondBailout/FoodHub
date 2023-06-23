@@ -22,13 +22,14 @@
 	<div class="all-restaurants">
 		<c:forEach var="restaurant" items="${restaurants}">
 			<div class="one-item">
-				<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p></a>
+				<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p>
 				<c:if test = "${ restaurant.profile == null }">
 					<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 				</c:if>
 				<c:if test = "${ restaurant.profile != null }">
 					<img class="avatar-thumb-sm" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
 				</c:if>
+				</a>
 			</div>
 		</c:forEach>	
 	</div>

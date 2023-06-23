@@ -34,7 +34,9 @@
 	<c:if test="${userId != null}">
 		<h3>Looks yummy?</h3>
 		<button>Start ordering!</button>
-		<button>I'll pass...</button>	
+		<a href="/dashboard"><button>I'll pass...</button></a>
+		<h3>Share your experience!</h3>
+		<button>Rate and review</button>
 	</c:if>
 	
 </body>

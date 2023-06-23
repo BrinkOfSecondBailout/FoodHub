@@ -44,6 +44,11 @@ public class Restaurant {
 	@Column(columnDefinition="MEDIUMTEXT")
 	private String profile;
 	
+	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY)
+	private List <Review> reviews;
+	
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
+	private List <Item> items;
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -51,14 +56,24 @@ public class Restaurant {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updated_at;
     
-    @OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
-    private List <Item> items;
     
     
 	public Restaurant() {}
 
 	
 	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+
+
 	public String getProfile() {
 		return profile;
 	}

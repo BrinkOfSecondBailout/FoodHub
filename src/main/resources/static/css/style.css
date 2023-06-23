@@ -67,3 +67,9 @@
 .all-users {
 	display: flex;
 }
+
+/* add new review */
+.review-text-area {
+	width: 400px;
+	height: 200px;
+}

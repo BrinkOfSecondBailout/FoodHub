@@ -36,7 +36,7 @@
 		<button>Start ordering!</button>
 		<a href="/dashboard"><button>I'll pass...</button></a>
 		<h3>Share your experience!</h3>
-		<button>Rate and review</button>
+		<a href="/reviews/new/${restaurant.id}"><button>Rate and review</button></a>
 	</c:if>
 	
 </body>

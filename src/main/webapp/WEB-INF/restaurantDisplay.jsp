@@ -3,6 +3,7 @@
 <%@ page isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +37,8 @@
 	<c:if test="${userId != null}">
 		<h3>Looks yummy?</h3>
 		<button>Start ordering!</button>
-		<a href="/dashboard"><button>I'll pass...</button></a>
 		<h3>Share your experience!</h3>
-		<a href="/reviews/new/${restaurant.id}"><button>Rate and review</button></a>
+		<a href="/reviews/new/${restaurant.id}"><button>Add a review</button></a>
 	</c:if>
 	
 	<div>
@@ -46,19 +46,40 @@
 		<c:forEach var="review" items="${reviews}">
 			<div class="one-review">
 				<div class="user_of_review">
-					<a href="/users/${review.user.id}"><p>${review.user.first_name} ${review.user.last_name}</p></a>
+					<a href="/users/${review.user.id}"><p>${review.user.first_name} ${review.user.last_name}</p>
 					<c:if test="${review.user.profile == null}">
 						<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 					</c:if>
 					<c:if test="${review.user.profile != null}">
 						<img class="avatar-thumb-sm" src="data:image/jpg;base64,${review.user.profile}" alt="Profile-Pic"/>
 					</c:if>
+					</a>
 				</div>
-				<div class="review-text">
+				<div class="review">
+					<u><fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/></u>
 					<p>${review.review_text}</p>
-				</div>
-				<div class="review-stars">
-					
+					<div class="review-stars">
+						<c:if test="${review.stars == 1}">
+							<img src="/img/onestar.png" class="star-rating"/>
+						</c:if>
+						<c:if test="${review.stars == 2}">
+							<img src="/img/twostar.png" class="star-rating"/>
+						</c:if>
+						<c:if test="${review.stars == 3}">
+							<img src="/img/threestar.png" class="star-rating"/>
+						</c:if>
+						<c:if test="${review.stars == 4}">
+							<img src="/img/fourstar.png" class="star-rating"/>
+						</c:if>
+						<c:if test="${review.stars == 5}">
+							<img src="/img/fivestar.png" class="star-rating"/>
+						</c:if>
+					</div>
+					<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">
+						<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
+						<form:errors path="comment_text"/><br>
+						<input type="submit" value="Reply"/>
+					</form:form>
 				</div>
 			</div>
 		</c:forEach>

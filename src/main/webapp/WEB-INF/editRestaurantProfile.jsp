@@ -12,7 +12,7 @@
 <title>Edit Restaurant</title>
 </head>
 <body>
-	<h1>Edit Your Profile, <a href="/restaurantDashboard">${restaurant.name}</a></h1>
+	<h1>Edit Your Profile, <a href="/restaurants/${restaurant.id}">${restaurant.name}</a></h1>
 	<c:if test = "${ restaurant.profile == null }">
 		<img class="avatar-thumb" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/>
 	</c:if>

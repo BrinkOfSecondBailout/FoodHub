@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.codingdojo.foodhub.models.Comment;
 import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.LoginRestaurant;
 import com.codingdojo.foodhub.models.Restaurant;
@@ -118,7 +119,7 @@ public class RestaurantController {
 	
 	
 	@GetMapping("/restaurants/{id}")
-	public String displayRestaurant(@PathVariable("id") Long id, HttpSession session, Model model) {
+	public String displayRestaurant(@PathVariable("id") Long id, HttpSession session, Model model, @ModelAttribute("comment") Comment comment) {
 		if(session.getAttribute("restaurantId") == null && session.getAttribute("userId") == null) {
 			return "redirect:/logout";
 		} else {

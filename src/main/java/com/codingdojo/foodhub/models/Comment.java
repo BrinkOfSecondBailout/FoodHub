@@ -37,6 +37,10 @@ public class Comment {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="restaurant_id")
+	private Restaurant restaurant;
+	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date created_at;
@@ -48,6 +52,40 @@ public class Comment {
     public Comment() {}
     
     
+    
+
+
+    
+
+
+
+
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+
+
+
+
+
+
+
+
+
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+
+
+
+
+
+
+
 
 
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.foodhub.models.Comment;
+import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.Review;
 import com.codingdojo.foodhub.models.User;
 import com.codingdojo.foodhub.repositories.CommentRepository;
@@ -19,9 +20,10 @@ public class CommentService {
 		this.cRepo = cRepo;
 	}
 	
-	public Comment createComment(Comment comment, Review review, User user) {
+	public Comment createComment(Comment comment, Review review, User user, Restaurant restaurant) {
 		comment.setReview(review);
 		comment.setUser(user);
+		comment.setRestaurant(restaurant);
 		return cRepo.save(comment);
 	}
 	

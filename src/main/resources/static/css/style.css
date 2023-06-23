@@ -52,6 +52,29 @@
 
 .one-review {
 	display: flex;
+	width: 50%;
+}
+
+.user_of_review {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.review {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.star-rating {
+	width: 200px;
+}
+
+.comment-text-area {
+	width: 200px;
+	height: 50px;
+	border-radius: 10px;
 }
 
 

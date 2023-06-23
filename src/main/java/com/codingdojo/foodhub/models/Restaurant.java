@@ -47,6 +47,9 @@ public class Restaurant {
 	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY)
 	private List <Review> reviews;
 	
+	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY)
+	private List <Comment> comments;
+	
 	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
 	private List <Item> items;
 	
@@ -62,6 +65,18 @@ public class Restaurant {
 
 	
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+
+
 	public List<Review> getReviews() {
 		return reviews;
 	}

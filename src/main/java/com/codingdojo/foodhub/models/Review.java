@@ -18,6 +18,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,7 +30,8 @@ public class Review {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="Please tell us your experience!")
+	@NotEmpty(message="Please tell us your experience")
+	@Size(min = 10, max = 200, message = "Review must be between 10 and 200 characters")
 	private String review_text;
 	
 	@NotNull(message="Please provide a rating")

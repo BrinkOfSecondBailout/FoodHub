@@ -23,25 +23,6 @@ public class ItemService {
 		this.iRepo = iRepo;
 	}
 	
-	public void saveItemToDB(MultipartFile file, String name, BigDecimal price, String description, String category, Restaurant restaurant) {
-		Item item = new Item();
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		if(fileName.contains("..")) {
-			System.out.println("Not a valid file");
-		}
-		try {
-			item.setFile(Base64.getEncoder().encodeToString(file.getBytes()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		item.setName(name);
-		item.setPrice(price);
-		item.setDescription(description);
-		item.setCategory(category);
-		item.setRestaurant(restaurant);
-		iRepo.save(item);
-	}
 	
 	public void addItemPicture(Long id, MultipartFile file) {
 		Item item = iRepo.findItemById(id);

@@ -6,7 +6,7 @@
 	text-align: center;
 }
 
-/* restaurant dash board */
+/* restaurantDashboard */
 
 .item-thumb {
 	width: 150px;
@@ -28,7 +28,7 @@
 	border-radius: 100%;
 }
 
-/* restaurant edit profile */
+/* editRestaurantProfile */
 
 .avatar-thumb {
 	width: 250px;
@@ -36,21 +36,33 @@
 	border-radius: 100%;
 }
 
-/* edit menu */
+/* editMenu */
 
 .one-edit-item {
 	display: flex;
 	flex-direction: column;
 }
 
-/* item display */
+
+/* restaurantDisplay */
+
+.menu {
+	display: flex;
+}
+
+.one-review {
+	display: flex;
+}
+
+
+/* itemDisplay */
 
 .item-thumb-display {
 	width: 350px;
 	height: 350px;
 }
 
-/* add a picture to item */
+/* addItemPicture */
 
 .no-image-display {
 	width: 200px;
@@ -58,7 +70,7 @@
 	border-radius: 10px;
 }
 
-/* user dashboard */
+/* userDashboard */
 
 .all-restaurants {
 	display: flex;
@@ -68,7 +80,7 @@
 	display: flex;
 }
 
-/* add new review */
+/* newReview */
 .review-text-area {
 	width: 400px;
 	height: 200px;
@@ -83,6 +95,7 @@
 }
 
 .ratings input[type="radio"] {
+	display: none;
 }
 
 .ratings label {

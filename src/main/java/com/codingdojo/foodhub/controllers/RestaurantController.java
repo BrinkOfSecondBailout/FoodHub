@@ -20,9 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.LoginRestaurant;
 import com.codingdojo.foodhub.models.Restaurant;
+import com.codingdojo.foodhub.models.Review;
 import com.codingdojo.foodhub.models.User;
 import com.codingdojo.foodhub.services.ItemService;
 import com.codingdojo.foodhub.services.RestaurantService;
+import com.codingdojo.foodhub.services.ReviewService;
 import com.codingdojo.foodhub.services.UserService;
 
 @Controller
@@ -33,6 +35,9 @@ public class RestaurantController {
 	public UserService uServ;
 	@Autowired
 	public ItemService iServ;
+	@Autowired
+	public ReviewService reServ;
+	
 	
 	@GetMapping("/restaurant")
 	public String indexRestaurant(Model model) {
@@ -119,17 +124,20 @@ public class RestaurantController {
 		} else {
 			Restaurant restaurant = rServ.findRestaurantById(id);
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
+			List <Review> reviews = reServ.findReviewsByRestaurant(id);
 			// if viewer is a user
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("userId", userId);
+				model.addAttribute("reviews", reviews);
 				return "restaurantDisplay.jsp";
 			}
 			// if viewer is a restaurant
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("items", items);
+			model.addAttribute("reviews", reviews);
 			return "restaurantDisplay.jsp";
 		}
 	}

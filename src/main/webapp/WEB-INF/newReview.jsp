@@ -22,23 +22,22 @@
 	<c:if test = "${ restaurant.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
 	</c:if>
-	
 	<form:form action="/reviews/add/${restaurant.id}" method="post" modelAttribute="review">
-		<form:label path="review_text">How was your experience?</form:label><br>
-		<form:errors path="review_text"/>
+		<form:label path="review_text">How was your experience?</form:label><br><br>
+		<form:errors path="review_text"/><br>
 		<form:input type="textarea" path="review_text" class="review-text-area"/><br><br>
 		
-		<p>How many stars would you give ${restaurant.name}?</p><br>
+		<p>How many stars would you give ${restaurant.name}?</p><br><br>
 		
 		<div class="ratings">
-			<form:radiobutton path="stars" value="1" /><form:label path="stars" id="star1"/>
-			<form:radiobutton path="stars" value="2" /><form:label path="stars" id="star2"/>
-			<form:radiobutton path="stars" value="3" /><form:label path="stars" id="star3"/>
-			<form:radiobutton path="stars" value="4" /><form:label path="stars" id="star4"/>
-			<form:radiobutton path="stars" value="5" /><form:label path="stars" id="star5"/><br>		
+			<form:radiobutton path="stars" value="5" id="star5"/><form:label path="stars" for="star5"/>
+			<form:radiobutton path="stars" value="4" id="star4"/><form:label path="stars" for="star4"/>
+			<form:radiobutton path="stars" value="3" id="star3"/><form:label path="stars" for="star3"/>
+			<form:radiobutton path="stars" value="2" id="star2"/><form:label path="stars" for="star2"/>
+			<form:radiobutton path="stars" value="1" id="star1"/><form:label path="stars" for="star1"/><br>		
 		</div>
 		
-		
+		<br><br><form:errors path="stars"/><br>
 		
 		<br><br><input type="submit" value="Submit"/>
 	</form:form>

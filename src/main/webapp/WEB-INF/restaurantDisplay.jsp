@@ -56,8 +56,10 @@
 					</a>
 				</div>
 				<div class="review">
-					<u><fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/></u>
-					<p>${review.review_text}</p>
+					<div class="review-date">
+						<u><fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/></u>					
+					</div>
+					
 					<div class="review-stars">
 						<c:if test="${review.stars == 1}">
 							<img src="/img/onestar.png" class="star-rating"/>
@@ -75,9 +77,17 @@
 							<img src="/img/fivestar.png" class="star-rating"/>
 						</c:if>
 					</div>
+					
+					<p>${review.review_text}</p><br>
+					
+					<c:if test="${review.comments.size() != 0 }">
+						<a href=""><p>${review.comments.size()} comment(s)</p></a><br>					
+					</c:if>
+					
 					<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">
 						<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
 						<form:errors path="comment_text"/><br>
+						<input type="hidden" name="review_id" value=${review.id} />
 						<input type="submit" value="Reply"/>
 					</form:form>
 				</div>
@@ -85,5 +95,18 @@
 		</c:forEach>
 	</div>
 	
+<script>
+   // Check if the 'refresh' query parameter is present
+   const urlParams = new URLSearchParams(window.location.search);
+   const refreshParam = urlParams.get('refresh');
+
+   // If 'refresh' is true, force page reload
+   if (refreshParam === 'true') {
+	  urlParams.delete('refresh');
+	  const newUrl = window.location.pathname + '?' + urlParams.toString();
+      window.history.replaceState({}, '', newUrl);
+      location.reload();
+   }
+</script>
 </body>
 </html>

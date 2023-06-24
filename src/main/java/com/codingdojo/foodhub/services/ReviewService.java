@@ -33,4 +33,7 @@ public class ReviewService {
 		return rRepo.findAllByUserId(id);
 	}
 	
+	public Review findReviewById(Long id) {
+		return rRepo.findReviewById(id);
+	}
 }

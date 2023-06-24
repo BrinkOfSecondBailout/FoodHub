@@ -1,7 +1,6 @@
 package com.codingdojo.foodhub.services;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Base64;
 import java.util.List;
 

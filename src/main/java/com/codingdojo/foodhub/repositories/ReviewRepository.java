@@ -8,6 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import com.codingdojo.foodhub.models.Review;
 
 public interface ReviewRepository extends CrudRepository<Review, Long> {
+	public Review findReviewById(Long id);
+	
 	@Query(value="SELECT * FROM reviews WHERE restaurant_id = ?1 ORDER BY created_at DESC", nativeQuery = true)
 	public List <Review> findAllByRestaurantId(Long id);
 	

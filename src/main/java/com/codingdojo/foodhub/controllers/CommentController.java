@@ -12,15 +12,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.foodhub.models.Comment;
 import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.Review;
+import com.codingdojo.foodhub.models.User;
 import com.codingdojo.foodhub.services.CommentService;
 import com.codingdojo.foodhub.services.ItemService;
 import com.codingdojo.foodhub.services.RestaurantService;
 import com.codingdojo.foodhub.services.ReviewService;
+import com.codingdojo.foodhub.services.UserService;
 
 @Controller
 public class CommentController {
@@ -32,11 +35,14 @@ public class CommentController {
 	public RestaurantService restServ;
 	@Autowired
 	public ItemService iServ;
+	@Autowired
+	public UserService uServ;
 	
 	@PostMapping("/comments/add/{id}")
 	public String newComment(@Valid @ModelAttribute("comment") Comment comment, 
 			BindingResult result, 
-			HttpSession session, 
+			HttpSession session,
+			@RequestParam("review_id") Long reviewId,
 			@PathVariable("id") Long id,
 			Model model) {
 		if (session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
@@ -45,6 +51,7 @@ public class CommentController {
 			Restaurant restaurant = restServ.findRestaurantById(id);
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			List <Review> reviews = rServ.findReviewsByRestaurant(id);
+			
 			if(result.hasErrors()) {
 				// if viewer is a user
 				if (session.getAttribute("userId") != null) {
@@ -59,25 +66,28 @@ public class CommentController {
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
-				return "redirect:/restaurants/" + id;
+				return "restaurantDisplay.jsp";
 			} else {
-				
-				cServ.createComment(comment, null, null);
-				
+
 				// if viewer is a user
 				if (session.getAttribute("userId") != null) {
 					Long userId = (Long) session.getAttribute("userId");
+					Review review = rServ.findReviewById(reviewId);
+					User user = uServ.findUserById(userId);
+					cServ.createComment(comment, review, user, null);
 					model.addAttribute("restaurant", restaurant);
 					model.addAttribute("items", items);
 					model.addAttribute("userId", userId);
 					model.addAttribute("reviews", reviews);
-					return "restaurantDisplay.jsp";
+					return "redirect:/restaurants/" + id + "?refresh=true";
 				}
 				// if viewer is a restaurant
+				Review review = rServ.findReviewById(reviewId);
+				cServ.createComment(comment, review, null, restaurant);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
-				return "redirect:/restaurants/" + id;
+				return "redirect:/restaurants/" + id + "?refresh=true";
 			}
 		}
 	}

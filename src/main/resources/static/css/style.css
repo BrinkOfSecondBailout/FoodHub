@@ -68,11 +68,13 @@
 	justify-content: center;
 }
 
-.review-date {
-}
 
 .star-rating {
 	width: 200px;
+}
+
+.main-star-rating {
+	width: 350px;
 }
 
 .comment-text-area {

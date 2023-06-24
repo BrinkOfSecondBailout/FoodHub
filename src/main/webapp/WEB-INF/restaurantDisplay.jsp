@@ -22,26 +22,26 @@
 	
 	<div>
 		<c:if test="${average == 1}">
-			<img src="/img/onestar.png" class="star-rating"/>
+			<img src="/img/onestar.png" class="main-star-rating" alt="1 Star Average"/>
 		</c:if>
 		<c:if test="${average == 2}">
-			<img src="/img/twostar.png" class="star-rating"/>
+			<img src="/img/twostar.png" class="main-star-rating" alt="2 Star Average"/>
 		</c:if>
 		<c:if test="${average == 3}">
-			<img src="/img/threestar.png" class="star-rating"/>
+			<img src="/img/threestar.png" class="main-star-rating" alt="3 Star Average"/>
 		</c:if>
 		<c:if test="${average == 4}">
-			<img src="/img/fourstar.png" class="star-rating"/>
+			<img src="/img/fourstar.png" class="main-star-rating" alt="4 Star Average"/>
 		</c:if>
 		<c:if test="${average == 5}">
-			<img src="/img/fivestar.png" class="star-rating"/>
+			<img src="/img/fivestar.png" class="main-star-rating" alt="5 Star Average"/>
 		</c:if>
 		
 		<c:if test="${reviews.size() == 0}">
 			<p>No reviews yet..</p>
 		</c:if>
 		<c:if test="${reviews.size() != 0}">
-			<p>${reviews.size()} reviews</p>
+			<a href="#reviews"><p>${reviews.size()} reviews</p></a>
 		</c:if>
 	</div>
 	
@@ -67,7 +67,7 @@
 		<a href="/reviews/new/${restaurant.id}"><button>Add a review</button></a>
 	</c:if>
 	
-	<div>
+	<section id="reviews">
 		<h2>Reviews</h2>
 		<c:forEach var="review" items="${reviews}">
 			<div class="one-review">
@@ -88,19 +88,19 @@
 					
 					<div class="review-stars">
 						<c:if test="${review.stars == 1}">
-							<img src="/img/onestar.png" class="star-rating"/>
+							<img src="/img/onestar.png" class="star-rating" alt="1 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 2}">
-							<img src="/img/twostar.png" class="star-rating"/>
+							<img src="/img/twostar.png" class="star-rating" alt="2 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 3}">
-							<img src="/img/threestar.png" class="star-rating"/>
+							<img src="/img/threestar.png" class="star-rating" alt="3 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 4}">
-							<img src="/img/fourstar.png" class="star-rating"/>
+							<img src="/img/fourstar.png" class="star-rating" alt="4 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 5}">
-							<img src="/img/fivestar.png" class="star-rating"/>
+							<img src="/img/fivestar.png" class="star-rating" alt="5 Star"/>
 						</c:if>
 					</div>
 					
@@ -119,7 +119,7 @@
 				</div>
 			</div>
 		</c:forEach>
-	</div>
+	</section>
 	
 <script>
    // Check if the 'refresh' query parameter is present

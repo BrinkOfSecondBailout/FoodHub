@@ -19,6 +19,32 @@
 	<c:if test = "${ restaurant.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
 	</c:if>
+	
+	<div>
+		<c:if test="${average == 1}">
+			<img src="/img/onestar.png" class="star-rating"/>
+		</c:if>
+		<c:if test="${average == 2}">
+			<img src="/img/twostar.png" class="star-rating"/>
+		</c:if>
+		<c:if test="${average == 3}">
+			<img src="/img/threestar.png" class="star-rating"/>
+		</c:if>
+		<c:if test="${average == 4}">
+			<img src="/img/fourstar.png" class="star-rating"/>
+		</c:if>
+		<c:if test="${average == 5}">
+			<img src="/img/fivestar.png" class="star-rating"/>
+		</c:if>
+		
+		<c:if test="${reviews.size() == 0}">
+			<p>No reviews yet..</p>
+		</c:if>
+		<c:if test="${reviews.size() != 0}">
+			<p>${reviews.size()} reviews</p>
+		</c:if>
+	</div>
+	
 	<div class="menu">
 		<c:forEach var="item" items="${items}">
 			<div>

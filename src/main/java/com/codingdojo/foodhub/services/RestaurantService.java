@@ -97,6 +97,7 @@ public class RestaurantService {
 		}
 	}
 	
+	
 	public List <Restaurant> findAllNotById(Long id) {
 		return rRepo.findAllNotById(id);
 	}

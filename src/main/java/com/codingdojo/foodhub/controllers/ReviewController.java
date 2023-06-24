@@ -54,7 +54,7 @@ public class ReviewController {
 			} else {
 				User user = uServ.findUserById((Long) session.getAttribute("userId"));
 				rServ.createReview(review, restaurant, user);
-				return "redirect:/dashboard";
+				return "redirect:/restaurants/" + id;
 			}			
 		}
 		

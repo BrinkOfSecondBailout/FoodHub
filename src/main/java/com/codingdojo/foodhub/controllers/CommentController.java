@@ -51,11 +51,12 @@ public class CommentController {
 			Restaurant restaurant = restServ.findRestaurantById(id);
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			List <Review> reviews = rServ.findReviewsByRestaurant(id);
-			
+			Integer average = rServ.findAverageRatingByRestaurant(id);
 			if(result.hasErrors()) {
 				// if viewer is a user
 				if (session.getAttribute("userId") != null) {
 					Long userId = (Long) session.getAttribute("userId");
+					model.addAttribute("average", average);
 					model.addAttribute("restaurant", restaurant);
 					model.addAttribute("items", items);
 					model.addAttribute("userId", userId);
@@ -63,6 +64,7 @@ public class CommentController {
 					return "restaurantDisplay.jsp";
 				}
 				// if viewer is a restaurant
+				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
@@ -75,6 +77,7 @@ public class CommentController {
 					Review review = rServ.findReviewById(reviewId);
 					User user = uServ.findUserById(userId);
 					cServ.createComment(comment, review, user, null);
+					model.addAttribute("average", average);
 					model.addAttribute("restaurant", restaurant);
 					model.addAttribute("items", items);
 					model.addAttribute("userId", userId);
@@ -84,6 +87,7 @@ public class CommentController {
 				// if viewer is a restaurant
 				Review review = rServ.findReviewById(reviewId);
 				cServ.createComment(comment, review, null, restaurant);
+				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);

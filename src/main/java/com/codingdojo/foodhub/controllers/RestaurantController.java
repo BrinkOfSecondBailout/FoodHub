@@ -126,9 +126,11 @@ public class RestaurantController {
 			Restaurant restaurant = rServ.findRestaurantById(id);
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			List <Review> reviews = reServ.findReviewsByRestaurant(id);
+			Integer average = reServ.findAverageRatingByRestaurant(id);
 			// if viewer is a user
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
+				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("userId", userId);
@@ -136,6 +138,7 @@ public class RestaurantController {
 				return "restaurantDisplay.jsp";
 			}
 			// if viewer is a restaurant
+			model.addAttribute("average", average);
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("items", items);
 			model.addAttribute("reviews", reviews);

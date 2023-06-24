@@ -29,6 +29,18 @@ public class ReviewService {
 		return rRepo.findAllByRestaurantId(id);
 	}
 	
+	public Integer findAverageRatingByRestaurant(Long id) {
+		List <Review> reviews = rRepo.findAllByRestaurantId(id);
+		Integer sum = 0;
+		for (Review review : reviews) {
+			Integer stars = review.getStars();
+			sum += stars;
+		}
+		Integer count = reviews.size();
+		Integer averageRating = Math.round((float) sum / count);
+		return averageRating;
+	}
+	
 	public List<Review> findReviewsByUser(Long id){
 		return rRepo.findAllByUserId(id);
 	}

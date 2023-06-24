@@ -25,7 +25,7 @@ public class Comment {
 	private Long id;
 	
 	@NotEmpty(message="Please type a comment!")
-	@Size(min = 10, max = 100, message = "Comment must be between 10 and 100 characters!")
+	@Size(min = 10, max = 200, message = "Comment must be between 10 and 200 characters!")
 	private String comment_text;
 	
 	

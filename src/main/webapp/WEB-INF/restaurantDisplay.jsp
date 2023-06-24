@@ -107,10 +107,11 @@
 					<p>${review.review_text}</p><br>
 					
 					<c:if test="${review.comments.size() != 0 }">
-						<a href=""><p>${review.comments.size()} comment(s)</p></a><br>
-						<div>
+						<a href="#" onclick="toggleComments(${review.id}); return false;"><p>${review.comments.size()} comment(s)</p></a><br>
+						<div id="all-comments">
 							<c:forEach var="comment" items="${review.comments}">
 								<div class="one-comment">
+									<img src="/img/downright.png" alt="arrow" class="down-right-arrow"/>
 									<c:if test="${comment.user == null}">
 										<a href="/restaurants/${comment.restaurant.id}"><p>${comment.restaurant.name}</p>
 										<c:if test="${comment.restaurant.profile == null }">
@@ -119,7 +120,9 @@
 										<c:if test="${comment.restaurant.profile != null }">
 											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.restaurant.profile}" alt="Profile-Pic"/></a>									
 										</c:if>
-										<p>${comment.comment_text}</p>
+										<div class="comment-text">
+											<p>${comment.comment_text}</p>										
+										</div>
 									</c:if>
 									<c:if test="${comment.user != null}">
 										<a href="/users/${comment.user.id}"><p>${comment.user.first_name}</p>
@@ -129,7 +132,9 @@
 										<c:if test="${comment.user.profile != null }">
 											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.user.profile}" alt="Profile-Pic"/></a>
 										</c:if>
-										<p>${comment.comment_text}</p>
+										<div class="comment-text">
+											<p>${comment.comment_text}</p>
+										</div>
 									</c:if>
 								</div>
 							</c:forEach>
@@ -158,6 +163,11 @@
 	  const newUrl = window.location.pathname + '?' + urlParams.toString();
       window.history.replaceState({}, '', newUrl);
       location.reload();
+   }
+   
+   function toggleComments(reviewId) {
+	   var commentsDiv = document.getElementById("all-comments")
+	   commentsDiv.style.display = (commentsDiv.style.display === "none") ? "block" : "none";
    }
 </script>
 </body>

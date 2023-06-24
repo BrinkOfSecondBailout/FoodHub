@@ -104,7 +104,9 @@
 						</c:if>
 					</div>
 					
-					<p>${review.review_text}</p><br>
+					<div class="review-text">
+						<p>${review.review_text}</p><br>				
+					</div>
 					
 					<c:if test="${review.comments.size() != 0 }">
 						<a href="#" onclick="toggleComments(${review.id}); return false;"><p>${review.comments.size()} comment(s)</p></a><br>
@@ -141,12 +143,14 @@
 						</div>
 					</c:if>
 					
-					<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">
-						<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
-						<form:errors path="comment_text"/><br>
-						<input type="hidden" name="review_id" value=${review.id} />
-						<input type="submit" value="Reply"/>
-					</form:form>
+					<div class="comment-form">
+						<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">
+							<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
+							<form:errors path="comment_text"/><br>
+							<input type="hidden" name="review_id" value=${review.id} />
+							<input type="submit" value="Reply"/>
+						</form:form>
+					</div>
 				</div>
 			</div>
 		</c:forEach>

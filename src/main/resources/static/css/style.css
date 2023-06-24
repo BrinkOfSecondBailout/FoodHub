@@ -83,6 +83,15 @@
 	border-radius: 10px;
 }
 
+.avatar-thumb-xtra-sm {
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+}
+
+.one-comment {
+	display: flex;
+}
 
 /* itemDisplay */
 

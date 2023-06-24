@@ -107,7 +107,33 @@
 					<p>${review.review_text}</p><br>
 					
 					<c:if test="${review.comments.size() != 0 }">
-						<a href=""><p>${review.comments.size()} comment(s)</p></a><br>					
+						<a href=""><p>${review.comments.size()} comment(s)</p></a><br>
+						<div>
+							<c:forEach var="comment" items="${review.comments}">
+								<div class="one-comment">
+									<c:if test="${comment.user == null}">
+										<a href="/restaurants/${comment.restaurant.id}"><p>${comment.restaurant.name}</p>
+										<c:if test="${comment.restaurant.profile == null }">
+											<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/></a>
+										</c:if>
+										<c:if test="${comment.restaurant.profile != null }">
+											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.restaurant.profile}" alt="Profile-Pic"/></a>									
+										</c:if>
+										<p>${comment.comment_text}</p>
+									</c:if>
+									<c:if test="${comment.user != null}">
+										<a href="/users/${comment.user.id}"><p>${comment.user.first_name}</p>
+										<c:if test="${comment.user.profile == null }">
+											<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/></a>
+										</c:if>
+										<c:if test="${comment.user.profile != null }">
+											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.user.profile}" alt="Profile-Pic"/></a>
+										</c:if>
+										<p>${comment.comment_text}</p>
+									</c:if>
+								</div>
+							</c:forEach>
+						</div>
 					</c:if>
 					
 					<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">

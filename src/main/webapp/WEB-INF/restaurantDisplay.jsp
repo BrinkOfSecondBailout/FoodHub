@@ -41,7 +41,7 @@
 			<p>No reviews yet..</p>
 		</c:if>
 		<c:if test="${reviews.size() != 0}">
-			<a href="#reviews"><p>${reviews.size()} reviews</p></a>
+			<p><a href="#reviews">(${reviews.size()} reviews)</a></p>
 		</c:if>
 	</div>
 	
@@ -61,9 +61,7 @@
 	</div>
 	
 	<c:if test="${userId != null}">
-		<h3>Looks yummy?</h3>
 		<button>Start ordering!</button>
-		<h3>Share your experience!</h3>
 		<a href="/reviews/new/${restaurant.id}"><button>Add a review</button></a>
 	</c:if>
 	
@@ -105,11 +103,11 @@
 					</div>
 					
 					<div class="review-text">
-						<p>${review.review_text}</p><br>				
+						<p>${review.review_text}</p>				
 					</div>
 					
 					<c:if test="${review.comments.size() != 0 }">
-						<a href="#" onclick="toggleComments(${review.id}); return false;"><p>${review.comments.size()} comment(s)</p></a><br>
+						<p><a href="#" onclick="toggleComments(${review.id}); return false;">${review.comments.size()} comment(s)</a></p>
 						<div id="all-comments">
 							<c:forEach var="comment" items="${review.comments}">
 								<div class="one-comment">

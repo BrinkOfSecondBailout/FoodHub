@@ -1,7 +1,6 @@
 package com.codingdojo.foodhub.models;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,41 +10,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="comments")
-public class Comment {
+@Table(name="likes")
+public class Like {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty(message="Please type a comment!")
-	@Size(min = 10, max = 200, message = "Comment must be between 10 and 200 characters!")
-	private String comment_text;
-	
-
-	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="review_id")
-	private Review review;
-	
+	@JoinColumn(name="comment_id")
+	private Comment comment;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User user;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="restaurant_id")
 	private Restaurant restaurant;
 	
-	@OneToMany(mappedBy="comment", fetch=FetchType.LAZY)
-	private List <Like> likes;
+	
+	
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -55,33 +46,21 @@ public class Comment {
     
     
     
-    public Comment() {}
+    
+    public Like() {}
+
     
     
 
-
-	public List<Like> getLikes() {
-		return likes;
+	public Comment getComment() {
+		return comment;
 	}
 
 
 
 
-	public void setLikes(List<Like> likes) {
-		this.likes = likes;
-	}
-
-
-
-
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	public void setComment(Comment comment) {
+		this.comment = comment;
 	}
 
 
@@ -94,43 +73,9 @@ public class Comment {
 
 
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
-
-
-	public String getComment_text() {
-		return comment_text;
-	}
-
-
-
-
-
-	public void setComment_text(String comment_text) {
-		this.comment_text = comment_text;
-	}
-
-
-
-
-
-	public Review getReview() {
-		return review;
-	}
-
-
-
-
-
-	public void setReview(Review review) {
-		this.review = review;
-	}
-
 
 
 
@@ -142,11 +87,23 @@ public class Comment {
 
 
 
-
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+
+
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+
+
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
 
 
 
@@ -158,11 +115,9 @@ public class Comment {
 
 
 
-
 	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
-
 
 
 
@@ -174,11 +129,9 @@ public class Comment {
 
 
 
-
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
 	}
-
 
 
 

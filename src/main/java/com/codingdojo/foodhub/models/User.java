@@ -50,6 +50,12 @@ public class User {
 	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List <Review> reviews;
 	
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	private List <Comment> comments;
+	
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	private List <Like> likes;
+	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date created_at;
@@ -65,6 +71,46 @@ public class User {
     
 	
     
+
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+
+
+
+
+
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+
+
+
+
+
+
+	public List<Like> getLikes() {
+		return likes;
+	}
+
+
+
+
+
+
+
+	public void setLikes(List<Like> likes) {
+		this.likes = likes;
+	}
+
+
+
+
+
 
 
 	public List<Review> getReviews() {

@@ -50,6 +50,10 @@
 	display: flex;
 }
 
+#reviews {
+	margin-top: 20px;
+}
+
 .one-review {
 	display: flex;
 	width: 50%;

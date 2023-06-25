@@ -133,8 +133,8 @@ public class RestaurantController {
 				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
-				model.addAttribute("userId", userId);
 				model.addAttribute("reviews", reviews);
+				model.addAttribute("userId", userId);
 				return "restaurantDisplay.jsp";
 			}
 			// if viewer is a restaurant

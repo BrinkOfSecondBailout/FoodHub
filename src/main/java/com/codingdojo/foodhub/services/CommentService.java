@@ -1,6 +1,7 @@
 package com.codingdojo.foodhub.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,15 @@ public class CommentService {
 	
 	public List<Comment> findAllCommentsByReview(Long id) {
 		return cRepo.findAllByReviewId(id);
+	}
+	
+	public Comment findCommentById(Long id) {
+		Optional <Comment> potentialCom = cRepo.findById(id);
+		if(potentialCom.isEmpty()) {
+			return null;
+		} else {
+			return potentialCom.get();
+		}
 	}
 	
 }

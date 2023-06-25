@@ -60,6 +60,7 @@ public class LikeController {
 			List <Review> reviews = reServ.findReviewsByRestaurant(restPageId);
 			Integer average = reServ.findAverageRatingByRestaurant(restPageId);
 			Comment comment2 = cServ.findCommentById(commentId);
+			
 			// if viewer is a user
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
@@ -70,7 +71,7 @@ public class LikeController {
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
-				return "redirect:/restaurants/" + restPageId + "?comments=show";
+				return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 			}
 			// if viewer is a restaurant
 			Long restaurantId = (Long) session.getAttribute("restaurantId");
@@ -80,7 +81,7 @@ public class LikeController {
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("items", items);
 			model.addAttribute("reviews", reviews);
-			return "redirect:/restaurants/" + restPageId + "?comments=show";
+			return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 		}
 	}
 	

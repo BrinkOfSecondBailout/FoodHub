@@ -110,6 +110,7 @@
 						<p><a href="#" onclick="toggleComments(${review.id}); return false;">${review.comments.size()} comment(s)</a></p>
 						<div id="all-comments">
 							<c:forEach var="comment" items="${review.comments}">
+								<section id="comment${comment.id}">
 								<div class="one-comment">
 									<img src="/img/downright.png" alt="arrow" class="down-right-arrow"/>
 									<c:if test="${comment.user == null}">
@@ -147,6 +148,7 @@
 										<a href="/likes/show/"><p>${comment.likes.size()} like(s)</p></a>
 									</c:if>
 								</div>
+								</section>
 							</c:forEach>
 						</div>
 					</c:if>

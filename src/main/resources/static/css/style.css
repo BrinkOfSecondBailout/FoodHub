@@ -103,9 +103,15 @@
 	width: 30px;
 }
 
+.comment-form form .form-error {
+  font-size: 12px;
+  color: red;
+}
+
 .comment-form {
 	margin-bottom: 10px;
 }
+
 
 .comment-text-area {
 	width: 200px;
@@ -134,6 +140,20 @@
 	overflow-y: auto;
 	display: flex;
 	align-items: center;
+}
+
+.like-area {
+	display: flex;
+	align-items: center;
+	width: 100px;
+}
+
+.like-area p {
+	font-size: x-small;
+}
+
+.like-button {
+	width: 30px;
 }
 
 /* itemDisplay */

@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.foodhub.models.Comment;
 import com.codingdojo.foodhub.models.Item;
@@ -44,39 +43,44 @@ public class LikeController {
 	
 	@GetMapping("/likes/new/{cid}/{rid}")
 	public String createLike(@Valid @ModelAttribute("like") Like like,
+			@ModelAttribute("comment") Comment comment,
 			HttpSession session,
+			BindingResult result,
 			@PathVariable("cid") Long commentId,
 			@PathVariable("rid") Long restPageId,
 			Model model) {
 		if (session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
+			if(result.hasErrors()) {
+				return "redirect:/";
+			}
 			Restaurant restaurant = rServ.findRestaurantById(restPageId);
 			List <Item> items = iServ.findAllItemsByRestaurantId(restPageId);
 			List <Review> reviews = reServ.findReviewsByRestaurant(restPageId);
 			Integer average = reServ.findAverageRatingByRestaurant(restPageId);
-			Comment comment = cServ.findCommentById(commentId);
+			Comment comment2 = cServ.findCommentById(commentId);
 			// if viewer is a user
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
 				User user = uServ.findUserById(userId);
-				lServ.createLike(like, comment, user, null);
+				lServ.createLike(like, comment2, user, null);
 				model.addAttribute("userId", userId);
 				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
-				return "restaurantDisplay.jsp";
+				return "redirect:/restaurants/" + restPageId + "?comments=show";
 			}
 			// if viewer is a restaurant
 			Long restaurantId = (Long) session.getAttribute("restaurantId");
 			Restaurant restaurantViewer = rServ.findRestaurantById(restaurantId);
-			lServ.createLike(like, comment, null, restaurantViewer);
+			lServ.createLike(like, comment2, null, restaurantViewer);
 			model.addAttribute("average", average);
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("items", items);
 			model.addAttribute("reviews", reviews);
-			return "restaurantDisplay.jsp";
+			return "redirect:/restaurants/" + restPageId + "?comments=show";
 		}
 	}
 	

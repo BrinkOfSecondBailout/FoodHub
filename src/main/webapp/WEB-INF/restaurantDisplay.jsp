@@ -124,17 +124,27 @@
 											<p>${comment.comment_text}</p>										
 										</div>
 									</c:if>
+									
 									<c:if test="${comment.user != null}">
 										<a href="/users/${comment.user.id}"><p>${comment.user.first_name}</p>
 										<c:if test="${comment.user.profile == null }">
-											<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/></a>
+											<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 										</c:if>
 										<c:if test="${comment.user.profile != null }">
-											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.user.profile}" alt="Profile-Pic"/></a>
-										</c:if>
+											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.user.profile}" alt="Profile-Pic"/>
+										</c:if></a>
 										<div class="comment-text">
 											<p>${comment.comment_text}</p>
 										</div>
+									</c:if>
+								</div>
+								<div class="like-area">
+									<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart.png" alt="like button" class="like-button"/></a>
+									<c:if test="${comment.likes.size() == 0 }">
+										<p>${comment.likes.size()} likes</p>
+									</c:if>
+									<c:if test="${comment.likes.size() != 0 }">
+										<a href="/likes/show/"><p>${comment.likes.size()} like(s)</p></a>
 									</c:if>
 								</div>
 							</c:forEach>
@@ -144,7 +154,7 @@
 					<div class="comment-form">
 						<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">
 							<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
-							<form:errors path="comment_text"/><br>
+							<form:errors path="comment_text" class="form-error"/><br>
 							<input type="hidden" name="review_id" value=${review.id} />
 							<input type="submit" value="Reply"/>
 						</form:form>
@@ -158,7 +168,15 @@
    // Check if the 'refresh' query parameter is present
    const urlParams = new URLSearchParams(window.location.search);
    const refreshParam = urlParams.get('refresh');
+   
+   const commentsParam = urlParams.get('comments')
 
+   //If 'comments' is 'show', show the comments
+   if (commentsParam === 'show') {
+	   const commentsDiv = document.getElementById("all-comments");
+	   commentsDiv.style.display = "block";
+   }
+   
    // If 'refresh' is true, force page reload
    if (refreshParam === 'true') {
 	  urlParams.delete('refresh');
@@ -166,6 +184,7 @@
       window.history.replaceState({}, '', newUrl);
       location.reload();
    }
+   
    
    function toggleComments(reviewId) {
 	   var commentsDiv = document.getElementById("all-comments")

@@ -139,8 +139,40 @@
 										</div>
 									</c:if>
 								</div>
+								
 								<div class="like-area">
-									<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart.png" alt="like button" class="like-button"/></a>
+									<c:if test="${user != null}">
+										<c:if test="${comment.likes.size() == 0 }">
+											<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
+										</c:if>
+										<c:if test="${comment.likes.size() != 0 }">
+											<c:forEach var="like" items="${comment.likes}">
+												<c:if test="${like.user == user}">
+													<img src="/img/heart.png" alt="liked" class="like-button"/>
+												</c:if>
+												<c:if test="${like.user != user}">
+													<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>											
+												</c:if>
+											</c:forEach>
+										</c:if>
+									</c:if>
+									
+									<c:if test="${restaurantViewer != null}">
+										<c:if test="${comment.likes.size() == 0 }">
+											<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
+										</c:if>
+										<c:if test="${comment.likes.size() != 0 }">
+											<c:forEach var="like" items="${comment.likes}">
+												<c:if test="${like.restaurant == restaurantViewer}">
+													<img src="/img/heart.png" alt="liked" class="like-button"/>
+												</c:if>
+												<c:if test="${like.restaurant != restaurantViewer}">
+													<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
+												</c:if>
+											</c:forEach>
+										</c:if>							
+									</c:if>
+									
 									<c:if test="${comment.likes.size() == 0 }">
 										<p>${comment.likes.size()} likes</p>
 									</c:if>

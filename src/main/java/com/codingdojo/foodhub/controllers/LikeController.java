@@ -71,6 +71,7 @@ public class LikeController {
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
+				model.addAttribute("user", user);
 				return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 			}
 			// if viewer is a restaurant
@@ -81,6 +82,7 @@ public class LikeController {
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("items", items);
 			model.addAttribute("reviews", reviews);
+			model.addAttribute("restaurantViewer", restaurantViewer);
 			return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 		}
 	}

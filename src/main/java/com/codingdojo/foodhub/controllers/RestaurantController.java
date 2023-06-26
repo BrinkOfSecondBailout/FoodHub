@@ -23,6 +23,7 @@ import com.codingdojo.foodhub.models.LoginRestaurant;
 import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.Review;
 import com.codingdojo.foodhub.models.User;
+import com.codingdojo.foodhub.services.CommentService;
 import com.codingdojo.foodhub.services.ItemService;
 import com.codingdojo.foodhub.services.RestaurantService;
 import com.codingdojo.foodhub.services.ReviewService;
@@ -38,6 +39,8 @@ public class RestaurantController {
 	public ItemService iServ;
 	@Autowired
 	public ReviewService reServ;
+	@Autowired
+	public CommentService cServ;
 	
 	
 	@GetMapping("/restaurant")
@@ -130,18 +133,22 @@ public class RestaurantController {
 			// if viewer is a user
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
+				User user = uServ.findUserById(userId);
 				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("userId", userId);
+				model.addAttribute("user", user);
 				return "restaurantDisplay.jsp";
 			}
 			// if viewer is a restaurant
+			Restaurant restaurantViewer = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
 			model.addAttribute("average", average);
 			model.addAttribute("restaurant", restaurant);
 			model.addAttribute("items", items);
 			model.addAttribute("reviews", reviews);
+			model.addAttribute("restaurantViewer", restaurantViewer);
 			return "restaurantDisplay.jsp";
 		}
 	}

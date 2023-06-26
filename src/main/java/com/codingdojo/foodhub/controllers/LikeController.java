@@ -87,4 +87,30 @@ public class LikeController {
 		}
 	}
 	
+	@GetMapping("/likes/delete/{id}")
+	public String removeLike(@PathVariable("id") Long id, HttpSession session) {
+		if (session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		} else {
+			Like like = lServ.findLikeById(id);
+			// if viewer is a user
+			if(session.getAttribute("userId") != null) {
+				User user = uServ.findUserById((Long) session.getAttribute("userId"));
+				if(like.getUser() != user) {
+					return "redirect:/logout";
+				}
+				lServ.delete(id);
+				return "redirect:/dashboard";
+				
+			}
+			// if viewer is a restaurant
+			Restaurant restaurantViewer = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+			if(like.getRestaurant() != restaurantViewer) {
+				return "redirect:/logout";
+			}
+			lServ.delete(id);
+			return "redirect:/restaurantDashboard";
+		}
+	}
+	
 }

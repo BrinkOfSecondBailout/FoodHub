@@ -1,6 +1,7 @@
 package com.codingdojo.foodhub.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,18 @@ public class LikeService {
 	
 	public List <Like> findAllLikesByComments(Long id) {
 		return lRepo.findAllByCommentId(id);
+	}
+	
+	public Like findLikeById(Long id) {
+		Optional <Like> potentialLike = lRepo.findById(id);
+		if(potentialLike.isEmpty()) {
+			return null;
+		} else {
+			return potentialLike.get();
+		}
+	}
+	
+	public void delete(Long id) {
+		lRepo.deleteById(id);
 	}
 }

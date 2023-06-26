@@ -107,7 +107,7 @@
 					</div>
 					
 					<c:if test="${review.comments.size() != 0 }">
-						<p><a href="#" onclick="toggleComments(${review.id}); return false;">${review.comments.size()} comment(s)</a></p>
+						<p class="small-font"><a href="#" onclick="toggleComments(${review.id}); return false;">${review.comments.size()} comment(s)</a></p>
 						<div id="all-comments${review.id}" style="display:none;">
 							<c:forEach var="comment" items="${review.comments}">
 								<section id="comment${comment.id}">
@@ -146,14 +146,16 @@
 												<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
 											</c:if>
 											<c:if test="${comment.likes.size() != 0 }">
+												<c:set var="userLiked" value="false" />
 												<c:forEach var="like" items="${comment.likes}">
 													<c:if test="${like.user == user}">
+														<c:set var="userLiked" value="true" />
 														<a href="/likes/delete/${like.id}/${comment.id}/${restaurant.id}"><img src="/img/heart.png" alt="liked" class="like-button"/></a>
 													</c:if>
-													<c:if test="${like.user != user}">
-														<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>											
-													</c:if>
-												</c:forEach>
+												</c:forEach>													
+												<c:if test="${userLiked eq false}">
+													<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>											
+												</c:if>
 											</c:if>
 										</c:if>
 									
@@ -162,14 +164,16 @@
 												<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
 											</c:if>
 											<c:if test="${comment.likes.size() != 0 }">
+												<c:set var="restaurantLiked" value="false" />
 												<c:forEach var="like" items="${comment.likes}">
 													<c:if test="${like.restaurant == restaurantViewer}">
+														<c:set var="restaurantLiked" value="true" />
 														<a href="/likes/delete/${like.id}/${comment.id}/${restaurant.id}"><img src="/img/heart.png" alt="liked" class="like-button"/></a>
 													</c:if>
-													<c:if test="${like.restaurant != restaurantViewer}">
-														<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
-													</c:if>
 												</c:forEach>
+												<c:if test="${restaurantLiked eq false}">
+													<a href="/likes/new/${comment.id}/${restaurant.id}"><img src="/img/heart-outline.png" alt="like button" class="like-button"/></a>
+												</c:if>
 											</c:if>							
 										</c:if>
 									
@@ -177,7 +181,7 @@
 											<p>${comment.likes.size()} likes</p>
 										</c:if>
 										<c:if test="${comment.likes.size() != 0 }">
-											<a href="/likes/show/"><p>${comment.likes.size()} like(s)</p></a>
+											<p><a href="">${comment.likes.size()} like(s)</a></p>
 										</c:if>
 									</div>
 								</section>

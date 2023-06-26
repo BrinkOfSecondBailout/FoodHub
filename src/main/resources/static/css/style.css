@@ -99,6 +99,10 @@
 	display: none;
 }
 
+.small-font {
+	font-size: 15px;
+}
+
 .down-right-arrow {
 	width: 30px;
 }

@@ -3,6 +3,7 @@ package com.codingdojo.foodhub.models;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
@@ -58,12 +60,27 @@ public class Item {
     @JoinColumn(name="restaurant_id")
     private Restaurant restaurant;
     
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cartItem_id")
+    private CartItem cartItem;
     
     public Item() {};
     
     
     
-    public Long getId() {
+    public CartItem getCartItem() {
+		return cartItem;
+	}
+
+
+
+	public void setCartItem(CartItem cartItem) {
+		this.cartItem = cartItem;
+	}
+
+
+
+	public Long getId() {
 		return id;
 	}
 

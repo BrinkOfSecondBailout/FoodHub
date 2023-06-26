@@ -14,7 +14,7 @@
 <body>
 	<h1>${restaurant.name}</h1>
 	<c:if test = "${ restaurant.profile == null }">
-		<img class="avatar-thumb" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/>
+		<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
 	</c:if>
 	<c:if test = "${ restaurant.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
@@ -116,11 +116,11 @@
 									<c:if test="${comment.user == null}">
 										<a href="/restaurants/${comment.restaurant.id}"><p>${comment.restaurant.name}</p>
 										<c:if test="${comment.restaurant.profile == null }">
-											<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/></a>
+											<img class="avatar-thumb-xtra-sm" src="/img/restaurant.png" alt="No Profile Pic"/>
 										</c:if>
 										<c:if test="${comment.restaurant.profile != null }">
 											<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.restaurant.profile}" alt="Profile-Pic"/></a>									
-										</c:if>
+										</c:if></a>
 										<div class="comment-text">
 											<p>${comment.comment_text}</p>										
 										</div>

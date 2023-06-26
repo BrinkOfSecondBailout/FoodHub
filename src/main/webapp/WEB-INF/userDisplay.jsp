@@ -18,5 +18,13 @@
 	<c:if test = "${ user.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
 	</c:if></a>
+	
+	<h2>All Reviews</h2>
+	<c:forEach var="review" items="${user.reviews}">
+		<p>${review.restaurant.name}</p>
+		<c:if test="${ review.restaurant.profile == null}">
+			<img src="/img/restaurant.png" alt="No Profile" class="avatar-thumb-sm"/>
+		</c:if>
+	</c:forEach>
 </body>
 </html>

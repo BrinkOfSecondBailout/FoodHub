@@ -77,20 +77,21 @@ public class CommentController {
 					Review review = rServ.findReviewById(reviewId);
 					User user = uServ.findUserById(userId);
 					cServ.createComment(comment, review, user, null);
-					model.addAttribute("average", average);
-					model.addAttribute("restaurant", restaurant);
-					model.addAttribute("items", items);
-					model.addAttribute("userId", userId);
-					model.addAttribute("reviews", reviews);
+//					model.addAttribute("average", average);
+//					model.addAttribute("restaurant", restaurant);
+//					model.addAttribute("items", items);
+//					model.addAttribute("userId", userId);
+//					model.addAttribute("reviews", reviews);
 					return "redirect:/restaurants/" + id + "?refresh=true";
 				}
 				// if viewer is a restaurant
+				Restaurant restaurantViewer = restServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
 				Review review = rServ.findReviewById(reviewId);
-				cServ.createComment(comment, review, null, restaurant);
-				model.addAttribute("average", average);
-				model.addAttribute("restaurant", restaurant);
-				model.addAttribute("items", items);
-				model.addAttribute("reviews", reviews);
+				cServ.createComment(comment, review, null, restaurantViewer);
+//				model.addAttribute("average", average);
+//				model.addAttribute("restaurant", restaurant);
+//				model.addAttribute("items", items);
+//				model.addAttribute("reviews", reviews);
 				return "redirect:/restaurants/" + id + "?refresh=true";
 			}
 		}

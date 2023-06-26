@@ -41,11 +41,12 @@ public class LikeController {
 	@Autowired
 	public ItemService iServ;
 	
-	@GetMapping("/likes/new/{cid}/{rid}")
+	@GetMapping("/likes/new/{revid}/{cid}/{rid}")
 	public String createLike(@Valid @ModelAttribute("like") Like like,
 			@ModelAttribute("comment") Comment comment,
 			HttpSession session,
 			BindingResult result,
+			@PathVariable("revid") Long reviewId,
 			@PathVariable("cid") Long commentId,
 			@PathVariable("rid") Long restPageId,
 			Model model) {
@@ -72,7 +73,7 @@ public class LikeController {
 //				model.addAttribute("items", items);
 //				model.addAttribute("reviews", reviews);
 //				model.addAttribute("user", user);
-				return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
+				return "redirect:/restaurants/" + restPageId + "?comments=show&reviewId=" + reviewId + "#comment" + commentId;
 			}
 			// if viewer is a restaurant
 			Long restaurantId = (Long) session.getAttribute("restaurantId");
@@ -83,12 +84,13 @@ public class LikeController {
 //			model.addAttribute("items", items);
 //			model.addAttribute("reviews", reviews);
 //			model.addAttribute("restaurantViewer", restaurantViewer);
-			return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
+			return "redirect:/restaurants/" + restPageId + "?comments=show&reviewId=" + reviewId + "#comment" + commentId;
 		}
 	}
 	
-	@GetMapping("/likes/delete/{lid}/{cid}/{rid}")
+	@GetMapping("/likes/delete/{revid}/{lid}/{cid}/{rid}")
 	public String removeLike(@PathVariable("lid") Long likeId, 
+			@PathVariable("revid") Long reviewId,
 			@PathVariable("cid") Long commentId,
 			@PathVariable("rid") Long restPageId,
 			HttpSession session) {
@@ -103,7 +105,7 @@ public class LikeController {
 					return "redirect:/logout";
 				}
 				lServ.delete(likeId);
-				return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
+				return "redirect:/restaurants/" + restPageId + "?comments=show&reviewId=" + reviewId + "#comment" + commentId;
 				
 			}
 			// if viewer is a restaurant
@@ -112,7 +114,7 @@ public class LikeController {
 				return "redirect:/logout";
 			}
 			lServ.delete(likeId);
-			return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
+			return "redirect:/restaurants/" + restPageId + "?comments=show&reviewId=" + reviewId + "#comment" + commentId;
 		}
 	}
 	

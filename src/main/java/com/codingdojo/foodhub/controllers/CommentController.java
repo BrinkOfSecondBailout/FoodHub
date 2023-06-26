@@ -38,12 +38,12 @@ public class CommentController {
 	@Autowired
 	public UserService uServ;
 	
-	@PostMapping("/comments/add/{id}")
+	@PostMapping("/comments/add/{id}/{reviewid}")
 	public String newComment(@Valid @ModelAttribute("comment") Comment comment, 
 			BindingResult result, 
 			HttpSession session,
-			@RequestParam("review_id") Long reviewId,
 			@PathVariable("id") Long id,
+			@PathVariable("reviewid") Long reviewId,
 			Model model) {
 		if (session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";

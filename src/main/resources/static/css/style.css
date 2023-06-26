@@ -60,6 +60,7 @@
 	padding: 10px;
 	border-bottom: 1px solid grey;
 	margin-bottom: 10px;
+	align-items: center;
 }
 
 .user_of_review {

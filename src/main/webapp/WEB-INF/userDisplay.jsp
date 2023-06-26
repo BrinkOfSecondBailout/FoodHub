@@ -17,14 +17,41 @@
 	</c:if>
 	<c:if test = "${ user.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
-	</c:if></a>
+	</c:if>
 	
 	<h2>All Reviews</h2>
 	<c:forEach var="review" items="${user.reviews}">
-		<p>${review.restaurant.name}</p>
-		<c:if test="${ review.restaurant.profile == null}">
-			<img src="/img/restaurant.png" alt="No Profile" class="avatar-thumb-sm"/>
-		</c:if>
+		<div class="one-review">
+			<a href="/restaurants/${review.restaurant.id}"><p>${review.restaurant.name}</p>
+			<c:if test="${ review.restaurant.profile == null}">
+				<img src="/img/restaurant.png" alt="No Profile" class="avatar-thumb-sm"/>
+			</c:if>
+			<c:if test="${ review.restaurant.profile != null}">
+				<img src="data:image/jpg;base64,${review.restaurant.profile}" alt="Restaurant Pic" class="avatar-thumb-sm"/>
+			</c:if></a>
+			
+			<div class="review-text">
+				<p>${review.review_text}</p>			
+			</div>
+			
+			<div class="review-stars">
+				<c:if test="${review.stars == 1}">
+					<img src="/img/onestar.png" class="star-rating" alt="1 Star"/>
+				</c:if>
+				<c:if test="${review.stars == 2}">
+					<img src="/img/twostar.png" class="star-rating" alt="2 Star"/>
+				</c:if>
+				<c:if test="${review.stars == 3}">
+					<img src="/img/threestar.png" class="star-rating" alt="3 Star"/>
+				</c:if>
+				<c:if test="${review.stars == 4}">
+					<img src="/img/fourstar.png" class="star-rating" alt="4 Star"/>
+				</c:if>
+				<c:if test="${review.stars == 5}">
+					<img src="/img/fivestar.png" class="star-rating" alt="5 Star"/>
+				</c:if>
+			</div>
+		</div>
 	</c:forEach>
 </body>
 </html>

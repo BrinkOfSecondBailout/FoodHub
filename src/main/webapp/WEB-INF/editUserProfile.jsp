@@ -12,7 +12,7 @@
 <title>Edit Profile</title>
 </head>
 <body>
-	<h1>Edit Your Profile, <a href="/dashboard">${user.first_name}</a></h1>
+	<h1>Edit Your Profile, <a href="/users/${user.id}">${user.first_name}</a></h1>
 	<c:if test = "${ user.profile == null }">
 		<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 	</c:if>

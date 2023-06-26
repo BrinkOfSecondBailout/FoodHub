@@ -22,6 +22,7 @@
 	<c:if test = "${ restaurant.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
 	</c:if>
+	
 	<form:form action="/reviews/add/${restaurant.id}" method="post" modelAttribute="review">
 		<form:label path="review_text">How was your experience?</form:label><br><br>
 		<form:errors path="review_text"/><br>
@@ -41,5 +42,6 @@
 		
 		<br><br><input type="submit" value="Submit"/>
 	</form:form>
+	
 </body>
 </html>

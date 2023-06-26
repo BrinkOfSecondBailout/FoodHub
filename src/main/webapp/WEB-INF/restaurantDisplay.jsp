@@ -13,12 +13,22 @@
 </head>
 <body>
 	<h1>${restaurant.name}</h1>
+	
 	<c:if test = "${ restaurant.profile == null }">
 		<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
 	</c:if>
 	<c:if test = "${ restaurant.profile != null }">
 		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
 	</c:if>
+	
+	<div>
+		<c:if test="${user != null}">
+			<a href="/dashboard"><button>Dashboard</button></a>
+		</c:if>
+		<c:if test="${restaurantViewer != null}">
+			<a href="/restaurantDashboard"><button>Dashboard</button></a>
+		</c:if>
+	</div>
 	
 	<div>
 		<c:if test="${average == 1}">
@@ -190,10 +200,9 @@
 					</c:if>
 					
 					<div class="comment-form">
-						<form:form action="/comments/add/${restaurant.id}" method="post" modelAttribute="comment">
+						<form:form action="/comments/add/${restaurant.id}/${review.id}" method="post" modelAttribute="comment">
 							<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
 							<form:errors path="comment_text" class="form-error"/><br>
-							<input type="hidden" name="review_id" value=${review.id} />
 							<input type="submit" value="Reply"/>
 						</form:form>
 					</div>

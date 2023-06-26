@@ -53,10 +53,15 @@ public class ReviewController {
 				return "newReview.jsp";
 			} else {
 				User user = uServ.findUserById((Long) session.getAttribute("userId"));
-				rServ.createReview(review, restaurant, user);
+				Review newReview = new Review();
+				newReview.setReview_text(review.getReview_text());
+				newReview.setStars(review.getStars());
+				newReview.setUser(user);
+				newReview.setRestaurant(restaurant);
+				rServ.createReview(newReview, restaurant, user);
 				return "redirect:/restaurants/" + id;
-			}			
+			}
 		}
-		
+
 	}
 }

@@ -134,11 +134,11 @@ public class RestaurantController {
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
 				User user = uServ.findUserById(userId);
+				model.addAttribute("userId", userId);
 				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
-				model.addAttribute("userId", userId);
 				model.addAttribute("user", user);
 				return "restaurantDisplay.jsp";
 			}

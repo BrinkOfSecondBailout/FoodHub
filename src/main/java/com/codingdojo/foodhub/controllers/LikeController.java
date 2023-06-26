@@ -55,10 +55,10 @@ public class LikeController {
 			if(result.hasErrors()) {
 				return "redirect:/";
 			}
-			Restaurant restaurant = rServ.findRestaurantById(restPageId);
-			List <Item> items = iServ.findAllItemsByRestaurantId(restPageId);
-			List <Review> reviews = reServ.findReviewsByRestaurant(restPageId);
-			Integer average = reServ.findAverageRatingByRestaurant(restPageId);
+//			Restaurant restaurant = rServ.findRestaurantById(restPageId);
+//			List <Item> items = iServ.findAllItemsByRestaurantId(restPageId);
+//			List <Review> reviews = reServ.findReviewsByRestaurant(restPageId);
+//			Integer average = reServ.findAverageRatingByRestaurant(restPageId);
 			Comment comment2 = cServ.findCommentById(commentId);
 			
 			// if viewer is a user
@@ -66,41 +66,44 @@ public class LikeController {
 				Long userId = (Long) session.getAttribute("userId");
 				User user = uServ.findUserById(userId);
 				lServ.createLike(like, comment2, user, null);
-				model.addAttribute("userId", userId);
-				model.addAttribute("average", average);
-				model.addAttribute("restaurant", restaurant);
-				model.addAttribute("items", items);
-				model.addAttribute("reviews", reviews);
-				model.addAttribute("user", user);
+//				model.addAttribute("userId", userId);
+//				model.addAttribute("average", average);
+//				model.addAttribute("restaurant", restaurant);
+//				model.addAttribute("items", items);
+//				model.addAttribute("reviews", reviews);
+//				model.addAttribute("user", user);
 				return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 			}
 			// if viewer is a restaurant
 			Long restaurantId = (Long) session.getAttribute("restaurantId");
 			Restaurant restaurantViewer = rServ.findRestaurantById(restaurantId);
 			lServ.createLike(like, comment2, null, restaurantViewer);
-			model.addAttribute("average", average);
-			model.addAttribute("restaurant", restaurant);
-			model.addAttribute("items", items);
-			model.addAttribute("reviews", reviews);
-			model.addAttribute("restaurantViewer", restaurantViewer);
+//			model.addAttribute("average", average);
+//			model.addAttribute("restaurant", restaurant);
+//			model.addAttribute("items", items);
+//			model.addAttribute("reviews", reviews);
+//			model.addAttribute("restaurantViewer", restaurantViewer);
 			return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 		}
 	}
 	
-	@GetMapping("/likes/delete/{id}")
-	public String removeLike(@PathVariable("id") Long id, HttpSession session) {
+	@GetMapping("/likes/delete/{lid}/{cid}/{rid}")
+	public String removeLike(@PathVariable("lid") Long likeId, 
+			@PathVariable("cid") Long commentId,
+			@PathVariable("rid") Long restPageId,
+			HttpSession session) {
 		if (session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
-			Like like = lServ.findLikeById(id);
+			Like like = lServ.findLikeById(likeId);
 			// if viewer is a user
 			if(session.getAttribute("userId") != null) {
 				User user = uServ.findUserById((Long) session.getAttribute("userId"));
 				if(like.getUser() != user) {
 					return "redirect:/logout";
 				}
-				lServ.delete(id);
-				return "redirect:/dashboard";
+				lServ.delete(likeId);
+				return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 				
 			}
 			// if viewer is a restaurant
@@ -108,8 +111,8 @@ public class LikeController {
 			if(like.getRestaurant() != restaurantViewer) {
 				return "redirect:/logout";
 			}
-			lServ.delete(id);
-			return "redirect:/restaurantDashboard";
+			lServ.delete(likeId);
+			return "redirect:/restaurants/" + restPageId + "?comments=show" + "#comment" + commentId;
 		}
 	}
 	

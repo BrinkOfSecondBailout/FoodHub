@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codingdojo.foodhub.models.LoginUser;
 import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.User;
+import com.codingdojo.foodhub.services.BagService;
 import com.codingdojo.foodhub.services.RestaurantService;
 import com.codingdojo.foodhub.services.UserService;
 
@@ -31,6 +32,8 @@ public class UserController {
 	public UserService uServ;
 	@Autowired
 	public RestaurantService rServ;
+	@Autowired
+	public BagService bServ;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -47,6 +50,7 @@ public class UserController {
 			model.addAttribute("newLogin", new LoginUser());
 			return "index.jsp";
 		} else {
+			bServ.createBag(newUser);
 			session.setAttribute("userId", newUser.getId());
 			return "redirect:/dashboard";			
 		}

@@ -1,6 +1,6 @@
 package com.codingdojo.foodhub.controllers;
 
-import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.codingdojo.foodhub.models.Comment;
-import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.Like;
 import com.codingdojo.foodhub.models.Restaurant;
-import com.codingdojo.foodhub.models.Review;
 import com.codingdojo.foodhub.models.User;
 import com.codingdojo.foodhub.services.CommentService;
 import com.codingdojo.foodhub.services.ItemService;

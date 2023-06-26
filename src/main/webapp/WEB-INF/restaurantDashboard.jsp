@@ -12,6 +12,11 @@
 </head>
 <body>
 	<h1>Welcome, <a href="/restaurants/edit">${restaurant.name}!</h1></a>
+	
+	<div>
+	<a href="/logout"><button>Logout</button></a>
+	</div>
+	
 	<c:if test = "${ restaurant.profile == null }">
 		<img class="avatar-thumb" src="/img/avatar-icon-2.jpg" alt="No Profile Pic"/>
 	</c:if>

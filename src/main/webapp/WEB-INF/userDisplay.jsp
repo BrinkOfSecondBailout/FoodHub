@@ -12,5 +12,11 @@
 </head>
 <body>
 	<h1>${user.first_name} ${user.last_name}</h1>
+	<c:if test = "${ user.profile == null }">
+		<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+	</c:if>
+	<c:if test = "${ user.profile != null }">
+		<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+	</c:if></a>
 </body>
 </html>

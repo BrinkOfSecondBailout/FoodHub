@@ -12,6 +12,11 @@
 </head>
 <body>
 	<h1>Welcome, <a href="/users/edit">${user.first_name}!</h1></a>
+	
+	<div>
+	<a href="/logout"><button>Logout</button></a>
+	</div>
+	
 	<c:if test = "${ user.profile == null }">
 		<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 	</c:if>
@@ -37,13 +42,13 @@
 	<div class="all-users">
 		<c:forEach var="user" items="${users}">
 			<div class="one-item">
-				<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p></a>
+				<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p>
 				<c:if test = "${ user.profile == null }">
 					<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 				</c:if>
 				<c:if test = "${ user.profile != null }">
 					<img class="avatar-thumb-sm" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
-				</c:if>
+				</c:if></a>
 			</div>
 		</c:forEach>
 	</div>

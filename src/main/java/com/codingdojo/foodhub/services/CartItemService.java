@@ -24,4 +24,8 @@ public class CartItemService {
 		cartItem.setQuantity(quantity);
 		return cRepo.save(cartItem);
 	}
+	
+	public CartItem update(CartItem c) {
+		return cRepo.save(c);
+	}
 }

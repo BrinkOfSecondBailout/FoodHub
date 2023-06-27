@@ -86,18 +86,33 @@ public class BagController {
 		Item item = iServ.findItemById(itemId);
 		// if there are already orders in the bag
 		if (bag.getOrders() != null) {
-			// check if one of those orders are with the restaurant
 			for( Order order: bag.getOrders()) {
+				// check if one of those orders are with the restaurant
 				if(order.getRestaurant() == restaurant) {
-					
+					for (CartItem cartItem : order.getCartItems()) {
+						// if that cartItem already exists
+						if(cartItem.getItem() == item) {
+							// simply add the existing quantity to the new quantity
+							cartItem.setQuantity(cartItem.getQuantity() + quantity);
+							cServ.update(cartItem);
+							return "redirect:/bags/orders/new/" + restId;
+						} else {
+							// if that cartItem doesn't exist yet
+							cServ.createNew(order, item, quantity);
+							return "redirect:/bags/orders/new/" + restId;
+						}
+					}	
+				} else {
+					// if none of those orders are with the restaurant
+					Order thisOrder = oServ.createOrder(bag, restaurant);
+					cServ.createNew(thisOrder, item, quantity);
+					return "redirect:/bags/orders/new/" + restId;
 				}
 			}
-		} else {
-			// if there are no orders in the bag yet
-			Order order = oServ.createOrder(bag, restaurant);
-			CartItem cartItem = cServ.createNew(order, item, quantity);
 		}
-		
+		// if there are no orders in the bag yet
+		Order order = oServ.createOrder(bag, restaurant);
+		cServ.createNew(order, item, quantity);
 		return "redirect:/bags/orders/new/" + restId;
 	}
 }

@@ -18,12 +18,17 @@
 	
 	<c:if test="${user.bag.orders.size() != 0 }">
 		<c:forEach var="order" items="${user.bag.orders}">
-			<p>${order.restaurant.name}</p>
+		<c:set var="orderTotal" value="0" />
+			<h3>${order.restaurant.name}</h3>
 			<c:forEach var="cartItem" items="${order.cartItems}">
 				<p>${cartItem.item.name}</p>
 				<p>${cartItem.item.price}</p>
 				<p>${cartItem.quantity}</p>
+				<c:set var="subtotal" value="${cartItem.item.price * cartItem.quantity}" />
+				<c:set var="orderTotal" value="${orderTotal + subtotal}" />
 			</c:forEach>
+			<p>Total for ${order.restaurant.name}:</p>
+			<p><fmt:formatNumber value="${orderTotal}" pattern="$#,##0.00" /></p>
 		</c:forEach>
 	</c:if>
 </body>

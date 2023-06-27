@@ -84,35 +84,38 @@ public class BagController {
 		Bag bag = user.getBag();
 		Restaurant restaurant = rServ.findRestaurantById(restId);
 		Item item = iServ.findItemById(itemId);
+		List<Order> orders = bag.getOrders();
+		boolean restaurantExists = false;
 		// if there are already orders in the bag
-		if (bag.getOrders() != null) {
-			for( Order order: bag.getOrders()) {
+		if (orders != null) {
+			for( Order order: orders) {
 				// check if one of those orders are with the restaurant
 				if(order.getRestaurant() == restaurant) {
+					restaurantExists = true;
+					boolean itemExists = false;
 					for (CartItem cartItem : order.getCartItems()) {
-						// if that cartItem already exists
 						if(cartItem.getItem() == item) {
+							// if that cartItem already exists
 							// simply add the existing quantity to the new quantity
 							cartItem.setQuantity(cartItem.getQuantity() + quantity);
 							cServ.update(cartItem);
-							return "redirect:/bags/orders/new/" + restId;
-						} else {
-							// if that cartItem doesn't exist yet
-							cServ.createNew(order, item, quantity);
-							return "redirect:/bags/orders/new/" + restId;
+							itemExists = true;
+							break;
 						}
 					}	
-				} else {
-					// if none of those orders are with the restaurant
-					Order thisOrder = oServ.createOrder(bag, restaurant);
-					cServ.createNew(thisOrder, item, quantity);
-					return "redirect:/bags/orders/new/" + restId;
+					// if that cartItem doesn't exist yet
+					if(!itemExists) {
+						cServ.createNew(order, item, quantity);					
+					}
+					break;
 				}
 			}
 		}
-		// if there are no orders in the bag yet
-		Order order = oServ.createOrder(bag, restaurant);
-		cServ.createNew(order, item, quantity);
+		if(!restaurantExists) {
+			// if none of those orders are with the restaurant
+			Order thisOrder = oServ.createOrder(bag, restaurant);
+			cServ.createNew(thisOrder, item, quantity);					
+		}
 		return "redirect:/bags/orders/new/" + restId;
 	}
 }

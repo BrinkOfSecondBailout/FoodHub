@@ -248,10 +248,44 @@
 .one-food-item {
 	display: flex;
 	align-items: center;
+	width: 60%;
 } 
 
 .item-thumb-sm {
 	width: 80px;
 	height: 80px;
 	border-radius: 10px;
+}
+
+.item-name {
+	width: 200px;
+}
+
+.item-description {
+	max-width: 200px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.item-price {
+	width: 200px;
+}
+
+.quantity-input {
+	width: 50px;
+	height: 25px;
+	text-align: center;
+}
+
+.quantity-and-add {
+	width: 250px;
+}
+
+.add-button {
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
 }

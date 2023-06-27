@@ -79,12 +79,26 @@
 					<c:if test="${item.file != null}">
 						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
 					</c:if>
-					<div>
+					
+					<div class="item-name">
 						<p><a href="/items/${item.id}">${item.name}</a></p>
 					</div>
-					<div>
-						<a href=""><button>Add to bag</button></a>
+					
+					<div class="item-description">
+						<p>${item.description}</p>
 					</div>
+					
+					<div class="item-price">
+						<p>$${item.price}</p>
+					</div>
+					
+					<div class="quantity-and-add">
+                		<form action="/bags/create/${restaurant.id}" method="post">
+                    		<input type="hidden" name="itemId" value="${item.id}">
+                    		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
+                  	  		<button class="add-button">Add to bag</button>
+                		</form>
+            		</div>
 				</div>
 			</c:if>
 		</c:forEach>

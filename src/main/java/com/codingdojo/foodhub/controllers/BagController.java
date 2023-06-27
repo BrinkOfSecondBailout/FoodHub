@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.foodhub.models.Bag;
+import com.codingdojo.foodhub.models.CartItem;
 import com.codingdojo.foodhub.models.Item;
+import com.codingdojo.foodhub.models.Order;
 import com.codingdojo.foodhub.models.Restaurant;
 import com.codingdojo.foodhub.models.User;
 import com.codingdojo.foodhub.services.BagService;
+import com.codingdojo.foodhub.services.CartItemService;
 import com.codingdojo.foodhub.services.ItemService;
 import com.codingdojo.foodhub.services.OrderService;
 import com.codingdojo.foodhub.services.RestaurantService;
@@ -37,6 +40,8 @@ public class BagController {
 	public ItemService iServ;
 	@Autowired
 	public OrderService oServ;
+	@Autowired
+	public CartItemService cServ;
 	
 	@GetMapping("/bags/show/{id}")
 	public String showBag(@PathVariable("id") Long id,
@@ -78,13 +83,19 @@ public class BagController {
 		User user = uServ.findUserById((Long) session.getAttribute("userId"));
 		Bag bag = user.getBag();
 		Restaurant restaurant = rServ.findRestaurantById(restId);
-		
+		Item item = iServ.findItemById(itemId);
 		// if there are already orders in the bag
 		if (bag.getOrders() != null) {
 			// check if one of those orders are with the restaurant
-			
+			for( Order order: bag.getOrders()) {
+				if(order.getRestaurant() == restaurant) {
+					
+				}
+			}
 		} else {
 			// if there are no orders in the bag yet
+			Order order = oServ.createOrder(bag, restaurant);
+			CartItem cartItem = cServ.createNew(order, item, quantity);
 		}
 		
 		return "redirect:/bags/orders/new/" + restId;

@@ -16,8 +16,13 @@
 	<a href="/bags/show/${user.bag.id}">
 		<img src="/img/bag.png" class="bag-icon" alt="Shopping Bag"/>
 	</a>
-	<p>${user.bag.cartItems.size()}</p>
 	
+	<c:if test="${user.bag.orders.size() == null}">
+		<p>0</p>
+	</c:if>
+	<c:if test="${user.bag.orders.size() != null}">
+		<p>${user.bag.orders.size()}</p>
+	</c:if>
 	
 	<div>
 	<a href="/logout"><button>Logout</button></a>

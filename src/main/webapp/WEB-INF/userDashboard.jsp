@@ -13,6 +13,12 @@
 <body>
 	<h1>Welcome, <a href="/users/edit">${user.first_name}!</h1></a>
 	
+	<a href="/bags/show/${user.bag.id}">
+		<img src="/img/bag.png" class="bag-icon" alt="Shopping Bag"/>
+	</a>
+	<p>${user.bag.cartItems.size()}</p>
+	
+	
 	<div>
 	<a href="/logout"><button>Logout</button></a>
 	</div>

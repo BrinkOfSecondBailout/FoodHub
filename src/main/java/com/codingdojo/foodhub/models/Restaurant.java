@@ -56,6 +56,9 @@ public class Restaurant {
 	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
 	private List <Like> likes;
 	
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
+	private List <Order> orders;
+	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date created_at;
@@ -68,6 +71,18 @@ public class Restaurant {
 
 	
 	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+
+
 	public List<Like> getLikes() {
 		return likes;
 	}

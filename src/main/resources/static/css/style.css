@@ -186,6 +186,10 @@
 	display: flex;
 }
 
+.bag-icon {
+	width: 50px;
+}
+
 /* newReview */
 .review-text-area {
 	width: 400px;

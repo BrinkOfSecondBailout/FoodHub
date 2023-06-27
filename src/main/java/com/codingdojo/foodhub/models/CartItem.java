@@ -1,6 +1,7 @@
 package com.codingdojo.foodhub.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,10 +20,11 @@ public class CartItem {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bag_id")
-    private Bag bag;
+    @JoinColumn(name = "order_id")
+    private Order order;
 	
-	@OneToOne(mappedBy = "cartItem")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "item_id")
     private Item item;
 	
 	private int quantity;
@@ -41,12 +43,14 @@ public class CartItem {
 		this.id = id;
 	}
 
-	public Bag getBag() {
-		return bag;
+	
+	
+	public Order getOrder() {
+		return order;
 	}
 
-	public void setBag(Bag bag) {
-		this.bag = bag;
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public Item getItem() {

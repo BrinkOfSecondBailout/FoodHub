@@ -30,7 +30,7 @@ public class Bag {
 	private User user;
 	
 	@OneToMany(mappedBy="bag", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List <CartItem> cartItems;
+	private List <Order> orders;
 
 	
 	@Column(updatable=false)
@@ -72,15 +72,20 @@ public class Bag {
 
 
 
-	public List<CartItem> getCartItems() {
-		return cartItems;
+	
+
+
+
+
+	public List<Order> getOrders() {
+		return orders;
 	}
 
 
 
 
-	public void setCartItems(List<CartItem> cartItems) {
-		this.cartItems = cartItems;
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 

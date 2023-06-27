@@ -70,6 +70,5 @@
 			</div>
 		</c:forEach>	
 	</div>
-	<a href="/logout"><button>Logout</button></a>
 </body>
 </html>

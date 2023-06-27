@@ -242,3 +242,16 @@
 .ratings input:checked ~ label:after {
 	opacity: 1;	
 }
+
+/* newOrder */
+
+.one-food-item {
+	display: flex;
+	align-items: center;
+} 
+
+.item-thumb-sm {
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+}

@@ -71,7 +71,7 @@
 	</div>
 	
 	<c:if test="${userId != null}">
-		<button>Start ordering!</button>
+		<a href="/bags/orders/new/${restaurant.id}"><button>Start ordering!</button></a>
 		<a href="/reviews/new/${restaurant.id}"><button>Add a review</button></a>
 	</c:if>
 	

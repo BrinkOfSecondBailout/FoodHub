@@ -1,5 +1,7 @@
 package com.codingdojo.foodhub.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,16 @@ public class CartItemService {
 	
 	public CartItem update(CartItem c) {
 		return cRepo.save(c);
+	}
+	
+	public CartItem findById(Long id) {
+		Optional <CartItem> potentialC = cRepo.findById(id);
+		if(potentialC.isEmpty()) {
+			return null;
+		} else {
+			return potentialC.get();
+		}
+		
 	}
 	
 	public void delete(CartItem c) {

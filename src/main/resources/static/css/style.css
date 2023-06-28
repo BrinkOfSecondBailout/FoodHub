@@ -307,6 +307,20 @@
 	
 }
 
+.order-quantity {
+	display: flex;
+	width: 100px;
+	align-items: center;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+
+.quantity-button {
+	width: 32px;
+	height: 32px;
+	margin-top: 5px;
+}
+
 .one-order-item {
 	display: flex;
 	align-items: center;

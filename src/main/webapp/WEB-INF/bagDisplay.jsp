@@ -41,7 +41,13 @@
 							</c:if></a>
 						</div>
 						<p>$${cartItem.item.price}</p>
-						<p>${cartItem.quantity}</p>
+						
+						<div class="order-quantity">
+							<a href="/bags/decrease/${user.bag.id}/${cartItem.id}"><img src="/img/minus2.png" class="quantity-button"/></a>
+							<p>${cartItem.quantity}</p>
+							<a href="/bags/increase/${user.bag.id}/${cartItem.id}"><img src="/img/plus.png" class="quantity-button"/></a>
+						</div>
+						
 						<a href="/bags/remove/${order.id}/${cartItem.id}"><button>Remove</button></a>
 						<c:set var="subtotal" value="${cartItem.item.price * cartItem.quantity}" />
 						<c:set var="orderTotal" value="${orderTotal + subtotal}" />

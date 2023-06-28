@@ -119,6 +119,33 @@ public class BagController {
 		return "redirect:/bags/orders/new/" + restId;
 	}
 	
+	@GetMapping("/bags/increase/{bid}/{id}")
+	public String increaseQuantity(@PathVariable("id") Long id, 
+			@PathVariable("bid") Long bagId, 
+			HttpSession session) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		}
+		CartItem cartItem = cServ.findById(id);
+		cartItem.setQuantity(cartItem.getQuantity() + 1);
+		cServ.update(cartItem);
+		return "redirect:/bags/show/" + bagId;
+	}
+	
+	@GetMapping("/bags/decrease/{bid}/{id}")
+	public String decreaseQuantity(@PathVariable("id") Long id, 
+			@PathVariable("bid") Long bagId, 
+			HttpSession session) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		}
+		CartItem cartItem = cServ.findById(id);
+		cartItem.setQuantity(cartItem.getQuantity() - 1);
+		cServ.update(cartItem);
+		return "redirect:/bags/show/" + bagId;
+	}
+	
+	
 	@GetMapping("/bags/remove/{oid}/{cid}")
 	public String removeItemFromOrder(@PathVariable("oid") Long orderId,
 			@PathVariable("cid") Long cartItemId,
@@ -138,4 +165,7 @@ public class BagController {
 		Long bagId = user.getBag().getId();
 		return "redirect:/bags/show/" + bagId;
 	}
+	
+	
+	
 }

@@ -22,7 +22,7 @@ public class CartItem {
     @JoinColumn(name = "order_id")
     private Order order;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "item_id")
     private Item item;
 	

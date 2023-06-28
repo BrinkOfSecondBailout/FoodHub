@@ -140,6 +140,10 @@ public class BagController {
 			return "redirect:/logout";
 		}
 		CartItem cartItem = cServ.findById(id);
+		if(cartItem.getQuantity() == 1) {
+			Long orderId = cartItem.getOrder().getId();
+			return "redirect:/bags/remove/" + orderId + "/" + id;
+		}
 		cartItem.setQuantity(cartItem.getQuantity() - 1);
 		cServ.update(cartItem);
 		return "redirect:/bags/show/" + bagId;
@@ -166,6 +170,16 @@ public class BagController {
 		return "redirect:/bags/show/" + bagId;
 	}
 	
-	
+	@GetMapping("/bags/order/remove/{oid}")
+	public String removeOrderFromBag(@PathVariable("oid") Long orderId, 
+			HttpSession session) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		}
+		Order order = oServ.findById(orderId);
+		Long bagId = order.getBag().getId();
+		oServ.deleteOrder(order);
+		return "redirect:/bags/show/" + bagId;
+	}
 	
 }

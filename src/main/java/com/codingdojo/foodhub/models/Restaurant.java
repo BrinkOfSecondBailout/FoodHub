@@ -3,6 +3,7 @@ package com.codingdojo.foodhub.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,19 +45,19 @@ public class Restaurant {
 	@Column(columnDefinition="MEDIUMTEXT")
 	private String profile;
 	
-	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List <Review> reviews;
 	
-	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List <Comment> comments;
 	
-	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List <Item> items;
 	
-	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List <Like> likes;
 	
-	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="restaurant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List <Order> orders;
 	
 	@Column(updatable=false)

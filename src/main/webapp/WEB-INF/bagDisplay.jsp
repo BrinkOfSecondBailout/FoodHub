@@ -57,6 +57,10 @@
 					<h3>Total for ${order.restaurant.name}:</h3>
 					<p><fmt:formatNumber value="${orderTotal}" pattern="$#,##0.00" /></p>			
 				</div>
+				
+				<div>
+					<a href="/bags/order/remove/${order.id}"><button>Remove Entire Order</button></a>
+				</div>
 			</div>
 		</c:forEach>
 	</c:if>

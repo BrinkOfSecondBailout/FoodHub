@@ -40,4 +40,14 @@ public class OrderService {
 	public List<Order> findAllByRestaurant(Long id) {
 		return oRepo.findAllOrdersByRestaurant(id);
 	}
+	
+	public void deleteOrder(Order o) {
+		Bag bag = o.getBag();
+		Restaurant restaurant = o.getRestaurant();
+		bag.getOrders().remove(o);
+		o.setBag(null);
+		restaurant.getOrders().remove(o);
+		o.setRestaurant(null);
+		oRepo.delete(o);
+	}
 }

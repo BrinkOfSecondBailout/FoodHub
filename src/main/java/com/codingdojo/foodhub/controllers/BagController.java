@@ -116,7 +116,8 @@ public class BagController {
 			Order thisOrder = oServ.createOrder(bag, restaurant);
 			cServ.createNew(thisOrder, item, quantity);					
 		}
-		return "redirect:/bags/orders/new/" + restId;
+		String category = item.getCategory();
+		return "redirect:/bags/orders/new/" + restId + "?expand=show&category=" + category;
 	}
 	
 	@GetMapping("/bags/increase/{bid}/{id}")

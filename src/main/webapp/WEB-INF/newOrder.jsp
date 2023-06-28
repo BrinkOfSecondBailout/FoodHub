@@ -53,13 +53,75 @@
 	
 	<h3><a href="#" onclick="toggleComments('breakfast'); return false;">Breakfast</a></h3>
 	<div id="breakfast" style="display:none;">
-		<p>Test</p>
+		<c:forEach var="item" items="${items}">
+			<c:if test="${item.category == 'Breakfast'}">
+				<div class="one-food-item">
+					<c:if test="${item.file == null}">
+						<img src="" alt="No Item Picture"/>
+					</c:if>
+					<c:if test="${item.file != null}">
+						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+					</c:if>
+					
+					<div class="item-name">
+						<p><a href="/items/${item.id}">${item.name}</a></p>
+					</div>
+					
+					<div class="item-description">
+						<p>${item.description}</p>
+					</div>
+					
+					<div class="item-price">
+						<p>$${item.price}</p>
+					</div>
+					
+					<div class="quantity-and-add">
+                		<form action="/bags/create/${restaurant.id}" method="post">
+                    		<input type="hidden" name="itemId" value="${item.id}">
+                    		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
+                  	  		<button class="add-button">Add to bag</button>
+                		</form>
+            		</div>
+				</div>
+			</c:if>
+		</c:forEach>
 	</div>
 	
 	
 	<h3><a href="#" onclick="toggleComments('lunch'); return false;">Lunch</a></h3>
 	<div id="lunch" style="display:none;">
-		<p>Test</p>
+		<c:forEach var="item" items="${items}">
+			<c:if test="${item.category == 'Lunch'}">
+				<div class="one-food-item">
+					<c:if test="${item.file == null}">
+						<img src="" alt="No Item Picture"/>
+					</c:if>
+					<c:if test="${item.file != null}">
+						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+					</c:if>
+					
+					<div class="item-name">
+						<p><a href="/items/${item.id}">${item.name}</a></p>
+					</div>
+					
+					<div class="item-description">
+						<p>${item.description}</p>
+					</div>
+					
+					<div class="item-price">
+						<p>$${item.price}</p>
+					</div>
+					
+					<div class="quantity-and-add">
+                		<form action="/bags/create/${restaurant.id}" method="post">
+                    		<input type="hidden" name="itemId" value="${item.id}">
+                    		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
+                  	  		<button class="add-button">Add to bag</button>
+                		</form>
+            		</div>
+				</div>
+			</c:if>
+		</c:forEach>
 	</div>
 	
 	<h3><a href="#" onclick="toggleComments('dinner'); return false;">Dinner</a></h3>
@@ -138,18 +200,91 @@
 	
 	<h3><a href="#" onclick="toggleComments('drinks'); return false;">Drinks</a></h3>
 	<div id="drinks" style="display:none;">
-		<p>Test</p>
+		<c:forEach var="item" items="${items}">
+			<c:if test="${item.category == 'Drinks'}">
+				<div class="one-food-item">
+					<c:if test="${item.file == null}">
+						<img src="" alt="No Item Picture"/>
+					</c:if>
+					<c:if test="${item.file != null}">
+						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+					</c:if>
+					
+					<div class="item-name">
+						<p><a href="/items/${item.id}">${item.name}</a></p>
+					</div>
+					
+					<div class="item-description">
+						<p>${item.description}</p>
+					</div>
+					
+					<div class="item-price">
+						<p>$${item.price}</p>
+					</div>
+					
+					<div class="quantity-and-add">
+                		<form action="/bags/create/${restaurant.id}" method="post">
+                    		<input type="hidden" name="itemId" value="${item.id}">
+                    		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
+                  	  		<button class="add-button">Add to bag</button>
+                		</form>
+            		</div>
+				</div>
+			</c:if>
+		</c:forEach>
 	</div>
 	
 	
 	<h3><a href="#" onclick="toggleComments('others'); return false;">Others</a></h3>
 	<div id="others" style="display:none;">
-		<p>Test</p>
+		<c:forEach var="item" items="${items}">
+			<c:if test="${item.category == 'Others'}">
+				<div class="one-food-item">
+					<c:if test="${item.file == null}">
+						<img src="" alt="No Item Picture"/>
+					</c:if>
+					<c:if test="${item.file != null}">
+						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+					</c:if>
+					
+					<div class="item-name">
+						<p><a href="/items/${item.id}">${item.name}</a></p>
+					</div>
+					
+					<div class="item-description">
+						<p>${item.description}</p>
+					</div>
+					
+					<div class="item-price">
+						<p>$${item.price}</p>
+					</div>
+					
+					<div class="quantity-and-add">
+                		<form action="/bags/create/${restaurant.id}" method="post">
+                    		<input type="hidden" name="itemId" value="${item.id}">
+                    		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
+                  	  		<button class="add-button">Add to bag</button>
+                		</form>
+            		</div>
+				</div>
+			</c:if>
+		</c:forEach>
 	</div>
 
 
 <script>
-   function toggleComments(category) {
+	
+	const urlParams = new URLSearchParams(window.location.search);
+	const expandParam = urlParams.get('expand')
+	const categoryParam = urlParams.get('category');
+	
+
+	if (expandParam === 'show') {
+		const categoryDiv = document.getElementById(categoryParam.toLowerCase());
+		categoryDiv.style.display = "block";
+	}
+   	
+	function toggleComments(category) {
 	   var commentsDiv = document.getElementById(category);
 	   commentsDiv.style.display = (commentsDiv.style.display === "none") ? "block" : "none";
    }

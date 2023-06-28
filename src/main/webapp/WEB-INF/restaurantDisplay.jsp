@@ -219,8 +219,6 @@
    const commentsParam = urlParams.get('comments')
    
    const reviewParam = urlParams.get('reviewId');
-   
-   console.log(reviewParam);
 
    //If 'comments' is 'show', show the comments
    if (commentsParam === 'show') {

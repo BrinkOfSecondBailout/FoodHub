@@ -2,6 +2,7 @@ package com.codingdojo.foodhub.models;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
@@ -60,23 +61,35 @@ public class Item {
     @JoinColumn(name="restaurant_id")
     private Restaurant restaurant;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cartItem_id")
-    private CartItem cartItem;
+    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<CartItem> cartItems;
+    
     
     public Item() {};
     
     
     
-    public CartItem getCartItem() {
-		return cartItem;
+    
+
+
+
+	public List<CartItem> getCartItems() {
+		return cartItems;
 	}
 
 
 
-	public void setCartItem(CartItem cartItem) {
-		this.cartItem = cartItem;
+
+
+
+
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
 	}
+
+
+
+
 
 
 

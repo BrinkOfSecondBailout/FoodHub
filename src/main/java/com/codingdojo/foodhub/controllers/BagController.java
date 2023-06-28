@@ -118,4 +118,24 @@ public class BagController {
 		}
 		return "redirect:/bags/orders/new/" + restId;
 	}
+	
+	@GetMapping("/bags/remove/{oid}/{cid}")
+	public String removeItemFromOrder(@PathVariable("oid") Long orderId,
+			@PathVariable("cid") Long cartItemId,
+			HttpSession session) {
+		if(session.getAttribute("userId") == null) {
+			return "redirect:/logout";
+		}
+		Order order = oServ.findById(orderId);
+		List <CartItem> cartItems = order.getCartItems();
+		for (CartItem cartItem:cartItems) {
+			if(cartItem.getId() == cartItemId) {
+				cServ.delete(cartItem);
+				break;
+			}
+		}
+		User user = uServ.findUserById((Long) session.getAttribute("userId"));
+		Long bagId = user.getBag().getId();
+		return "redirect:/bags/show/" + bagId;
+	}
 }

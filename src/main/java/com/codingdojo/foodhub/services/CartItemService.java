@@ -28,4 +28,14 @@ public class CartItemService {
 	public CartItem update(CartItem c) {
 		return cRepo.save(c);
 	}
+	
+	public void delete(CartItem c) {
+		Order order = c.getOrder();
+	    Item item = c.getItem();
+	    order.getCartItems().remove(c);
+	    c.setOrder(null);
+	    item.getCartItems().remove(c);
+	    c.setItem(null);
+	    cRepo.delete(c);
+	}
 }

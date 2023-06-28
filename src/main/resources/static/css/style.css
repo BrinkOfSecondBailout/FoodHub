@@ -289,3 +289,25 @@
 	height: 30px;
 	border-radius: 5px;
 }
+
+/* bagDisplay */
+
+.avatar-thumb-med {
+	width: 150px;
+	height: 150px;
+	border-radius: 100%;
+}
+
+.one-order {
+	padding: 2rem;
+	width: 60%;
+}
+
+.order-restaurant {
+	
+}
+
+.one-order-item {
+	display: flex;
+	align-items: center;
+}

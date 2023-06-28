@@ -1,6 +1,7 @@
 package com.codingdojo.foodhub.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,14 @@ public class OrderService {
 	
 	public OrderService(OrderRepository oRepo) {
 		this.oRepo = oRepo;
+	}
+	
+	public Order findById(Long id) {
+		Optional <Order> potentialOrder = oRepo.findById(id);
+		if (potentialOrder.isEmpty()) {
+			return null;
+		}
+		return potentialOrder.get();
 	}
 	
 	public Order createOrder(Bag bag, Restaurant restaurant) {

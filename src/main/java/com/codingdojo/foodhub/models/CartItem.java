@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +22,7 @@ public class CartItem {
     @JoinColumn(name = "order_id")
     private Order order;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "item_id")
     private Item item;
 	
@@ -34,6 +33,20 @@ public class CartItem {
 	public CartItem() {
 		this.quantity = 1;
 	}
+	
+	
+
+	public Item getItem() {
+		return item;
+	}
+
+
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -53,13 +66,6 @@ public class CartItem {
 		this.order = order;
 	}
 
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
 
 	public int getQuantity() {
 		return quantity;

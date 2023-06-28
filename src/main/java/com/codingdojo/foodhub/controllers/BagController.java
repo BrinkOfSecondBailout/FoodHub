@@ -161,8 +161,14 @@ public class BagController {
 		List <CartItem> cartItems = order.getCartItems();
 		for (CartItem cartItem:cartItems) {
 			if(cartItem.getId() == cartItemId) {
-				cServ.delete(cartItem);
-				break;
+				if(order.getCartItems().size() == 1) {
+					cServ.delete(cartItem);
+					oServ.deleteOrder(order);
+					break;
+				} else {
+					cServ.delete(cartItem);
+					break;
+				}
 			}
 		}
 		User user = uServ.findUserById((Long) session.getAttribute("userId"));

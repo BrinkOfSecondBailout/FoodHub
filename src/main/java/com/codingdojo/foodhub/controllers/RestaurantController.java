@@ -130,6 +130,12 @@ public class RestaurantController {
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			List <Review> reviews = reServ.findReviewsByRestaurant(id);
 			Integer average = reServ.findAverageRatingByRestaurant(id);
+			List <Item> breakfast = iServ.findAllByCategory(id, "Breakfast");
+			List <Item> lunch = iServ.findAllByCategory(id, "Lunch");
+			List <Item> dinner = iServ.findAllByCategory(id, "Dinner");
+			List <Item> dessert = iServ.findAllByCategory(id, "Dessert");
+			List <Item> drinks = iServ.findAllByCategory(id, "Drinks");
+			List <Item> others = iServ.findAllByCategory(id, "Others");
 			// if viewer is a user
 			if (session.getAttribute("userId") != null) {
 				Long userId = (Long) session.getAttribute("userId");
@@ -140,6 +146,12 @@ public class RestaurantController {
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
 				model.addAttribute("user", user);
+				model.addAttribute("breakfast", breakfast);
+				model.addAttribute("lunch", lunch);
+				model.addAttribute("dinner", dinner);
+				model.addAttribute("dessert", dessert);
+				model.addAttribute("drinks", drinks);
+				model.addAttribute("others", others);
 				return "restaurantDisplay.jsp";
 			}
 			// if viewer is a restaurant
@@ -149,6 +161,12 @@ public class RestaurantController {
 			model.addAttribute("items", items);
 			model.addAttribute("reviews", reviews);
 			model.addAttribute("restaurantViewer", restaurantViewer);
+			model.addAttribute("breakfast", breakfast);
+			model.addAttribute("lunch", lunch);
+			model.addAttribute("dinner", dinner);
+			model.addAttribute("dessert", dessert);
+			model.addAttribute("drinks", drinks);
+			model.addAttribute("others", others);
 			return "restaurantDisplay.jsp";
 		}
 	}

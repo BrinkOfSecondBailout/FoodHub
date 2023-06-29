@@ -13,4 +13,7 @@ public interface ItemRepository extends CrudRepository<Item, Long>{
 	
 	@Query(value="SELECT * FROM items WHERE restaurant_id = ?1", nativeQuery = true)
 	public List <Item> findAllItemsByRestaurant(Long id);
+	
+	@Query(value="SELECT * FROM items WHERE restaurant_id = ?1 AND category = ?2", nativeQuery = true)
+	public List <Item> findAllItemsByCategory(Long id, String category);
 }

@@ -59,12 +59,11 @@
 	
 	<div class="menu">
 	
-
-		<h3>Breakfast</h3>
-		<div class="one-category">
-			<c:forEach var="item" items="${items}">
-				<div class="one-menu-item">
-					<c:if test = "${item.category == 'Breakfast'}">
+		<c:if test="${breakfast.size() != 0}">
+			<h3>Breakfast</h3>
+			<div class="one-category">
+				<c:forEach var="item" items="${breakfast}">
+					<div class="one-menu-item">
 						<div class="item-name-and-pic">
 							<a href="/items/${item.id}"><p>${item.name}</p>
 							<c:if test = "${ item.file == null }">
@@ -79,18 +78,17 @@
 							<p>${item.description }</p>
 							<p>$${item.price}</p>					
 						</div>
-					</c:if>
-				</div>
-			</c:forEach>
-		</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 
 		
-
-		<h3>Lunch</h3>
-		<div class="one-category">
-			<c:forEach var="item" items="${items}">
-				<div class="one-menu-item">
-					<c:if test = "${item.category == 'Lunch'}">
+		<c:if test="${lunch.size() != 0}">
+			<h3>Lunch</h3>
+			<div class="one-category">
+				<c:forEach var="item" items="${lunch}">
+					<div class="one-menu-item">
 						<div class="item-name-and-pic">
 							<a href="/items/${item.id}"><p>${item.name}</p>
 							<c:if test = "${ item.file == null }">
@@ -105,19 +103,18 @@
 							<p>${item.description }</p>
 							<p>$${item.price}</p>					
 						</div>
-					</c:if>
-				</div>
-			</c:forEach>
-		</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 
 		
 		
-
-		<h3>Dinner</h3>
-		<div class="one-category">
-			<c:forEach var="item" items="${items}">
-				<div class="one-menu-item">
-					<c:if test = "${item.category == 'Dinner'}">
+		<c:if test="${dinner.size() != 0}">
+			<h3>Dinner</h3>
+			<div class="one-category">
+				<c:forEach var="item" items="${dinner}">
+					<div class="one-menu-item">
 						<div class="item-name-and-pic">
 							<a href="/items/${item.id}"><p>${item.name}</p>
 							<c:if test = "${ item.file == null }">
@@ -132,18 +129,17 @@
 							<p>${item.description }</p>
 							<p>$${item.price}</p>					
 						</div>
-					</c:if>
-				</div>
-			</c:forEach>
-		</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 
 		
-
-		<h3>Dessert</h3>
-		<div class="one-category">
-			<c:forEach var="item" items="${items}">
-				<div class="one-menu-item">
-					<c:if test = "${item.category == 'Dessert'}">
+		<c:if test="${dessert.size() != 0}">
+			<h3>Dessert</h3>
+			<div class="one-category">
+				<c:forEach var="item" items="${dessert}">
+					<div class="one-menu-item">
 						<div class="item-name-and-pic">
 							<a href="/items/${item.id}"><p>${item.name}</p>
 							<c:if test = "${ item.file == null }">
@@ -158,18 +154,17 @@
 							<p>${item.description }</p>
 							<p>$${item.price}</p>					
 						</div>
-					</c:if>
-				</div>
-			</c:forEach>
-		</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 
 		
-
-		<h3>Drinks</h3>
-		<div class="one-category">
-			<c:forEach var="item" items="${items}">
+		<c:if test="${drinks.size() != 0}">
+			<h3>Drinks</h3>
+			<div class="one-category">
+			<c:forEach var="item" items="${drinks}">
 				<div class="one-menu-item">
-					<c:if test = "${item.category == 'Drinks'}">
 						<div class="item-name-and-pic">
 							<a href="/items/${item.id}"><p>${item.name}</p>
 							<c:if test = "${ item.file == null }">
@@ -184,18 +179,16 @@
 							<p>${item.description }</p>
 							<p>$${item.price}</p>					
 						</div>
-					</c:if>
 				</div>
 			</c:forEach>
 		</div>
-
+		</c:if>
 		
-
-		<h3>Others</h3>
-		<div class="one-category">
-			<c:forEach var="item" items="${items}">
-				<div class="one-menu-item">
-					<c:if test = "${item.category == 'Others'}">
+		<c:if test="${others.size() != 0}">
+			<h3>Others</h3>
+			<div class="one-category">
+				<c:forEach var="item" items="${others}">
+					<div class="one-menu-item">
 						<div class="item-name-and-pic">
 							<a href="/items/${item.id}"><p>${item.name}</p>
 							<c:if test = "${ item.file == null }">
@@ -210,10 +203,10 @@
 							<p>${item.description }</p>
 							<p>$${item.price}</p>					
 						</div>
-					</c:if>
-				</div>
-			</c:forEach>
-		</div>
+					</div>
+				</c:forEach>
+			</div>
+		</c:if>
 
 		
 		

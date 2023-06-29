@@ -54,4 +54,8 @@ public class ItemService {
 	public Item findItemById(Long id) {
 		return iRepo.findItemById(id);
 	}
+	
+	public List <Item> findAllByCategory(Long id, String category) {
+		return iRepo.findAllItemsByCategory(id, category);
+	}
 }

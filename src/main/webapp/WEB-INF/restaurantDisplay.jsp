@@ -55,10 +55,11 @@
 		</c:if>
 	</div>
 	
-	<h2>Menu</h2>
+	<h1>Menu</h1>
 	
 	<div class="menu">
 	
+
 		<h3>Breakfast</h3>
 		<div class="one-category">
 			<c:forEach var="item" items="${items}">
@@ -82,7 +83,9 @@
 				</div>
 			</c:forEach>
 		</div>
+
 		
+
 		<h3>Lunch</h3>
 		<div class="one-category">
 			<c:forEach var="item" items="${items}">
@@ -106,7 +109,10 @@
 				</div>
 			</c:forEach>
 		</div>
+
 		
+		
+
 		<h3>Dinner</h3>
 		<div class="one-category">
 			<c:forEach var="item" items="${items}">
@@ -130,7 +136,9 @@
 				</div>
 			</c:forEach>
 		</div>
-	
+
+		
+
 		<h3>Dessert</h3>
 		<div class="one-category">
 			<c:forEach var="item" items="${items}">
@@ -154,7 +162,9 @@
 				</div>
 			</c:forEach>
 		</div>
+
 		
+
 		<h3>Drinks</h3>
 		<div class="one-category">
 			<c:forEach var="item" items="${items}">
@@ -178,7 +188,9 @@
 				</div>
 			</c:forEach>
 		</div>
+
 		
+
 		<h3>Others</h3>
 		<div class="one-category">
 			<c:forEach var="item" items="${items}">
@@ -202,6 +214,7 @@
 				</div>
 			</c:forEach>
 		</div>
+
 		
 		
 	</div>
@@ -348,6 +361,8 @@
 	</section>
 	
 <script>
+
+
    // Check if the 'refresh' query parameter is present
    const urlParams = new URLSearchParams(window.location.search);
    const refreshParam = urlParams.get('refresh');
@@ -375,6 +390,10 @@
 	   var commentsDiv = document.getElementById("all-comments" + reviewId);
 	   commentsDiv.style.display = (commentsDiv.style.display === "none") ? "block" : "none";
    }
+   
+   
+   
+   
 </script>
 </body>
 </html>

@@ -56,12 +56,13 @@
 
 
 .one-category {
-	display: flex;
+	width: 60%;
 }
 
 .one-menu-item {
 	display: flex;
 	align-items: center;
+	padding: 10px;
 }
 
 .item-name-and-pic {
@@ -70,7 +71,7 @@
 }
 
 .description-and-price {
-	width: 200px;
+	width: 400px;
 }
 
 

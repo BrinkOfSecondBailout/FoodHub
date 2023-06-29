@@ -55,19 +55,155 @@
 		</c:if>
 	</div>
 	
+	<h2>Menu</h2>
+	
 	<div class="menu">
-		<c:forEach var="item" items="${items}">
-			<div>
-				<a href="/items/${item.id}"><p><c:out value="${item.name}"/></p>
-				<c:if test = "${ item.file == null }">
-					<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
-				</c:if>
-				<c:if test = "${ item.file != null }">
-					<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
-				</c:if>
-				</a>
-			</div>
-		</c:forEach>	
+	
+		<h3>Breakfast</h3>
+		<div class="one-category">
+			<c:forEach var="item" items="${items}">
+				<div class="one-menu-item">
+					<c:if test = "${item.category == 'Breakfast'}">
+						<div class="item-name-and-pic">
+							<a href="/items/${item.id}"><p>${item.name}</p>
+							<c:if test = "${ item.file == null }">
+								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+							</c:if>
+							<c:if test = "${ item.file != null }">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+							</c:if></a>
+						</div>
+					
+						<div class="description-and-price">
+							<p>${item.description }</p>
+							<p>$${item.price}</p>					
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+		
+		<h3>Lunch</h3>
+		<div class="one-category">
+			<c:forEach var="item" items="${items}">
+				<div class="one-menu-item">
+					<c:if test = "${item.category == 'Lunch'}">
+						<div class="item-name-and-pic">
+							<a href="/items/${item.id}"><p>${item.name}</p>
+							<c:if test = "${ item.file == null }">
+								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+							</c:if>
+							<c:if test = "${ item.file != null }">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+							</c:if></a>
+						</div>
+					
+						<div class="description-and-price">
+							<p>${item.description }</p>
+							<p>$${item.price}</p>					
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+		
+		<h3>Dinner</h3>
+		<div class="one-category">
+			<c:forEach var="item" items="${items}">
+				<div class="one-menu-item">
+					<c:if test = "${item.category == 'Dinner'}">
+						<div class="item-name-and-pic">
+							<a href="/items/${item.id}"><p>${item.name}</p>
+							<c:if test = "${ item.file == null }">
+								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+							</c:if>
+							<c:if test = "${ item.file != null }">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+							</c:if></a>
+						</div>
+					
+						<div class="description-and-price">
+							<p>${item.description }</p>
+							<p>$${item.price}</p>					
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+	
+		<h3>Dessert</h3>
+		<div class="one-category">
+			<c:forEach var="item" items="${items}">
+				<div class="one-menu-item">
+					<c:if test = "${item.category == 'Dessert'}">
+						<div class="item-name-and-pic">
+							<a href="/items/${item.id}"><p>${item.name}</p>
+							<c:if test = "${ item.file == null }">
+								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+							</c:if>
+							<c:if test = "${ item.file != null }">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+							</c:if></a>
+						</div>
+					
+						<div class="description-and-price">
+							<p>${item.description }</p>
+							<p>$${item.price}</p>					
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+		
+		<h3>Drinks</h3>
+		<div class="one-category">
+			<c:forEach var="item" items="${items}">
+				<div class="one-menu-item">
+					<c:if test = "${item.category == 'Drinks'}">
+						<div class="item-name-and-pic">
+							<a href="/items/${item.id}"><p>${item.name}</p>
+							<c:if test = "${ item.file == null }">
+								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+							</c:if>
+							<c:if test = "${ item.file != null }">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+							</c:if></a>
+						</div>
+					
+						<div class="description-and-price">
+							<p>${item.description }</p>
+							<p>$${item.price}</p>					
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+		
+		<h3>Others</h3>
+		<div class="one-category">
+			<c:forEach var="item" items="${items}">
+				<div class="one-menu-item">
+					<c:if test = "${item.category == 'Others'}">
+						<div class="item-name-and-pic">
+							<a href="/items/${item.id}"><p>${item.name}</p>
+							<c:if test = "${ item.file == null }">
+								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+							</c:if>
+							<c:if test = "${ item.file != null }">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>
+							</c:if></a>
+						</div>
+					
+						<div class="description-and-price">
+							<p>${item.description }</p>
+							<p>$${item.price}</p>					
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
+		</div>
+		
+		
 	</div>
 	
 	<c:if test="${userId != null}">

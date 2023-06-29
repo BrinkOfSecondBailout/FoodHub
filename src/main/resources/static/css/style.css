@@ -47,12 +47,32 @@
 /* restaurantDisplay */
 
 .menu {
-	display: flex;
+	width: 60%;
 }
 
 #reviews {
 	margin-top: 20px;
 }
+
+
+.one-category {
+	display: flex;
+}
+
+.one-menu-item {
+	display: flex;
+	align-items: center;
+}
+
+.item-name-and-pic {
+	width: 200px;
+	
+}
+
+.description-and-price {
+	width: 200px;
+}
+
 
 .one-review {
 	display: flex;

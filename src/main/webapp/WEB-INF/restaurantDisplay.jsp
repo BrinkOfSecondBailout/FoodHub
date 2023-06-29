@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Restaurant Display</title>
@@ -23,14 +26,14 @@
 	
 	<div>
 		<c:if test="${user != null}">
-			<a href="/dashboard"><button>Dashboard</button></a>
+			<a href="/dashboard"><button><p>Dashboard</p></button></a>
 		</c:if>
 		<c:if test="${restaurantViewer != null}">
 			<a href="/restaurantDashboard"><button>Dashboard</button></a>
 		</c:if>
 	</div>
 	
-	<div>
+	<div class="average-rating">
 		<c:if test="${average == 1}">
 			<img src="/img/onestar.png" class="main-star-rating" alt="1 Star Average"/>
 		</c:if>
@@ -51,11 +54,11 @@
 			<p>No reviews yet..</p>
 		</c:if>
 		<c:if test="${reviews.size() != 0}">
-			<p><a href="#reviews">(${reviews.size()} reviews)</a></p>
+			<p><a href="#reviews">${reviews.size()} review(s)</a></p>
 		</c:if>
 	</div>
 	
-	<h1>Menu</h1>
+	<h2>Full Menu</h2>
 	
 	<div class="menu">
 	
@@ -65,7 +68,7 @@
 				<c:forEach var="item" items="${breakfast}">
 					<div class="one-menu-item">
 						<div class="item-name-and-pic">
-							<a href="/items/${item.id}"><p>${item.name}</p>
+							<a href="/items/${item.id}"><h4>${item.name}</h4>
 							<c:if test = "${ item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
 							</c:if>
@@ -90,7 +93,7 @@
 				<c:forEach var="item" items="${lunch}">
 					<div class="one-menu-item">
 						<div class="item-name-and-pic">
-							<a href="/items/${item.id}"><p>${item.name}</p>
+							<a href="/items/${item.id}"><h4>${item.name}</h4>
 							<c:if test = "${ item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
 							</c:if>
@@ -116,7 +119,7 @@
 				<c:forEach var="item" items="${dinner}">
 					<div class="one-menu-item">
 						<div class="item-name-and-pic">
-							<a href="/items/${item.id}"><p>${item.name}</p>
+							<a href="/items/${item.id}"><h4>${item.name}</h4>
 							<c:if test = "${ item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
 							</c:if>
@@ -141,7 +144,7 @@
 				<c:forEach var="item" items="${dessert}">
 					<div class="one-menu-item">
 						<div class="item-name-and-pic">
-							<a href="/items/${item.id}"><p>${item.name}</p>
+							<a href="/items/${item.id}"><h4>${item.name}</h4>
 							<c:if test = "${ item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
 							</c:if>
@@ -166,7 +169,7 @@
 			<c:forEach var="item" items="${drinks}">
 				<div class="one-menu-item">
 						<div class="item-name-and-pic">
-							<a href="/items/${item.id}"><p>${item.name}</p>
+							<a href="/items/${item.id}"><h4>${item.name}</h4>
 							<c:if test = "${ item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
 							</c:if>
@@ -190,7 +193,7 @@
 				<c:forEach var="item" items="${others}">
 					<div class="one-menu-item">
 						<div class="item-name-and-pic">
-							<a href="/items/${item.id}"><p>${item.name}</p>
+							<a href="/items/${item.id}"><h4>${item.name}</h4>
 							<c:if test = "${ item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
 							</c:if>
@@ -213,8 +216,8 @@
 	</div>
 	
 	<c:if test="${userId != null}">
-		<a href="/bags/orders/new/${restaurant.id}"><button>Start ordering!</button></a>
-		<a href="/reviews/new/${restaurant.id}"><button>Add a review</button></a>
+		<a href="/bags/orders/new/${restaurant.id}"><button><p>Start ordering!</p></button></a>
+		<a href="/reviews/new/${restaurant.id}"><button><p>Add a review</p></button></a>
 	</c:if>
 	
 	<section id="reviews">
@@ -232,9 +235,6 @@
 					</a>
 				</div>
 				<div class="review">
-					<div class="review-date">
-						<u><fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/></u>					
-					</div>
 					
 					<div class="review-stars">
 						<c:if test="${review.stars == 1}">
@@ -256,6 +256,10 @@
 					
 					<div class="review-text">
 						<p>${review.review_text}</p>				
+					</div>
+					
+					<div class="review-date">
+						<u><fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/></u>					
 					</div>
 					
 					<c:if test="${review.comments.size() != 0 }">
@@ -345,7 +349,7 @@
 						<form:form action="/comments/add/${restaurant.id}/${review.id}" method="post" modelAttribute="comment">
 							<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
 							<form:errors path="comment_text" class="form-error"/><br>
-							<input type="submit" value="Reply"/>
+							<button><p>Reply</p></button>
 						</form:form>
 					</div>
 				</div>

@@ -34,7 +34,7 @@
 				</div>
 				<c:forEach var="cartItem" items="${order.cartItems}">
 					<div class="one-order-item">
-						<div>
+						<div class="order-info">
 							<a href="/items/${cartItem.item.id}"><h4>${cartItem.item.name}</h4>
 							<c:if test="${cartItem.item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb-sm"/>
@@ -43,7 +43,9 @@
 								<img src="data:image/jpg;base64,${cartItem.item.file}" class="item-thumb-sm"/>
 							</c:if></a>
 						</div>
-						<p>$${cartItem.item.price}</p>
+						<div class="order-price">
+							<p>$${cartItem.item.price}</p>					
+						</div>
 						
 						<div class="order-quantity">
 							<a href="/bags/decrease/${user.bag.id}/${cartItem.id}"><img src="/img/minus2.png" class="quantity-button"/></a>
@@ -51,18 +53,18 @@
 							<a href="/bags/increase/${user.bag.id}/${cartItem.id}"><img src="/img/plus.png" class="quantity-button"/></a>
 						</div>
 						
-						<a href="/bags/remove/${order.id}/${cartItem.id}"><button class="button-medium">Remove</button></a>
+						<a href="/bags/remove/${order.id}/${cartItem.id}"><button class="button-medium danger">Remove</button></a>
 						<c:set var="subtotal" value="${cartItem.item.price * cartItem.quantity}" />
 						<c:set var="orderTotal" value="${orderTotal + subtotal}" />
 					</div>
 				</c:forEach>
 				<div class="order-total">
 					<h3>Total for ${order.restaurant.name}:</h3>
-					<p><fmt:formatNumber value="${orderTotal}" pattern="$#,##0.00" /></p>			
+					<u><h3><fmt:formatNumber value="${orderTotal}" pattern="$#,##0.00" /></h3></u>
 				</div>
 				
-				<div>
-					<a href="/bags/order/remove/${order.id}"><button class="button-long">Remove Entire Order</button></a>
+				<div class="remove-order">
+					<a href="/bags/order/remove/${order.id}"><button class="button-long danger">Remove Entire Order</button></a>
 				</div>
 			</div>
 		</c:forEach>

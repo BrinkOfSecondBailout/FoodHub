@@ -15,12 +15,36 @@
 </head>
 <body>
 	<h1>${user.first_name} ${user.last_name}</h1>
-	<c:if test = "${ user.profile == null }">
-		<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
-	</c:if>
-	<c:if test = "${ user.profile != null }">
-		<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
-	</c:if>
+	<div class="profile-div">
+		<c:if test = "${ user.profile == null }">
+			<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ user.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
+	
+	<div class="bag-div">
+		<a href="/bags/show/${user.bag.id}">
+			<img src="/img/bag.png" class="bag-icon" alt="Shopping Bag"/>
+		</a>
+	</div>
+	
+	<div class="bag-notification">
+		<c:if test="${user.bag.orders.size() == null}">
+			<p>0</p>
+		</c:if>
+		<c:if test="${user.bag.orders.size() != null}">
+			<p>${user.bag.orders.size()}</p>
+		</c:if>
+	</div>
+	
+	
+	<div class="nav-buttons">
+		<a href="/dashboard"><button class="button-small"><p>Home</p></button></a>
+		<a href="/users/edit"><button class="button-small"><p>Edit</p></button></a>
+		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+	</div>
 	
 	<h2>All Reviews</h2>
 	<c:forEach var="review" items="${user.reviews}">

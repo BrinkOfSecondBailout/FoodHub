@@ -15,48 +15,81 @@
 <title>Restaurant Display</title>
 </head>
 <body>
+
+	<c:if test="${user != null}">
+		<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+		<div class="profile-div">
+			<c:if test = "${ user.profile == null }">
+				<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+			</c:if>
+			<c:if test = "${ user.profile != null }">
+				<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+			</c:if>
+		</div>
+	
+		<div class="bag-div">
+			<a href="/bags/show/${user.bag.id}">
+			<img src="/img/bag.png" class="bag-icon" alt="Shopping Bag"/></a>
+		</div>
+	
+		<div class="bag-notification">
+			<c:if test="${user.bag.orders.size() == null}">
+				<p>0</p>
+			</c:if>
+			<c:if test="${user.bag.orders.size() != null}">
+				<p>${user.bag.orders.size()}</p>
+			</c:if>
+		</div>
+	
+	
+		<div class="nav-buttons">
+			<a href="/dashboard"><button class="button-small"><p>Home</p></button></a>
+			<a href="/users/edit"><button class="button-small"><p>Edit</p></button></a>
+			<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+		</div>
+	</c:if>
+		
+		
+	<c:if test="${restaurantViewer != null}">
+		<a href="/restaurantDashboard"><button class="button-medium">Dashboard</button></a>
+	</c:if>
+
 	<h1>${restaurant.name}</h1>
 	
-	<c:if test = "${ restaurant.profile == null }">
-		<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
-	</c:if>
-	<c:if test = "${ restaurant.profile != null }">
-		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
-	</c:if>
+	<div class="logo-and-stars">
+		<c:if test = "${ restaurant.profile == null }">
+			<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ restaurant.profile != null }">
+			<img class="avatar-thumb-med" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+		</c:if>
 	
-	<div>
-		<c:if test="${user != null}">
-			<a href="/dashboard"><button class="button-medium"><p>Dashboard</p></button></a>
-		</c:if>
-		<c:if test="${restaurantViewer != null}">
-			<a href="/restaurantDashboard"><button class="button-medium">Dashboard</button></a>
-		</c:if>
-	</div>
-	
-	<div class="average-rating">
-		<c:if test="${average == 1}">
-			<img src="/img/1star.png" class="main-star-rating" alt="1 Star Average"/>
-		</c:if>
-		<c:if test="${average == 2}">
-			<img src="/img/2stars.png" class="main-star-rating" alt="2 Star Average"/>
-		</c:if>
-		<c:if test="${average == 3}">
-			<img src="/img/3stars.png" class="main-star-rating" alt="3 Star Average"/>
-		</c:if>
-		<c:if test="${average == 4}">
-			<img src="/img/4stars.png" class="main-star-rating" alt="4 Star Average"/>
-		</c:if>
-		<c:if test="${average == 5}">
-			<img src="/img/5stars.png" class="main-star-rating" alt="5 Star Average"/>
-		</c:if>
+		<div class="average-rating">
+			<c:if test="${average == 1}">
+				<img src="/img/1star.png" class="main-star-rating" alt="1 Star Average"/>
+			</c:if>
+			<c:if test="${average == 2}">
+				<img src="/img/2stars.png" class="main-star-rating" alt="2 Star Average"/>
+			</c:if>
+			<c:if test="${average == 3}">
+				<img src="/img/3stars.png" class="main-star-rating" alt="3 Star Average"/>
+			</c:if>
+			<c:if test="${average == 4}">
+				<img src="/img/4stars.png" class="main-star-rating" alt="4 Star Average"/>
+			</c:if>
+			<c:if test="${average == 5}">
+				<img src="/img/5stars.png" class="main-star-rating" alt="5 Star Average"/>
+			</c:if>
 		
-		<c:if test="${reviews.size() == 0}">
-			<p>No reviews yet..</p>
-		</c:if>
-		<c:if test="${reviews.size() != 0}">
-			<p><a href="#reviews">${reviews.size()} review(s)</a></p>
-		</c:if>
+			<c:if test="${reviews.size() == 0}">
+				<p>No reviews yet..</p>
+			</c:if>
+			<c:if test="${reviews.size() != 0}">
+				<p><a href="#reviews">${reviews.size()} review(s)</a></p>
+			</c:if>
+		</div>	
 	</div>
+	
 	
 	<h2>Full Menu</h2>
 	
@@ -224,6 +257,9 @@
 	
 	<section id="reviews">
 		<h2>Reviews</h2>
+		<c:if test="${reviews.size() == 0 }">
+			<p>No reviews yet..</p>
+		</c:if>
 		<c:forEach var="review" items="${reviews}">
 			<div class="one-review">
 				<div class="user_of_review">

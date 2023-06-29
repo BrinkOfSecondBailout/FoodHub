@@ -26,28 +26,28 @@
 	
 	<div>
 		<c:if test="${user != null}">
-			<a href="/dashboard"><button><p>Dashboard</p></button></a>
+			<a href="/dashboard"><button class="button-medium"><p>Dashboard</p></button></a>
 		</c:if>
 		<c:if test="${restaurantViewer != null}">
-			<a href="/restaurantDashboard"><button>Dashboard</button></a>
+			<a href="/restaurantDashboard"><button class="button-medium">Dashboard</button></a>
 		</c:if>
 	</div>
 	
 	<div class="average-rating">
 		<c:if test="${average == 1}">
-			<img src="/img/onestar.png" class="main-star-rating" alt="1 Star Average"/>
+			<img src="/img/1star.png" class="main-star-rating" alt="1 Star Average"/>
 		</c:if>
 		<c:if test="${average == 2}">
-			<img src="/img/twostar.png" class="main-star-rating" alt="2 Star Average"/>
+			<img src="/img/2stars.png" class="main-star-rating" alt="2 Star Average"/>
 		</c:if>
 		<c:if test="${average == 3}">
-			<img src="/img/threestar.png" class="main-star-rating" alt="3 Star Average"/>
+			<img src="/img/3stars.png" class="main-star-rating" alt="3 Star Average"/>
 		</c:if>
 		<c:if test="${average == 4}">
-			<img src="/img/fourstar.png" class="main-star-rating" alt="4 Star Average"/>
+			<img src="/img/4stars.png" class="main-star-rating" alt="4 Star Average"/>
 		</c:if>
 		<c:if test="${average == 5}">
-			<img src="/img/fivestar.png" class="main-star-rating" alt="5 Star Average"/>
+			<img src="/img/5stars.png" class="main-star-rating" alt="5 Star Average"/>
 		</c:if>
 		
 		<c:if test="${reviews.size() == 0}">
@@ -215,17 +215,19 @@
 		
 	</div>
 	
-	<c:if test="${userId != null}">
-		<a href="/bags/orders/new/${restaurant.id}"><button><p>Start ordering!</p></button></a>
-		<a href="/reviews/new/${restaurant.id}"><button><p>Add a review</p></button></a>
-	</c:if>
+	<div class="order-and-review-buttons">
+		<c:if test="${userId != null}">
+			<a href="/bags/orders/new/${restaurant.id}"><button class="button-medium"><p>Start ordering!</p></button></a>
+			<a href="/reviews/new/${restaurant.id}"><button class="button-medium"><p>Add a review</p></button></a>
+		</c:if>
+	</div>
 	
 	<section id="reviews">
 		<h2>Reviews</h2>
 		<c:forEach var="review" items="${reviews}">
 			<div class="one-review">
 				<div class="user_of_review">
-					<a href="/users/${review.user.id}"><p>${review.user.first_name} ${review.user.last_name}</p>
+					<a href="/users/${review.user.id}"><h4>${review.user.first_name} ${review.user.last_name}</h4>
 					<c:if test="${review.user.profile == null}">
 						<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 					</c:if>
@@ -238,19 +240,19 @@
 					
 					<div class="review-stars">
 						<c:if test="${review.stars == 1}">
-							<img src="/img/onestar.png" class="star-rating" alt="1 Star"/>
+							<img src="/img/1star.png" class="star-rating" alt="1 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 2}">
-							<img src="/img/twostar.png" class="star-rating" alt="2 Star"/>
+							<img src="/img/2stars.png" class="star-rating" alt="2 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 3}">
-							<img src="/img/threestar.png" class="star-rating" alt="3 Star"/>
+							<img src="/img/3stars.png" class="star-rating" alt="3 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 4}">
-							<img src="/img/fourstar.png" class="star-rating" alt="4 Star"/>
+							<img src="/img/4stars.png" class="star-rating" alt="4 Star"/>
 						</c:if>
 						<c:if test="${review.stars == 5}">
-							<img src="/img/fivestar.png" class="star-rating" alt="5 Star"/>
+							<img src="/img/5stars.png" class="star-rating" alt="5 Star"/>
 						</c:if>
 					</div>
 					
@@ -270,7 +272,7 @@
 									<div class="one-comment">
 										<img src="/img/downright.png" alt="arrow" class="down-right-arrow"/>
 										<c:if test="${comment.user == null}">
-											<a href="/restaurants/${comment.restaurant.id}"><p>${comment.restaurant.name}</p>
+											<a href="/restaurants/${comment.restaurant.id}"><h4>${comment.restaurant.name}</h4>
 											<c:if test="${comment.restaurant.profile == null }">
 												<img class="avatar-thumb-xtra-sm" src="/img/restaurant.png" alt="No Profile Pic"/>
 											</c:if>
@@ -283,7 +285,7 @@
 										</c:if>
 									
 										<c:if test="${comment.user != null}">
-											<a href="/users/${comment.user.id}"><p>${comment.user.first_name}</p>
+											<a href="/users/${comment.user.id}"><h4>${comment.user.first_name}</h4>
 											<c:if test="${comment.user.profile == null }">
 												<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 											</c:if>
@@ -349,7 +351,7 @@
 						<form:form action="/comments/add/${restaurant.id}/${review.id}" method="post" modelAttribute="comment">
 							<form:input type="textarea" path="comment_text" class="comment-text-area"/><br>
 							<form:errors path="comment_text" class="form-error"/><br>
-							<button><p>Reply</p></button>
+							<button class="button-medium"><p>Reply</p></button>
 						</form:form>
 					</div>
 				</div>

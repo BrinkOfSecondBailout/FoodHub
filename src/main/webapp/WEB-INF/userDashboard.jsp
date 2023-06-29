@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>User Dashboard</title>
@@ -17,15 +20,17 @@
 		<img src="/img/bag.png" class="bag-icon" alt="Shopping Bag"/>
 	</a>
 	
-	<c:if test="${user.bag.orders.size() == null}">
-		<p>0</p>
-	</c:if>
-	<c:if test="${user.bag.orders.size() != null}">
-		<p>${user.bag.orders.size()}</p>
-	</c:if>
+	<div class="bag-notification">
+		<c:if test="${user.bag.orders.size() == null}">
+			<p>0</p>
+		</c:if>
+		<c:if test="${user.bag.orders.size() != null}">
+			<p>${user.bag.orders.size()}</p>
+		</c:if>
+	</div>
 	
 	<div>
-	<a href="/logout"><button>Logout</button></a>
+	<a href="/logout"><button class="button-medium"><p>Logout</p></button></a>
 	</div>
 	
 	<c:if test = "${ user.profile == null }">

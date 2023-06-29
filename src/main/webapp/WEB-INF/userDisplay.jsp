@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Eater Display</title>
@@ -22,7 +25,7 @@
 	<h2>All Reviews</h2>
 	<c:forEach var="review" items="${user.reviews}">
 		<div class="one-review">
-			<a href="/restaurants/${review.restaurant.id}"><p>${review.restaurant.name}</p>
+			<a href="/restaurants/${review.restaurant.id}"><h4>${review.restaurant.name}</h4>
 			<c:if test="${ review.restaurant.profile == null}">
 				<img src="/img/restaurant.png" alt="No Profile" class="avatar-thumb-sm"/>
 			</c:if>
@@ -36,19 +39,19 @@
 			
 			<div class="review-stars">
 				<c:if test="${review.stars == 1}">
-					<img src="/img/onestar.png" class="star-rating" alt="1 Star"/>
+					<img src="/img/1star.png" class="star-rating" alt="1 Star"/>
 				</c:if>
 				<c:if test="${review.stars == 2}">
-					<img src="/img/twostar.png" class="star-rating" alt="2 Star"/>
+					<img src="/img/2stars.png" class="star-rating" alt="2 Star"/>
 				</c:if>
 				<c:if test="${review.stars == 3}">
-					<img src="/img/threestar.png" class="star-rating" alt="3 Star"/>
+					<img src="/img/3stars.png" class="star-rating" alt="3 Star"/>
 				</c:if>
 				<c:if test="${review.stars == 4}">
-					<img src="/img/fourstar.png" class="star-rating" alt="4 Star"/>
+					<img src="/img/4stars.png" class="star-rating" alt="4 Star"/>
 				</c:if>
 				<c:if test="${review.stars == 5}">
-					<img src="/img/fivestar.png" class="star-rating" alt="5 Star"/>
+					<img src="/img/5stars.png" class="star-rating" alt="5 Star"/>
 				</c:if>
 			</div>
 		</div>

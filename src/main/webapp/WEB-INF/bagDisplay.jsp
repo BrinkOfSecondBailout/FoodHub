@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Grocery Bag</title>
@@ -32,7 +35,7 @@
 				<c:forEach var="cartItem" items="${order.cartItems}">
 					<div class="one-order-item">
 						<div>
-							<a href="/items/${cartItem.item.id}"><p>${cartItem.item.name}</p>
+							<a href="/items/${cartItem.item.id}"><h4>${cartItem.item.name}</h4>
 							<c:if test="${cartItem.item.file == null }">
 								<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb-sm"/>
 							</c:if>
@@ -48,7 +51,7 @@
 							<a href="/bags/increase/${user.bag.id}/${cartItem.id}"><img src="/img/plus.png" class="quantity-button"/></a>
 						</div>
 						
-						<a href="/bags/remove/${order.id}/${cartItem.id}"><button>Remove</button></a>
+						<a href="/bags/remove/${order.id}/${cartItem.id}"><button class="button-medium">Remove</button></a>
 						<c:set var="subtotal" value="${cartItem.item.price * cartItem.quantity}" />
 						<c:set var="orderTotal" value="${orderTotal + subtotal}" />
 					</div>
@@ -59,7 +62,7 @@
 				</div>
 				
 				<div>
-					<a href="/bags/order/remove/${order.id}"><button>Remove Entire Order</button></a>
+					<a href="/bags/order/remove/${order.id}"><button class="button-long">Remove Entire Order</button></a>
 				</div>
 			</div>
 		</c:forEach>

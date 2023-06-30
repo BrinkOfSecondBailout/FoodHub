@@ -14,28 +14,28 @@
 <title>Eater Display</title>
 </head>
 <body>
-	<h1>${user.first_name} ${user.last_name}</h1>
+	<h1>${me.first_name} ${me.last_name}</h1>
 	<div class="profile-div">
-		<c:if test = "${ user.profile == null }">
+		<c:if test = "${ me.profile == null }">
 			<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 		</c:if>
-		<c:if test = "${ user.profile != null }">
-			<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+		<c:if test = "${ me.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${me.profile}" alt="Profile-Pic"/>
 		</c:if>
 	</div>
 	
 	<div class="bag-div">
-		<a href="/bags/show/${user.bag.id}">
+		<a href="/bags/show/${me.bag.id}">
 			<img src="/img/bag.png" class="bag-icon" alt="Shopping Bag"/>
 		</a>
 	</div>
 	
 	<div class="bag-notification">
-		<c:if test="${user.bag.orders.size() == 0 }">
+		<c:if test="${me.bag.orders.size() == 0 }">
 			<p>0</p>
 		</c:if>
-		<c:if test="${user.bag.orders.size() != 0 }">
-			<p>${user.bag.orders.size()}</p>
+		<c:if test="${me.bag.orders.size() != 0 }">
+			<p>${me.bag.orders.size()}</p>
 		</c:if>
 	</div>
 	
@@ -46,7 +46,17 @@
 		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
 	</div>
 	
-	<h2>All Reviews</h2>
+	<h2>${user.first_name} ${user.last_name}</h2>
+	<div class="profile-div">
+		<c:if test = "${ user.profile == null }">
+			<img class="avatar-thumb-med" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ user.profile != null }">
+			<img class="avatar-thumb-med" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
+	
+	<h3>All Reviews</h3>
 	<c:if test="${user.reviews.size() == 0 }">
 		<p>No reviews written by ${user.first_name} yet..</p>
 	</c:if>

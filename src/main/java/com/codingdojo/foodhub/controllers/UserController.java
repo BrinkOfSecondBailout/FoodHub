@@ -118,7 +118,9 @@ public class UserController {
 			return "redirect:/logout";
 		} else {
 			User user = uServ.findUserById(id);
+			User me = uServ.findUserById((Long) session.getAttribute("userId"));
 			model.addAttribute("user", user);
+			model.addAttribute("me", me);
 			return "userDisplay.jsp";
 		}
 	}

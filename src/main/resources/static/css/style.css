@@ -96,10 +96,15 @@ a {
 
 .my-items {
 	display: flex;
+	width: 60%;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .one-item {
-	text-align: center;
+	display: inline-block;
+	width: 200px;
+	margin: 10px;
 }
 
 .avatar-thumb-sm {
@@ -141,10 +146,21 @@ a {
 /* editMenu */
 
 .one-edit-item {
-	display: flex;
-	flex-direction: column;
+	display: inline-block;
+	width: 200px;
+	margin: 10px;
 }
 
+.all-items-edit {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 60%;
+}
+
+.item-picture {
+	width: 100%;
+}
 
 /* restaurantDisplay */
 
@@ -320,13 +336,14 @@ a {
 .item-thumb-display {
 	width: 350px;
 	height: 350px;
+	border-radius: 10px;
 }
 
 /* addItemPicture */
 
 .no-image-display {
-	width: 200px;
-	height: 200px;
+	width: 150px;
+	height: 150px;
 	border-radius: 10px;
 }
 
@@ -334,13 +351,16 @@ a {
 
 .all-restaurants {
 	display: flex;
-	width: 50%;
+	width: 60%;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .all-users {
 	display: flex;
-	max-width: 50%;
+	width: 60%;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .bag-div {

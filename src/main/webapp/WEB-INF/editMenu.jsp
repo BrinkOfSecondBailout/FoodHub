@@ -14,26 +14,48 @@
 <title>Edit Your Menu</title>
 </head>
 <body>
+	
 	<h1>Edit Your Menu, <a href="/restaurantDashboard">${restaurant.name}</a></h1>
-	<c:if test = "${ restaurant.profile == null }">
-		<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
-	</c:if>
-	<c:if test = "${ restaurant.profile != null }">
-		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
-	</c:if>
-	<c:forEach var="item" items="${items}">
-		<div class="one-edit-item">
-			<p><c:out value="${item.name}"/></p>
-			<c:if test = "${ item.file == null }">
-				<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
-			</c:if>
-			<c:if test = "${ item.file != null }">
-				<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>			
-			</c:if>
-			<a href="/items/item/edit/${item.id}"><button>Modify</button></a>
-			<a href="/items/item/delete/${item.id}"><button>Delete</button></a>		
-		</div>
-	</c:forEach>
-	<a href="/items/add"><button>Add New Item</button></a>
+	
+	<div class="profile-div">
+		<c:if test = "${ restaurant.profile == null }">
+			<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ restaurant.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
+	
+	<div class="nav-buttons">
+		<a href="/restaurantDashboard"><button class="button-small"><p>Home</p></button></a>
+		<a href="/restaurants/edit"><button class="button-small marked"><p>Edit</p></button></a>
+		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+	</div>
+	
+	<div class="all-items-edit">
+		<c:forEach var="item" items="${items}">
+			<div class="one-edit-item">
+				<div>
+					<a href="/items/${item.id}"><h4><c:out value="${item.name}"/></h4>			
+				</div>
+				<div class="item-picture">
+					<c:if test = "${ item.file == null }">
+						<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb"/>
+					</c:if>
+					<c:if test = "${ item.file != null }">
+						<img src="data:image/jpg;base64,${item.file}" class="item-thumb"/>			
+					</c:if></a>
+				</div>
+				<div class="padding">
+					<a href="/items/item/edit/${item.id}"><button class="button-small">Modify</button></a>
+					<a href="/items/item/delete/${item.id}"><button class="button-small danger">Delete</button></a>		
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	
+	<div class="padding">
+		<a href="/items/add"><button class="button-medium warning">Add New Item</button></a>
+	</div>
 </body>
 </html>

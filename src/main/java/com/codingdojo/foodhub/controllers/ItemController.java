@@ -34,10 +34,12 @@ public class ItemController {
 	public UserService uServ;
 	
 	@GetMapping("/items/add")
-	public String addItem(@ModelAttribute("item") Item item, HttpSession session) {
+	public String addItem(@ModelAttribute("item") Item item, HttpSession session, Model model) {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
+			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+			model.addAttribute("restaurant", restaurant);
 			return "newItem.jsp";			
 		}
 	}
@@ -70,6 +72,8 @@ public class ItemController {
 			return "redirect:/restaurantDashboard";
 		} else {
 			model.addAttribute("item", item);
+			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+			model.addAttribute("restaurant", restaurant);
 			return "addItemPicture.jsp";
 		}
 	}
@@ -110,12 +114,19 @@ public class ItemController {
 		if(session.getAttribute("restaurantId") == null && session.getAttribute("userId") == null) {
 			return "redirect:/logout";
 		} else {
-			User user = uServ.findUserById((Long) session.getAttribute("userId"));
+			if(session.getAttribute("userId") != null) {
+				User user = uServ.findUserById((Long) session.getAttribute("userId"));
+				Item item = iServ.findItemById(id);
+				model.addAttribute("item", item);
+				model.addAttribute("user", user);
+				return "itemDisplay.jsp";
+			}
+			
 			Long restaurantId = (Long) session.getAttribute("restaurantId");
+			Restaurant restaurant = rServ.findRestaurantById(restaurantId);
 			Item item = iServ.findItemById(id);
 			model.addAttribute("item", item);
-			model.addAttribute("restaurantId", restaurantId);
-			model.addAttribute("user", user);
+			model.addAttribute("restaurant", restaurant);
 			return "itemDisplay.jsp";
 		}
 	}

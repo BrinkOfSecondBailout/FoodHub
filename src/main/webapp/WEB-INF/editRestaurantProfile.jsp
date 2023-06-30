@@ -16,24 +16,36 @@
 </head>
 <body>
 	<h1>Edit Your Profile, <a href="/restaurants/${restaurant.id}">${restaurant.name}</a></h1>
-	<c:if test = "${ restaurant.profile == null }">
-		<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
-	</c:if>
-	<c:if test = "${ restaurant.profile != null }">
-		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
-	</c:if>
 	
-	<form:form action="/restaurants/newprofile" modelAttribute="restaurant" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="_method" value="put"/>
-		
-		<form:label path="profile">Change profile picture:</form:label><br>
-		<form:errors path="profile"/>
-		<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/><br><br>
-		<input type="submit" value="Submit"/>	
-	</form:form>
+	<div class="profile-div">
+		<c:if test = "${ restaurant.profile == null }">
+			<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ restaurant.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
 	
-	<div>
-		<a href="/items/edit/${restaurant.id}">Make changes to menu</a>
+	<div class="nav-buttons">
+		<a href="/restaurantDashboard"><button class="button-small"><p>Home</p></button></a>
+		<button class="button-small marked"><p>Edit</p></button>
+		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+	</div>
+	
+	<div class="upload-form">
+		<form:form action="/restaurants/newprofile" modelAttribute="restaurant" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="_method" value="put"/>
+			<h3>Change profile picture:</h3>
+			<div class="upload">
+				<form:errors path="profile"/>
+				<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/><br><br>
+				<button class="button-medium">Upload</button>
+			</div>
+		</form:form>
+	</div>
+	
+	<div class="padding">
+		<a href="/items/edit/${restaurant.id}"><button class="button-medium">Edit Your Menu</button></a>
 	</div>
 </body>
 </html>

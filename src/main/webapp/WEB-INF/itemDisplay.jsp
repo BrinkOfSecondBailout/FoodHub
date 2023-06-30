@@ -14,52 +14,82 @@
 <title>Item Display</title>
 </head>
 <body>
-	<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+	<c:if test="${user != null}">
 	
-	<div class="profile-div">
-		<c:if test = "${ user.profile == null }">
-			<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
-		</c:if>
-		<c:if test = "${ user.profile != null }">
-			<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
-		</c:if>
-	</div>
+		<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
 	
-	<div class="bag-div">
-		<a href="/bags/show/${user.bag.id}">
-			<img src="/img/bag.png" class="bag-icon border-marked" alt="Shopping Bag"/>
-		</a>
-	</div>
+		<div class="profile-div">
+			<c:if test = "${ user.profile == null }">
+				<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+			</c:if>
+			<c:if test = "${ user.profile != null }">
+				<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+			</c:if>
+		</div>
 	
-	<div class="bag-notification">
-		<c:if test="${user.bag.orders.size() == 0}">
-			<p>0</p>
-		</c:if>
-		<c:if test="${user.bag.orders.size() != 0}">
-			<p>${user.bag.orders.size()}</p>
-		</c:if>
-	</div>
+		<div class="bag-div">
+			<a href="/bags/show/${user.bag.id}">
+				<img src="/img/bag.png" class="bag-icon border-marked" alt="Shopping Bag"/>
+			</a>
+		</div>
 	
+		<div class="bag-notification">
+			<c:if test="${user.bag.orders.size() == 0}">
+				<p>0</p>
+			</c:if>
+			<c:if test="${user.bag.orders.size() != 0}">
+				<p>${user.bag.orders.size()}</p>
+			</c:if>
+		</div>
+		
+		<div class="nav-buttons">
+			<a href="/dashboard"><button class="button-small"><p>Home</p></button></a>
+			<a href="/users/edit"><button class="button-small"><p>Edit</p></button></a>
+			<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+		</div>
 	
-	<div class="nav-buttons">
-		<a href="/dashboard"><button class="button-small"><p>Home</p></button></a>
-		<a href="/users/edit"><button class="button-small"><p>Edit</p></button></a>
-		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
-	</div>
+	</c:if>
+		
+	<c:if test="${restaurant != null }">
+		<h1>Welcome, <a href="/restaurantDashboard">${restaurant.name}</a></h1>
+	
+		<div class="profile-div">
+			<c:if test = "${ restaurant.profile == null }">
+				<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
+			</c:if>
+			<c:if test = "${ restaurant.profile != null }">
+				<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+			</c:if>
+		</div>
+	
+		<div class="nav-buttons">
+			<a href="/restaurantDashboard"><button class="button-small"><p>Home</p></button></a>
+			<a href="/restaurants/edit"><button class="button-small"><p>Edit</p></button></a>
+			<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+		</div>
+	</c:if>
 
-	<h1>${item.name}</h1>
-	<h4>${item.category}</h4>
-	<c:if test = "${ item.file == null }">
-		<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb-display"/>
-	</c:if>
-	<c:if test = "${ item.file != null }">
-		<img src="data:image/jpg;base64,${item.file}" class="item-thumb-display"/>
-	</c:if>
+	<h2>${item.name}</h2>
+	<h3>From <a href="/restaurants/${restaurant.id}">${item.restaurant.name }</a></h3>
+	<h3>$${item.price}</h3>
+	<u><h4>${item.category}</h4></u>
+	
+	<div class="padding">
+		<c:if test = "${ item.file == null }">
+			<img src="/img/no-image.png" alt="No Picture Yet" class="item-thumb-display"/>
+		</c:if>
+		<c:if test = "${ item.file != null }">
+			<img src="data:image/jpg;base64,${item.file}" class="item-thumb-display"/>
+		</c:if>
+	</div>
+	
 	<p>${item.description}</p>
-	<p>$${item.price}</p>
-	<c:if test="${item.restaurant.id == restaurantId}">
-		<a href="/items/item/edit/${item.id}"><button>Modify</button></a>
-		<a href="/items/item/delete/${item.id}"><button>Delete</button></a>
-	</c:if>
+	
+	<div class="padding">
+		<c:if test="${item.restaurant.id == restaurantId}">
+			<a href="/items/item/edit/${item.id}"><button class="button-small"><p>Modify</p></button></a>
+			<a href="/items/item/delete/${item.id}"><button class="button-small danger"><p>Delete</p></button></a>
+		</c:if>	
+	</div>
 </body>
 </html>

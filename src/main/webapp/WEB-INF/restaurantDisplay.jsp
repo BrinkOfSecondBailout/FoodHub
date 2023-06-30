@@ -51,7 +51,23 @@
 		
 		
 	<c:if test="${restaurantViewer != null}">
-		<a href="/restaurantDashboard"><button class="button-medium">Dashboard</button></a>
+		<h1>Welcome, <a href="/restaurants/${restaurantViewer.id}">${restaurantViewer.name}!</h1></a>
+
+	<div class="profile-div">
+		<c:if test = "${ restaurantViewer.profile == null }">
+			<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ restaurantViewer.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${restaurantViewer.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
+	
+	<div class="nav-buttons">
+		<a href="/restaurantDashboard"><button class="button-small"><p>Home</p></button></a>
+		<a href="/restaurants/edit"><button class="button-small"><p>Edit</p></button></a>
+		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+	</div>
+
 	</c:if>
 
 	
@@ -300,7 +316,7 @@
 					</div>
 					
 					<div class="review-date">
-						<u><fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/></u>					
+						<fmt:formatDate pattern="MMMM dd, yyyy" value="${review.created_at}"/>					
 					</div>
 					
 					<c:if test="${review.comments.size() != 0 }">
@@ -310,31 +326,35 @@
 								<section id="comment${comment.id}">
 									<div class="one-comment">
 										<img src="/img/downright.png" alt="arrow" class="down-right-arrow"/>
-										<c:if test="${comment.user == null}">
-											<a href="/restaurants/${comment.restaurant.id}"><h4>${comment.restaurant.name}</h4>
-											<c:if test="${comment.restaurant.profile == null }">
-												<img class="avatar-thumb-xtra-sm" src="/img/restaurant.png" alt="No Profile Pic"/>
+										<div class="name-and-logo">
+											<c:if test="${comment.user == null}">
+												<a href="/restaurants/${comment.restaurant.id}"><h4>${comment.restaurant.name}</h4>
+												<c:if test="${comment.restaurant.profile == null }">
+													<img class="avatar-thumb-xtra-sm" src="/img/restaurant.png" alt="No Profile Pic"/>
+												</c:if>
+												<c:if test="${comment.restaurant.profile != null }">
+													<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.restaurant.profile}" alt="Profile-Pic"/>						
+												</c:if></a>
+										</div>
+												<div class="comment-text">
+													<p>${comment.comment_text}</p>										
+												</div>
 											</c:if>
-											<c:if test="${comment.restaurant.profile != null }">
-												<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.restaurant.profile}" alt="Profile-Pic"/>						
-											</c:if></a>
-											<div class="comment-text">
-												<p>${comment.comment_text}</p>										
-											</div>
-										</c:if>
-									
-										<c:if test="${comment.user != null}">
-											<a href="/users/${comment.user.id}"><h4>${comment.user.first_name}</h4>
-											<c:if test="${comment.user.profile == null }">
-												<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+										<div class="name-and-logo">
+											<c:if test="${comment.user != null}">
+												<a href="/users/${comment.user.id}"><h4>${comment.user.first_name}</h4>
+												<c:if test="${comment.user.profile == null }">
+													<img class="avatar-thumb-xtra-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+												</c:if>
+												<c:if test="${comment.user.profile != null }">
+													<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.user.profile}" alt="Profile-Pic"/>
+												</c:if></a>
+										</div>
+												<div class="comment-text">
+													<p>${comment.comment_text}</p>
+												</div>
 											</c:if>
-											<c:if test="${comment.user.profile != null }">
-												<img class="avatar-thumb-xtra-sm" src="data:image/jpg;base64,${comment.user.profile}" alt="Profile-Pic"/>
-											</c:if></a>
-											<div class="comment-text">
-												<p>${comment.comment_text}</p>
-											</div>
-										</c:if>
+										</div>
 									</div>
 								
 									<div class="like-area">

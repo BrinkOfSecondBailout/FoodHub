@@ -204,7 +204,7 @@ a {
 .logo-and-stars {
 	display: flex;
 	align-items: center;
-	width: 30%;
+	width: 40%;
 	border-radius: 10px;
 	padding: 10px;
 	background-image: url('../img/box-bg.jpg');
@@ -265,7 +265,7 @@ a {
 }
 
 .small-font {
-	font-size: 15px;
+	font-size: 17px;
 }
 
 .down-right-arrow {
@@ -279,6 +279,7 @@ a {
 
 .comment-form {
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 
@@ -298,10 +299,19 @@ a {
 .one-comment {
 	display: flex;
 	align-items: center;
+	width: 300px;
+}
+
+.one-comment h4 {
+	font-size: 16px;
 }
 
 .one-comment p {
-	font-size: small;
+	font-size: 15px;
+}
+
+.name-and-logo {
+	width: 100px;
 }
 
 .comment-text {
@@ -314,8 +324,10 @@ a {
 
 .like-area {
 	display: flex;
-	align-items: center;
 	width: 100px;
+	align-items: center;
+	position: relative;
+	left: 10px;
 }
 
 .like-area p {
@@ -337,6 +349,7 @@ a {
 	width: 350px;
 	height: 350px;
 	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
 }
 
 /* addItemPicture */

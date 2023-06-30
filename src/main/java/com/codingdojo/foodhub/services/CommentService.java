@@ -21,10 +21,17 @@ public class CommentService {
 		this.cRepo = cRepo;
 	}
 	
-	public Comment createComment(Comment comment, Review review, User user, Restaurant restaurant) {
+	public Comment createCommentForUser(Comment comment, Review review, User user, Restaurant restaurant) {
 		comment.setReview(review);
 		comment.setUser(user);
 		comment.setRestaurant(restaurant);
+		return cRepo.save(comment);
+	}
+	
+	public Comment createCommentForRestaurant(Comment comment, Review review, Restaurant restaurant, User user) {
+		comment.setReview(review);
+		comment.setRestaurant(restaurant);
+		comment.setUser(user);
 		return cRepo.save(comment);
 	}
 	

@@ -70,7 +70,7 @@
 	</c:if>
 
 	<h2>${item.name}</h2>
-	<h3>From <a href="/restaurants/${restaurant.id}">${item.restaurant.name }</a></h3>
+	<h3>From <a href="/restaurants/${item.restaurant.id}">${item.restaurant.name }</a></h3>
 	<h3>$${item.price}</h3>
 	<u><h4>${item.category}</h4></u>
 	

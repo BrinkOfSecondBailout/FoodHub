@@ -51,22 +51,44 @@ public class CommentController {
 			List <Item> items = iServ.findAllItemsByRestaurantId(id);
 			List <Review> reviews = rServ.findReviewsByRestaurant(id);
 			Integer average = rServ.findAverageRatingByRestaurant(id);
+			List <Item> breakfast = iServ.findAllByCategory(id, "Breakfast");
+			List <Item> lunch = iServ.findAllByCategory(id, "Lunch");
+			List <Item> dinner = iServ.findAllByCategory(id, "Dinner");
+			List <Item> dessert = iServ.findAllByCategory(id, "Dessert");
+			List <Item> drinks = iServ.findAllByCategory(id, "Drinks");
+			List <Item> others = iServ.findAllByCategory(id, "Others");
 			if(result.hasErrors()) {
 				// if viewer is a user
 				if (session.getAttribute("userId") != null) {
 					Long userId = (Long) session.getAttribute("userId");
+					User user = uServ.findUserById(userId);
 					model.addAttribute("average", average);
 					model.addAttribute("restaurant", restaurant);
 					model.addAttribute("items", items);
 					model.addAttribute("userId", userId);
 					model.addAttribute("reviews", reviews);
+					model.addAttribute("user", user);
+					model.addAttribute("breakfast", breakfast);
+					model.addAttribute("lunch", lunch);
+					model.addAttribute("dinner", dinner);
+					model.addAttribute("dessert", dessert);
+					model.addAttribute("drinks", drinks);
+					model.addAttribute("others", others);
 					return "restaurantDisplay.jsp";
 				}
 				// if viewer is a restaurant
+				Restaurant restaurantViewer = restServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
 				model.addAttribute("average", average);
 				model.addAttribute("restaurant", restaurant);
 				model.addAttribute("items", items);
 				model.addAttribute("reviews", reviews);
+				model.addAttribute("restaurantViewer", restaurantViewer);
+				model.addAttribute("breakfast", breakfast);
+				model.addAttribute("lunch", lunch);
+				model.addAttribute("dinner", dinner);
+				model.addAttribute("dessert", dessert);
+				model.addAttribute("drinks", drinks);
+				model.addAttribute("others", others);
 				return "restaurantDisplay.jsp";
 			} else {
 
@@ -75,22 +97,14 @@ public class CommentController {
 					Long userId = (Long) session.getAttribute("userId");
 					Review review = rServ.findReviewById(reviewId);
 					User user = uServ.findUserById(userId);
-					cServ.createComment(comment, review, user, null);
-//					model.addAttribute("average", average);
-//					model.addAttribute("restaurant", restaurant);
-//					model.addAttribute("items", items);
-//					model.addAttribute("userId", userId);
-//					model.addAttribute("reviews", reviews);
+					cServ.createCommentForUser(comment, review, user, null);
 					return "redirect:/restaurants/" + id + "?refresh=true";
 				}
 				// if viewer is a restaurant
-				Restaurant restaurantViewer = restServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+				Long restaurantId = (Long) session.getAttribute("restaurantId");
+				Restaurant restaurantViewer = restServ.findRestaurantById(restaurantId);
 				Review review = rServ.findReviewById(reviewId);
-				cServ.createComment(comment, review, null, restaurantViewer);
-//				model.addAttribute("average", average);
-//				model.addAttribute("restaurant", restaurant);
-//				model.addAttribute("items", items);
-//				model.addAttribute("reviews", reviews);
+				cServ.createCommentForRestaurant(comment, review, restaurantViewer, null);
 				return "redirect:/restaurants/" + id + "?refresh=true";
 			}
 		}

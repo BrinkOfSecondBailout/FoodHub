@@ -33,10 +33,10 @@
 	</div>
 	
 	<div class="bag-notification">
-		<c:if test="${user.bag.orders.size() == null}">
+		<c:if test="${user.bag.orders.size() == 0}">
 			<p>0</p>
 		</c:if>
-		<c:if test="${user.bag.orders.size() != null}">
+		<c:if test="${user.bag.orders.size() != 0}">
 			<p>${user.bag.orders.size()}</p>
 		</c:if>
 	</div>
@@ -48,13 +48,16 @@
 		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
 	</div>
 	
-	
-	<form:form action="/users/newprofile" modelAttribute="user" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="_method" value="put"/>
-		<form:label path="profile">Change profile picture:</form:label><br>
-		<form:errors path="profile"/>
-		<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/><br><br>
-		<input type="submit" value="Submit"/>	
-	</form:form>
+	<div class="upload-form">
+		<form:form action="/users/newprofile" modelAttribute="user" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="_method" value="put"/>
+			<h3>Change your profile picture:</h3>
+			<div class="upload">
+				<form:errors path="profile"/>
+				<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/>
+				<button class="button-small">Upload</button>
+			</div>
+		</form:form>
+	</div>
 </body>
 </html>

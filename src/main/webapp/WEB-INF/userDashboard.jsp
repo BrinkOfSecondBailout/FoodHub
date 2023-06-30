@@ -32,10 +32,10 @@
 	</div>
 	
 	<div class="bag-notification">
-		<c:if test="${user.bag.orders.size() == null}">
+		<c:if test="${user.bag.orders.size() == 0}">
 			<p>0</p>
 		</c:if>
-		<c:if test="${user.bag.orders.size() != null}">
+		<c:if test="${user.bag.orders.size() != 0}">
 			<p>${user.bag.orders.size()}</p>
 		</c:if>
 	</div>
@@ -48,11 +48,11 @@
 	</div>
 	
 	
-	<h2>All Delicious Restaurants</h2>
+	<h3>All Delicious Restaurants</h3>
 	<div class="all-restaurants">
 		<c:forEach var="restaurant" items="${restaurants}">
 			<div class="one-item">
-				<a href="/restaurants/${restaurant.id}"><p><c:out value="${restaurant.name}"/></p>
+				<a href="/restaurants/${restaurant.id}"><h4><c:out value="${restaurant.name}"/></h4>
 				<c:if test = "${ restaurant.profile == null }">
 					<img class="avatar-thumb-sm" src="/img/restaurant.png" alt="No Profile Pic"/>
 				</c:if>
@@ -63,11 +63,11 @@
 			</div>
 		</c:forEach>	
 	</div>
-	<h2>All Hungry Eaters</h2>
+	<h3>All Hungry Eaters</h3>
 	<div class="all-users">
 		<c:forEach var="user" items="${users}">
 			<div class="one-item">
-				<a href="/users/${user.id}"><p><c:out value="${user.first_name} ${user.last_name}"/></p>
+				<a href="/users/${user.id}"><h4><c:out value="${user.first_name} ${user.last_name}"/></h4>
 				<c:if test = "${ user.profile == null }">
 					<img class="avatar-thumb-sm" src="/img/avatar-icon.png" alt="No Profile Pic"/>
 				</c:if>

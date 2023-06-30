@@ -31,10 +31,10 @@
 	</div>
 	
 	<div class="bag-notification">
-		<c:if test="${user.bag.orders.size() == null}">
+		<c:if test="${user.bag.orders.size() == 0 }">
 			<p>0</p>
 		</c:if>
-		<c:if test="${user.bag.orders.size() != null}">
+		<c:if test="${user.bag.orders.size() != 0 }">
 			<p>${user.bag.orders.size()}</p>
 		</c:if>
 	</div>
@@ -47,6 +47,9 @@
 	</div>
 	
 	<h2>All Reviews</h2>
+	<c:if test="${user.reviews.size() == 0 }">
+		<p>No reviews written by ${user.first_name} yet..</p>
+	</c:if>
 	<c:forEach var="review" items="${user.reviews}">
 		<div class="one-review">
 			<a href="/restaurants/${review.restaurant.id}"><h4>${review.restaurant.name}</h4>

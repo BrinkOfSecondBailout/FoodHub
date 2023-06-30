@@ -65,10 +65,22 @@ public class BagController {
 		Restaurant restaurant = rServ.findRestaurantById(restId);
 		Integer average = revServ.findAverageRatingByRestaurant(restId);
 		List <Item> items = iServ.findAllItemsByRestaurantId(restId);
+		List <Item> breakfast = iServ.findAllByCategory(restId, "Breakfast");
+		List <Item> lunch = iServ.findAllByCategory(restId, "Lunch");
+		List <Item> dinner = iServ.findAllByCategory(restId, "Dinner");
+		List <Item> dessert = iServ.findAllByCategory(restId, "Dessert");
+		List <Item> drinks = iServ.findAllByCategory(restId, "Drinks");
+		List <Item> others = iServ.findAllByCategory(restId, "Others");
 		model.addAttribute("restaurant", restaurant);
 		model.addAttribute("user", user);
 		model.addAttribute("average", average);
 		model.addAttribute("items", items);
+		model.addAttribute("breakfast", breakfast);
+		model.addAttribute("lunch", lunch);
+		model.addAttribute("dinner", dinner);
+		model.addAttribute("dessert", dessert);
+		model.addAttribute("drinks", drinks);
+		model.addAttribute("others", others);
 		return "newOrder.jsp";
 	}
 	

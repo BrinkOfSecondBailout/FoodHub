@@ -17,6 +17,41 @@
 <title>New Review</title>
 </head>
 <body>
+
+	<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+	
+	<div class="profile-div">
+		<c:if test = "${ user.profile == null }">
+			<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ user.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
+	
+	<div class="bag-div">
+		<a href="/bags/show/${user.bag.id}">
+			<img src="/img/bag.png" class="bag-icon border-marked" alt="Shopping Bag"/>
+		</a>
+	</div>
+	
+	<div class="bag-notification">
+		<c:if test="${user.bag.orders.size() == 0}">
+			<p>0</p>
+		</c:if>
+		<c:if test="${user.bag.orders.size() != 0}">
+			<p>${user.bag.orders.size()}</p>
+		</c:if>
+	</div>
+	
+	
+	<div class="nav-buttons">
+		<a href="/dashboard"><button class="button-small"><p>Home</p></button></a>
+		<a href="/users/edit"><button class="button-small"><p>Edit</p></button></a>
+		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+	</div>
+	
+	
 	<h1>Write a Review</h1>
 	<h2>for <a href="/restaurants/${restaurant.id}">${restaurant.name}</a></h2>
 	<c:if test = "${ restaurant.profile == null }">
@@ -27,11 +62,11 @@
 	</c:if>
 	
 	<form:form action="/reviews/add/${restaurant.id}" method="post" modelAttribute="review">
-		<form:label path="review_text">How was your experience?</form:label><br><br>
+		<h4>How was your experience?</h4>
 		<form:errors path="review_text"/><br>
 		<form:input type="textarea" path="review_text" class="review-text-area"/><br><br>
 		
-		<p>How many stars would you give ${restaurant.name}?</p><br><br>
+		<h4>How many stars would you give <a href="/restaurants/${restaurant.id}">${restaurant.name}?</a></h4><br><br>
 		
 		<div class="ratings">
 			<form:radiobutton path="stars" value="5" id="star5"/><form:label path="stars" for="star5"/>

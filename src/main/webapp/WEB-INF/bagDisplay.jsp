@@ -15,6 +15,41 @@
 <title>Grocery Bag</title>
 </head>
 <body>
+
+	<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+	
+	<div class="profile-div">
+		<c:if test = "${ user.profile == null }">
+			<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
+		</c:if>
+		<c:if test = "${ user.profile != null }">
+			<img class="avatar-thumb" src="data:image/jpg;base64,${user.profile}" alt="Profile-Pic"/>
+		</c:if>
+	</div>
+	
+	<div class="bag-div">
+		<a href="/bags/show/${user.bag.id}">
+			<img src="/img/bag.png" class="bag-icon border-marked" alt="Shopping Bag"/>
+		</a>
+	</div>
+	
+	<div class="bag-notification">
+		<c:if test="${user.bag.orders.size() == null}">
+			<p>0</p>
+		</c:if>
+		<c:if test="${user.bag.orders.size() != null}">
+			<p>${user.bag.orders.size()}</p>
+		</c:if>
+	</div>
+	
+	
+	<div class="nav-buttons">
+		<a href="/dashboard"><button class="button-small"><p>Home</p></button></a>
+		<a href="/users/edit"><button class="button-small"><p>Edit</p></button></a>
+		<a href="/logout"><button class="button-small"><p>Logout</p></button></a>
+	</div>
+	
+	
 	<c:if test="${user.bag.orders.size() == 0 }">
 		<p>No goodies yet... start shopping!</p>
 	</c:if>
@@ -24,13 +59,17 @@
 			<div class="one-order">
 				<c:set var="orderTotal" value="0" />
 				<div class="order-restaurant">
-					<a href="/restaurants/${order.restaurant.id}"><h2>${order.restaurant.name}</h2>
-					<c:if test="${order.restaurant.profile == null}">
+					<div>
+						<a href="/restaurants/${order.restaurant.id}"><c:if test="${order.restaurant.profile == null}">
 						<img class="avatar-thumb-med" src="/img/restaurant.png" alt="No Profile Pic"/>
-					</c:if>
-					<c:if test="${order.restaurant.profile != null}">
-						<img class="avatar-thumb-med" src="data:image/jpg;base64,${order.restaurant.profile}" alt="Profile-Pic"/>
-					</c:if></a>
+						</c:if>
+						<c:if test="${order.restaurant.profile != null}">
+							<img class="avatar-thumb-med" src="data:image/jpg;base64,${order.restaurant.profile}" alt="Profile-Pic"/>
+						</c:if>
+					</div>
+					<div class="restaurant-name-bag">
+						<h2>${order.restaurant.name}</h2></a>
+					</div>
 				</div>
 				<c:forEach var="cartItem" items="${order.cartItems}">
 					<div class="one-order-item">

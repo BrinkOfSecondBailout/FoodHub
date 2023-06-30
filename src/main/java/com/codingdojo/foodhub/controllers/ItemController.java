@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.codingdojo.foodhub.models.Item;
 import com.codingdojo.foodhub.models.Restaurant;
+import com.codingdojo.foodhub.models.User;
 import com.codingdojo.foodhub.services.ItemService;
 import com.codingdojo.foodhub.services.RestaurantService;
+import com.codingdojo.foodhub.services.UserService;
 
 @Controller
 public class ItemController {
@@ -28,6 +30,8 @@ public class ItemController {
 	public ItemService iServ;
 	@Autowired
 	public RestaurantService rServ;
+	@Autowired
+	public UserService uServ;
 	
 	@GetMapping("/items/add")
 	public String addItem(@ModelAttribute("item") Item item, HttpSession session) {
@@ -106,10 +110,12 @@ public class ItemController {
 		if(session.getAttribute("restaurantId") == null && session.getAttribute("userId") == null) {
 			return "redirect:/logout";
 		} else {
+			User user = uServ.findUserById((Long) session.getAttribute("userId"));
 			Long restaurantId = (Long) session.getAttribute("restaurantId");
 			Item item = iServ.findItemById(id);
 			model.addAttribute("item", item);
 			model.addAttribute("restaurantId", restaurantId);
+			model.addAttribute("user", user);
 			return "itemDisplay.jsp";
 		}
 	}

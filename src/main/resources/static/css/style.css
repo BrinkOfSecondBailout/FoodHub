@@ -54,6 +54,7 @@ a {
 	background-color: yellow;
 }
 
+
 .button-small {
 	width: 100px;
 	height: 30px;
@@ -104,13 +105,24 @@ a {
 	box-shadow: 2px 5px 5px black;
 }
 
+
+/* editUserProfile */
+.upload-form {
+	padding: 20px;
+}
+
+.upload {
+	padding: 20px;
+}
+
+
 /* editRestaurantProfile */
 
 .avatar-thumb {
 	width: 250px;
 	height: 250px;
 	border-radius: 100%;
-	border: 3px solid blue;
+	border: 5px solid blue;
 }
 
 /* editMenu */
@@ -128,7 +140,8 @@ a {
 }
 
 .average-rating {
-	padding: 20px;
+	padding: 10px;
+	margin-top: -10px;
 }
 
 #reviews {
@@ -155,10 +168,17 @@ a {
 	width: 400px;
 }
 
+.restaurant-name {
+	margin-top: 20px;
+}
+
 .logo-and-stars {
 	display: flex;
 	align-items: center;
 	width: 30%;
+	border-radius: 10px;
+	padding: 10px;
+	background-image: url('../img/box-bg.jpg');
 }
 
 .one-review {
@@ -301,10 +321,13 @@ a {
 
 .all-restaurants {
 	display: flex;
+	width: 50%;
 }
 
 .all-users {
 	display: flex;
+	max-width: 50%;
+	flex-wrap: wrap;
 }
 
 .bag-div {
@@ -316,10 +339,10 @@ a {
 }
 
 .bag-notification {
-	color: red;
+	color: white;
 	width: 30px;
 	border-radius: 100%;
-	background-color: white;
+	background-color: red;
 	border: 2px solid red;
 	position: relative;
 	bottom: 20px;
@@ -330,7 +353,6 @@ a {
 .bag-notification p {
 	font-style: bold;
 	font-size: 25px;
-	font-family: 'Graduate', cursive;
 }
 
 .profile-div {
@@ -457,7 +479,9 @@ a {
 }
 
 .order-restaurant {
-	
+	display: flex;
+	align-items: center;
+	width: 40%;
 }
 
 .order-info {
@@ -467,6 +491,10 @@ a {
 .order-price {
 	width: 100px;
 	text-align: center;
+}
+
+.restaurant-name-bag {
+	width: 300px;
 }
 
 .order-quantity {

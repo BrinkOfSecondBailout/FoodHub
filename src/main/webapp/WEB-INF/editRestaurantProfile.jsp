@@ -38,14 +38,14 @@
 			<h3>Change profile picture:</h3>
 			<div class="upload">
 				<form:errors path="profile"/>
-				<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/><br><br>
-				<button class="button-medium">Upload</button>
+				<form:input type="file" path="profile" accept="image/png, image/jpeg, image/jpg"/>
+				<button class="button-small"><p>Upload</p></button>
 			</div>
 		</form:form>
 	</div>
 	
 	<div class="padding">
-		<a href="/items/edit/${restaurant.id}"><button class="button-medium">Edit Your Menu</button></a>
+		<a href="/items/edit/${restaurant.id}"><button class="button-medium"><p>Edit Your Menu</p></button></a>
 	</div>
 </body>
 </html>

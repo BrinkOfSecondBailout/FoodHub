@@ -55,7 +55,7 @@
 	</div>
 	
 	<div class="padding">
-		<a href="/items/add"><button class="button-medium warning">Add New Item</button></a>
+		<a href="/items/add"><button class="button-medium warning"><p>Add New Item</p></button></a>
 	</div>
 </body>
 </html>

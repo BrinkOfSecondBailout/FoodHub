@@ -33,6 +33,9 @@
 	
 	
 	<h2>Your Menu</h2>
+	<c:if test="${items.size() == 0}">
+		<p>No menu yet, start adding!</p>
+	</c:if>
 	<div class="my-items">
 		<c:forEach var="item" items="${items}">
 			<div class="one-item">
@@ -48,10 +51,13 @@
 	</div>
 	
 	<div class="padding">
-		<a href="/items/edit/${restaurant.id}"><button class="button-medium">Edit Your Menu</button></a>
+		<a href="/items/edit/${restaurant.id}"><button class="button-medium"><p>Edit Your Menu</p></button></a>
 	</div>
 	
 	<h2>All Other Restaurants</h2>
+	<c:if test="${restaurants.size() == 0}">
+		<p>None yet, tell your friends about Foodhub!</p> 
+	</c:if>
 	<div class="all-restaurants">
 		<c:forEach var="restaurant" items="${restaurants}">
 			<div class="one-item">
@@ -68,6 +74,9 @@
 	</div>
 	
 	<h2>All Hungry Eaters</h2>
+	<c:if test="${users.size() == 0}">
+		<p>None yet, tell your friends about Foodhub!</p> 
+	</c:if>
 	<div class="all-users">
 		<c:forEach var="user" items="${users}">
 			<div class="one-item">

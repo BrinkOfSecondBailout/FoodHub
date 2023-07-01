@@ -114,7 +114,14 @@ public class RestaurantController {
 			return "redirect:/logout";
 		} else {
 			Long id = (Long) session.getAttribute("restaurantId");
-			rServ.addProfilePicture(id, file);
+			if(file.isEmpty()) {
+				result.rejectValue("profile", "error.profile", "Please upload an image");
+			} else {
+				rServ.addProfilePicture(id, file);				
+			}
+			if(result.hasErrors()) {
+				return "redirect:/restaurants/edit";
+			}
 			return "redirect:/restaurants/edit";
 		}
 	}

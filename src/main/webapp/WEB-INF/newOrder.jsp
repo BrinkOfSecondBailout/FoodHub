@@ -86,10 +86,10 @@
 	<h2>Menu</h2>
 	
 	<h3><a href="#" onclick="toggleComments('breakfast'); return false;">Breakfast</a></h3>
+	<div id="breakfast" style="display:none;">
 	<c:if test="${breakfast.size() == 0}">
 		<p>No breakfast items yet for this restaurant..</p>
 	</c:if>
-	<div id="breakfast" style="display:none;">
 		<c:forEach var="item" items="${breakfast}">
 				<div class="one-food-item">
 					<c:if test="${item.file == null}">

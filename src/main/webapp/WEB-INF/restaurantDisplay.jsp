@@ -113,7 +113,9 @@
 	<h2>Full Menu</h2>
 	
 	<div class="menu">
-	
+		<c:if test="${items.size() == 0 }">
+			<p>None available yet..</p>
+		</c:if>
 		<c:if test="${breakfast.size() != 0}">
 			<h3>Breakfast</h3>
 			<div class="one-category">
@@ -292,7 +294,6 @@
 					</a>
 				</div>
 				<div class="review">
-					
 					<div class="review-stars">
 						<c:if test="${review.stars == 1}">
 							<img src="/img/1star.png" class="star-rating" alt="1 Star"/>
@@ -312,7 +313,7 @@
 					</div>
 					
 					<div class="review-text">
-						<p>${review.review_text}</p>				
+						<p>"${review.review_text}"</p>				
 					</div>
 					
 					<div class="review-date">
@@ -328,7 +329,9 @@
 										<img src="/img/downright.png" alt="arrow" class="down-right-arrow"/>
 										<div class="name-and-logo">
 											<c:if test="${comment.user == null}">
-												<a href="/restaurants/${comment.restaurant.id}"><h4>${comment.restaurant.name}</h4>
+												<div class="commenter-name">
+													<a href="/restaurants/${comment.restaurant.id}"><h4>${comment.restaurant.name}</h4>
+												</div>
 												<c:if test="${comment.restaurant.profile == null }">
 													<img class="avatar-thumb-xtra-sm" src="/img/restaurant.png" alt="No Profile Pic"/>
 												</c:if>

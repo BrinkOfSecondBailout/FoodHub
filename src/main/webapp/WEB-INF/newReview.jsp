@@ -52,34 +52,39 @@
 	</div>
 	
 	
-	<h1>Write a Review</h1>
-	<h2>for <a href="/restaurants/${restaurant.id}">${restaurant.name}</a></h2>
+	<h2>Write a Review</h2>
+	<h3>for <a href="/restaurants/${restaurant.id}">${restaurant.name}</h3>
 	<c:if test = "${ restaurant.profile == null }">
-		<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
+		<img class="avatar-thumb-med" src="/img/restaurant.png" alt="No Profile Pic"/>
 	</c:if>
 	<c:if test = "${ restaurant.profile != null }">
-		<img class="avatar-thumb" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
-	</c:if>
+		<img class="avatar-thumb-med" src="data:image/jpg;base64,${restaurant.profile}" alt="Profile-Pic"/>
+	</c:if></a>
 	
-	<form:form action="/reviews/add/${restaurant.id}" method="post" modelAttribute="review">
-		<h4>How was your experience?</h4>
-		<form:errors path="review_text"/><br>
-		<form:input type="textarea" path="review_text" class="review-text-area"/><br><br>
+	<div class="review-form">
+		<form:form action="/reviews/add/${restaurant.id}" method="post" modelAttribute="review">
+			<div>
+				<form:errors path="review_text" class="error-message"/>			
+			</div>
+			<form:input type="textarea" path="review_text" class="review-text-area"/>
 		
-		<h4>How many stars would you give <a href="/restaurants/${restaurant.id}">${restaurant.name}?</a></h4><br><br>
+			<h4>How many stars for <a href="/restaurants/${restaurant.id}">${restaurant.name}?</a></h4><br><br>
 		
-		<div class="ratings">
-			<form:radiobutton path="stars" value="5" id="star5"/><form:label path="stars" for="star5"/>
-			<form:radiobutton path="stars" value="4" id="star4"/><form:label path="stars" for="star4"/>
-			<form:radiobutton path="stars" value="3" id="star3"/><form:label path="stars" for="star3"/>
-			<form:radiobutton path="stars" value="2" id="star2"/><form:label path="stars" for="star2"/>
-			<form:radiobutton path="stars" value="1" id="star1"/><form:label path="stars" for="star1"/><br>		
-		</div>
-		
-		<br><br><form:errors path="stars"/><br>
-		
-		<br><br><input type="submit" value="Submit"/>
-	</form:form>
+			<div class="ratings">
+				<form:radiobutton path="stars" value="5" id="star5"/><form:label path="stars" for="star5"/>
+				<form:radiobutton path="stars" value="4" id="star4"/><form:label path="stars" for="star4"/>
+				<form:radiobutton path="stars" value="3" id="star3"/><form:label path="stars" for="star3"/>
+				<form:radiobutton path="stars" value="2" id="star2"/><form:label path="stars" for="star2"/>
+				<form:radiobutton path="stars" value="1" id="star1"/><form:label path="stars" for="star1"/>	
+			</div>
+			<div class="extra-padding">
+				<form:errors path="stars" class="error-message"/>
+			</div>
+			<div>
+				<button class="button-small">Post!</button>
+			</div>
+		</form:form>
+	</div>
 	
 </body>
 </html>

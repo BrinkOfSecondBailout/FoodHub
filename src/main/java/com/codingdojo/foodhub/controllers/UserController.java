@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -106,8 +105,15 @@ public class UserController {
 			return "redirect:/logout";
 		} else {
 			Long id = (Long) session.getAttribute("userId");
-			uServ.addProfilePicture(id, file);
-			return "redirect:/users/edit";
+			if(file.isEmpty()) {
+				result.rejectValue("profile", "error.profile", "Please upload an image");
+			} else {
+				uServ.addProfilePicture(id, file);
+			}
+			if(result.hasErrors()) {
+				return "redirect:/users/edit";
+			}
+			return "redirect:/users/edit";	
 		}
 	}
 	
@@ -117,10 +123,17 @@ public class UserController {
 		if(session.getAttribute("userId") == null && session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
+			if(session.getAttribute("userId") != null) {
+				User user = uServ.findUserById(id);
+				User me = uServ.findUserById((Long) session.getAttribute("userId"));
+				model.addAttribute("user", user);
+				model.addAttribute("me", me);
+				return "userDisplay.jsp";				
+			}
+			Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
 			User user = uServ.findUserById(id);
-			User me = uServ.findUserById((Long) session.getAttribute("userId"));
 			model.addAttribute("user", user);
-			model.addAttribute("me", me);
+			model.addAttribute("restaurant", restaurant);
 			return "userDisplay.jsp";
 		}
 	}

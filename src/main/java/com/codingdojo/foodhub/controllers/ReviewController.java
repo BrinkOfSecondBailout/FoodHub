@@ -51,6 +51,8 @@ public class ReviewController {
 		} else {
 			Restaurant restaurant = restServ.findRestaurantById(id);
 			if(result.hasErrors()) {
+				User user = uServ.findUserById((Long) session.getAttribute("userId"));
+				model.addAttribute("user", user);
 				model.addAttribute("restaurant", restaurant);
 				return "newReview.jsp";
 			} else {

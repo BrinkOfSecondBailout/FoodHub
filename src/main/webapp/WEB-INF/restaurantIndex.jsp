@@ -8,12 +8,13 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Welcome to FoodHub</title>
 </head>
 <body>
+	<div class="container">
 	<div class="registration-form">
 		<h1>Register as Restaurant</h1>
 		<form:form action="/registerRestaurant" method="post" modelAttribute="newRestaurant" >
@@ -47,5 +48,6 @@
 	</div>
 	
 	<h2>Not a restaurant? Log in as <a href="/">user</a></h2>
+	</div>
 </body>
 </html>

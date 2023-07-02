@@ -9,7 +9,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <script src="https://use.fontawesome.com/10c872287a.js"></script>
 
@@ -17,7 +17,7 @@
 <title>New Review</title>
 </head>
 <body>
-
+	<div class="container">
 	<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
 	
 	<div class="profile-div">
@@ -81,10 +81,10 @@
 				<form:errors path="stars" class="error-message"/>
 			</div>
 			<div>
-				<button class="button-small">Post!</button>
+				<button class="button-small"><p>Post!</p></button>
 			</div>
 		</form:form>
 	</div>
-	
+	</div>
 </body>
 </html>

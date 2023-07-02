@@ -8,12 +8,13 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Eater Display</title>
 </head>
 <body>
+	<div class="container">
 	<c:if test="${me != null }">
 		<h1>${me.first_name} ${me.last_name}</h1>
 		<div class="profile-div">
@@ -114,5 +115,6 @@
 			</div>
 		</div>
 	</c:forEach>
+	</div>
 </body>
 </html>

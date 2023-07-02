@@ -8,12 +8,13 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <title>Restaurant Dashboard</title>
 </head>
 <body>
+	<div class="container">
 	<h1>Welcome, <a href="/restaurants/${restaurant.id}">${restaurant.name}!</h1></a>
 
 	<div class="profile-div">
@@ -90,6 +91,7 @@
 				</a>
 			</div>
 		</c:forEach>	
+	</div>
 	</div>
 </body>
 </html>

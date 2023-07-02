@@ -8,12 +8,13 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Add a Picture</title>
 </head>
 <body>
+	<div class="container">
 	<h1>Add a Picture</h1>
 	
 	<div class="profile-div">
@@ -52,6 +53,7 @@
 	
 	<div class="padding">
 		<a href="/items/edit/${item.restaurant.id}"><button class="button-small">Skip</button></a>	
+	</div>
 	</div>
 </body>
 </html>

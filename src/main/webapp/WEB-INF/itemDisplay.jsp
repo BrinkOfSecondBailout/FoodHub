@@ -8,12 +8,13 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <meta charset="ISO-8859-1">
 <title>Item Display</title>
 </head>
 <body>
+	<div class="container">
 	<c:if test="${user != null}">
 	
 		<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
@@ -90,6 +91,7 @@
 			<a href="/items/item/edit/${item.id}"><button class="button-small"><p>Modify</p></button></a>
 			<a href="/items/item/delete/${item.id}"><button class="button-small danger"><p>Delete</p></button></a>
 		</c:if>	
+	</div>
 	</div>
 </body>
 </html>

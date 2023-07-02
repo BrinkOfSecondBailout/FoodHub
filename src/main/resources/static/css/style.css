@@ -358,6 +358,16 @@ a {
 	margin-top: 10px;
 }
 
+.comment-and-icon {
+	display: flex;
+	align-items: center;
+	width: 150px;
+}
+
+.small-icon {
+	width: 20px;
+}
+
 /* itemDisplay */
 
 .item-thumb-display {

@@ -321,7 +321,10 @@
 					</div>
 					
 					<c:if test="${review.comments.size() != 0 }">
-						<p class="small-font"><a href="#" onclick="toggleComments(${review.id}); return false;">${review.comments.size()} comment(s)</a></p>
+						<div class="comment-and-icon">
+							<img src="/img/comment.png" class="small-icon"/>
+							<p class="small-font"><a href="#" onclick="toggleComments(${review.id}); return false;">${review.comments.size()} comment(s)</a></p>
+						</div>
 						<div id="all-comments${review.id}" style="display:none;">
 							<c:forEach var="comment" items="${review.comments}">
 								<section id="comment${comment.id}">

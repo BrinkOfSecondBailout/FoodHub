@@ -15,9 +15,10 @@
 </head>
 <body>
 	<div class="container">
+	<h1>Welcome to <u>FoodHub</u>!</h1>
 	<c:if test="${user != null}">
 	
-		<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+		<a href="/users/${user.id}"><h3>${user.first_name} ${user.last_name}</h3></a>
 	
 		<div class="profile-div">
 			<c:if test = "${ user.profile == null }">
@@ -52,7 +53,7 @@
 	</c:if>
 		
 	<c:if test="${restaurant != null }">
-		<h1>Welcome, <a href="/restaurantDashboard">${restaurant.name}</a></h1>
+		<a href="/restaurants/${restaurant.id}"><h3>${restaurant.name}</h3></a>
 	
 		<div class="profile-div">
 			<c:if test = "${ restaurant.profile == null }">
@@ -93,6 +94,8 @@
 			<a href="/items/item/delete/${item.id}"><button class="button-danger"><p>Delete</p></button></a>
 		</c:if>	
 	</div>
+	
+	<a href="javascript:history.back()"><h4>Go Back</h4></a>
 	</div>
 </body>
 </html>

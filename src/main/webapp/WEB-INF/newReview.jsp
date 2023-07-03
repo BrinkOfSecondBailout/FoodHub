@@ -66,7 +66,7 @@
 			<div>
 				<form:errors path="review_text" class="error-message"/>			
 			</div>
-			<form:input type="textarea" path="review_text" class="review-text-area"/>
+			<form:input type="textarea" path="review_text" class="review-text-area" />
 		
 			<h4>How many stars for <a href="/restaurants/${restaurant.id}">${restaurant.name}?</a></h4><br><br>
 		

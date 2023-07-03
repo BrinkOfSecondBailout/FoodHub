@@ -25,7 +25,7 @@ h2 {
 }
 
 h3 {
-	font-family: 'Heebo', sans-serif;
+	font-family: 'Ysabeau SC', sans-serif;
 	font-size: 30px;
 }
 
@@ -59,6 +59,11 @@ p {
 	
 }
 
+.form-field {
+	border-radius: 5px;
+	padding: 5px;
+}
+
 .danger {
 	background-color: red;
 	color: white;
@@ -84,6 +89,7 @@ p {
 	font-size: 15px;
 	border-radius: 10px;
 	transition: 0.3s ease;
+	box-shadow: 1px 1px 1px black;
 }
 
 .button-danger {
@@ -96,6 +102,7 @@ p {
 	font-size: 15px;
 	border-radius: 10px;
 	transition: 0.3s ease;
+	box-shadow: 1px 1px 1px black;
 }
 
 
@@ -109,6 +116,7 @@ p {
 	font-size: 15px;
 	border-radius: 10px;
 	transition: 0.3s ease;
+	box-shadow: 1px 1px 1px black;
 }
 
 .button-long {
@@ -121,6 +129,7 @@ p {
 	font-size: 15px;
 	border-radius: 10px;
 	transition: 0.3s ease;
+	box-shadow: 1px 1px 1px black;
 }
 
 .button-medium:hover , .button-small:hover , .button-danger:hover, .button-long:hover{
@@ -145,6 +154,18 @@ p {
 .extra-padding {
 	padding: 30px;
 }
+
+
+/* index */
+
+.registration-form {
+	padding: 20px;
+}
+
+.login-form {
+	padding: 20px;
+}
+
 
 /* restaurantDashboard */
 
@@ -472,7 +493,8 @@ p {
 
 .bag-notification {
 	color: white;
-	width: 30px;
+	width: 35px;
+	height: 35px;
 	border-radius: 100%;
 	background-color: red;
 	border: 2px solid red;
@@ -618,7 +640,7 @@ p {
 .order-restaurant {
 	display: flex;
 	align-items: center;
-	width: 40%;
+	width: 60%;
 }
 
 .order-info {
@@ -631,7 +653,7 @@ p {
 }
 
 .restaurant-name-bag {
-	width: 300px;
+	width: 70%;
 }
 
 .order-quantity {
@@ -668,6 +690,9 @@ p {
 
 /* userDisplay */
 
+.review-logo-and-name {
+	width: 40%;
+}
 
 .user-review {
 	background-image: url('../img/comment-bg.jpg');

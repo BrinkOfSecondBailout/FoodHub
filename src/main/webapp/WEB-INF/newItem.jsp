@@ -35,16 +35,16 @@
 	
 	<form:form action="/items/new" method="post" modelAttribute="item" >
 		<form:label path="name"><h4>Item Name:</h4></form:label>
-		<form:errors path="name"/>
-		<form:input path="name"/><br><br>
+		<form:errors path="name" class="error-message"/>
+		<form:input path="name" class="form-field"/><br><br>
 		<form:label path="price"><h4>Item Price:</h4></form:label>
-		<form:errors path="price"/>
-		<form:input type="number" path="price" value="0"/><br><br>
+		<form:errors path="price" class="error-message"/>
+		<form:input type="number" path="price" value="0" class="form-field"/><br><br>
 		<form:label path="description"><h4>Item Description:</h4></form:label>
-		<form:errors path="description"/>
-		<form:input path="description"/><br><br>
+		<form:errors path="description" class="error-message"/>
+		<form:input path="description" class="form-field"/><br><br>
 		<form:label path="category"><h4>Item Category:</h4></form:label>
-		<form:errors path="category"/>
+		<form:errors path="category" class="error-message"/>
 		<form:select path="category">
 			<form:option value="">-- Select Category --</form:option>
 			<form:option value="Breakfast">Breakfast</form:option>

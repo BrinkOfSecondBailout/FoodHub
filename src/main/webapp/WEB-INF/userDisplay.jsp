@@ -16,7 +16,8 @@
 <body>
 	<div class="container">
 	<c:if test="${me != null }">
-		<h1>${me.first_name} ${me.last_name}</h1>
+	<h1>Welcome to <u>FoodHub</u>!</h1>
+	<a href="/users/${me.id}"><h3>${me.first_name} ${me.last_name}</h3></a>
 		<div class="profile-div">
 			<c:if test = "${ me.profile == null }">
 				<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
@@ -50,8 +51,8 @@
 	</c:if>
 	
 	<c:if test="${restaurant != null }">
-		<h1>Welcome, <a href="/restaurants/${restaurant.id}">${restaurant.name}!</h1></a>
-
+		<h1>Welcome to <u>FoodHub</u>!</h1>
+		<a href="/restaurants/${restaurant.id}"><h3>${restaurant.name}</h3></a>
 		<div class="profile-div">
 			<c:if test = "${ restaurant.profile == null }">
 				<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>
@@ -84,13 +85,15 @@
 	</c:if>
 	<c:forEach var="review" items="${user.reviews}">
 		<div class="one-review user-review">
-			<a href="/restaurants/${review.restaurant.id}"><h4>${review.restaurant.name}</h4>
-			<c:if test="${ review.restaurant.profile == null}">
-				<img src="/img/restaurant.png" alt="No Profile" class="avatar-thumb-sm"/>
-			</c:if>
-			<c:if test="${ review.restaurant.profile != null}">
-				<img src="data:image/jpg;base64,${review.restaurant.profile}" alt="Restaurant Pic" class="avatar-thumb-sm"/>
-			</c:if></a>
+			<div class="review-logo-and-name">
+				<a href="/restaurants/${review.restaurant.id}"><h4>${review.restaurant.name}</h4>
+				<c:if test="${ review.restaurant.profile == null}">
+					<img src="/img/restaurant.png" alt="No Profile" class="avatar-thumb-sm"/>
+				</c:if>
+				<c:if test="${ review.restaurant.profile != null}">
+					<img src="data:image/jpg;base64,${review.restaurant.profile}" alt="Restaurant Pic" class="avatar-thumb-sm"/>
+				</c:if></a>
+			</div>
 			
 			<div class="review-text">
 				<p>"${review.review_text}"</p>			

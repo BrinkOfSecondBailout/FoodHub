@@ -16,8 +16,9 @@
 </head>
 <body>
 	<div class="container">
+	<h1>Welcome to <u>FoodHub</u>!</h1>
 	<c:if test="${user != null}">
-		<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+		<a href="/users/${user.id}"><h3>${user.first_name} ${user.last_name}</h3></a>
 		<div class="profile-div">
 			<c:if test = "${ user.profile == null }">
 				<img class="avatar-thumb" src="/img/avatar-icon.png" alt="No Profile Pic"/>
@@ -51,7 +52,7 @@
 		
 		
 	<c:if test="${restaurantViewer != null}">
-		<h1>Welcome, <a href="/restaurants/${restaurantViewer.id}">${restaurantViewer.name}!</h1></a>
+		<a href="/restaurants/${restaurantViewer.id}"><h3>${restaurantViewer.name}</h3></a>
 
 	<div class="profile-div">
 		<c:if test = "${ restaurantViewer.profile == null }">

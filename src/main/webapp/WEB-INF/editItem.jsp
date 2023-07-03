@@ -40,17 +40,17 @@
 		<div>
 		<form:errors path="name" class="error-message"/>		
 		</div>
-		<form:input path="name"/><br><br>
+		<form:input path="name" class="form-field"/><br><br>
 		<form:label path="price"><h4>Item Price:</h4></form:label>
 		<div>
 		<form:errors path="price" class="error-message"/>
 		</div>
-		<form:input type="number" path="price" value="${item.price}"/><br><br>
+		<form:input type="number" path="price" value="${item.price}" class="form-field"/><br><br>
 		<form:label path="description"><h4>Item Description:</h4></form:label>
 		<div>
 		<form:errors path="description" class="error-message"/>
 		</div>
-		<form:input path="description"/><br><br>
+		<form:input path="description" class="form-field"/><br><br>
 		<form:label path="category"><h4>Item Category:</h4></form:label>
 		<div>
 		<form:errors path="category" class="error-message"/>

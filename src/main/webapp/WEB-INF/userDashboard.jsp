@@ -16,7 +16,8 @@
 </head>
 <body>
 	<div class="container">
-	<h1>Welcome, <a href="/users/${user.id}">${user.first_name}!</h1></a>
+	<h1>Welcome to <u>FoodHub</u>!</h1>
+	<a href="/users/${user.id}"><h3>${user.first_name} ${user.last_name}</h3></a>
 	
 	<div class="profile-div">
 		<c:if test = "${ user.profile == null }">

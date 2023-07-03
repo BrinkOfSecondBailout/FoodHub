@@ -15,8 +15,8 @@
 </head>
 <body>
 	<div class="container">
-	<h1>Welcome, <a href="/restaurants/${restaurant.id}">${restaurant.name}!</h1></a>
-
+	<h1>Welcome to <u>FoodHub</u>!</h1>
+ 	<a href="/restaurants/${restaurant.id}"><h3>${restaurant.name}</h3></a>
 	<div class="profile-div">
 		<c:if test = "${ restaurant.profile == null }">
 			<img class="avatar-thumb" src="/img/restaurant.png" alt="No Profile Pic"/>

@@ -43,6 +43,11 @@ public class ItemService {
 		return iRepo.save(item);
 	}
 	
+	public Item updateItem(Item item, Restaurant restaurant) {
+		item.setRestaurant(restaurant);
+		return iRepo.save(item);
+	}
+	
 	public List <Item> findAllItems() {
 		return iRepo.findAll();
 	}
@@ -57,5 +62,12 @@ public class ItemService {
 	
 	public List <Item> findAllByCategory(Long id, String category) {
 		return iRepo.findAllItemsByCategory(id, category);
+	}
+	
+	public void deleteItem(Item item) {
+		Restaurant r = item.getRestaurant();
+		r.getItems().remove(item);
+		item.setRestaurant(null);
+		iRepo.delete(item);
 	}
 }

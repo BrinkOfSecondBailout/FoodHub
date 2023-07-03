@@ -87,8 +87,16 @@ public class ItemController {
 		if(session.getAttribute("restaurantId") == null) {
 			return "redirect:/logout";
 		} else {
-			iServ.addItemPicture(id, file);
-			return "redirect:/items/edit/" + (Long) session.getAttribute("restaurantId");
+			if(file.isEmpty()) {
+				result.rejectValue("file", "error.file", "Please upload an image");
+			} else {
+				iServ.addItemPicture(id, file);
+				return "redirect:/items/edit/" + (Long) session.getAttribute("restaurantId");
+			}
+			if(result.hasErrors()) {
+				return "redirect:/items/picture/" + id;
+			}
+			return "redirect:/items/edit/" + (Long) session.getAttribute("restaurantId");				
 		}
 	}
 	
@@ -128,6 +136,89 @@ public class ItemController {
 			model.addAttribute("item", item);
 			model.addAttribute("restaurant", restaurant);
 			return "itemDisplay.jsp";
+		}
+	}
+	
+	@GetMapping("/items/item/edit/{id}")
+	public String editItem(@PathVariable("id") Long id, HttpSession session, Model model) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		}
+		Item item = iServ.findItemById(id);
+		if(!item.getRestaurant().getId().equals(session.getAttribute("restaurantId"))){
+			return "redirect:/restaurantDashboard";
+		}
+		Restaurant restaurant = rServ.findRestaurantById((Long) session.getAttribute("restaurantId"));
+		model.addAttribute("restaurant", restaurant);
+		model.addAttribute("item", item);
+		return "editItem.jsp";
+	}
+	
+	@PutMapping("/items/item/update/{id}")
+	public String updateItem(@Valid @ModelAttribute("item") Item item, 
+			BindingResult result, @PathVariable("id") Long id, 
+			@RequestParam("file") String file,
+			HttpSession session, Model model) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		}
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		Restaurant restaurant = rServ.findRestaurantById(restaurantId);
+		if (result.hasErrors()) {
+			System.out.println("TEST");
+			model.addAttribute("restaurant", restaurant);
+			return "editItem.jsp";
+		}
+		item.setFile(file);
+		iServ.updateItem(item, restaurant);
+ 		return "redirect:/items/edit/" + restaurantId;
+	}
+	
+	@GetMapping("/items/item/delete/{id}")
+	public String deleteItem(@PathVariable("id") Long id, HttpSession session) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		}
+		Item item = iServ.findItemById(id);
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		if(!item.getRestaurant().getId().equals(session.getAttribute("restaurantId"))){
+			return "redirect:/restaurantDashboard";
+		}
+		iServ.deleteItem(item);
+		return "redirect:/items/edit/" + restaurantId;
+	}
+	
+	@GetMapping("/items/changepicture/{id}")
+	public String changeItemPicture(@PathVariable("id") Long id, HttpSession session, Model model) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		}
+		Item item = iServ.findItemById(id);
+		if(!item.getRestaurant().getId().equals(session.getAttribute("restaurantId"))){
+			return "redirect:/restaurantDashboard";
+		}
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		Restaurant restaurant = rServ.findRestaurantById(restaurantId);
+		model.addAttribute("item", item);
+		model.addAttribute("restaurant", restaurant);
+		return "changePicture.jsp";
+	}
+	
+	@PutMapping("/items/processnewpicture/{id}")
+	public String processNewPicture(@Valid @ModelAttribute("item") Item item, 
+			BindingResult result,
+			HttpSession session,
+			@PathVariable("id") Long id,
+			@RequestParam("file") MultipartFile file) {
+		if(session.getAttribute("restaurantId") == null) {
+			return "redirect:/logout";
+		} else {
+			if(file.isEmpty()) {
+				result.rejectValue("file", "error.file", "Please upload an image");
+				return "redirect:/items/changepicture/" + id;
+			}
+			iServ.addItemPicture(id, file);
+			return "redirect:/items/edit/" + (Long) session.getAttribute("restaurantId");
 		}
 	}
 }

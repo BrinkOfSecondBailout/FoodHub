@@ -92,7 +92,7 @@
 							<a href="/bags/increase/${user.bag.id}/${cartItem.id}"><img src="/img/plus.png" class="quantity-button"/></a>
 						</div>
 						
-						<a href="/bags/remove/${order.id}/${cartItem.id}"><button class="button-medium danger">Remove</button></a>
+						<a href="/bags/remove/${order.id}/${cartItem.id}"><button class="button-danger">Remove</button></a>
 						<c:set var="subtotal" value="${cartItem.item.price * cartItem.quantity}" />
 						<c:set var="orderTotal" value="${orderTotal + subtotal}" />
 					</div>
@@ -103,7 +103,7 @@
 				</div>
 				
 				<div class="remove-order">
-					<a href="/bags/order/remove/${order.id}"><button class="button-long danger">Remove Entire Order</button></a>
+					<a href="/bags/order/remove/${order.id}"><button class="button-danger">Remove All</button></a>
 				</div>
 			</div>
 		</c:forEach>

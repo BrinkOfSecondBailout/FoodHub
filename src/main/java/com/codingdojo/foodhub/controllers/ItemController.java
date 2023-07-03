@@ -165,7 +165,6 @@ public class ItemController {
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
 		Restaurant restaurant = rServ.findRestaurantById(restaurantId);
 		if (result.hasErrors()) {
-			System.out.println("TEST");
 			model.addAttribute("restaurant", restaurant);
 			return "editItem.jsp";
 		}

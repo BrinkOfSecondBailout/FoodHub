@@ -49,7 +49,7 @@
 				<div class="padding">
 					<a href="/items/item/edit/${item.id}"><button class="button-small"><p>Modify</p></button></a>
 					<a href="/items/changepicture/${item.id}"><button class="button-small"><p>Picture</p></button></a>
-					<a href="/items/item/delete/${item.id}"><button class="button-small danger"><p>Delete</p></button></a>		
+					<a href="/items/item/delete/${item.id}"><button class="button-danger"><p>Delete</p></button></a>		
 				</div>
 			</div>
 		</c:forEach>

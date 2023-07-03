@@ -68,38 +68,75 @@ p {
 	background-color: yellow;
 }
 
-
-.button-small {
-	width: 100px;
-	height: 30px;
-	border-radius: 10px;
-	box-shadow: 1px 1px 1px black;
-}
-
-
-.button-medium {
-	width: 150px;
-	height: 30px;
-	border-radius: 10px;
-	box-shadow: 1px 1px 1px black;
-}
-
-
-.button-long {
-	width: 250px;
-	height: 30px;
-	border-radius: 10px;
-	box-shadow: 1px 1px 1px black;
-}
-
-
-
-
-
 .marked {
 	background-color: black;
 	color: white;
 }
+
+
+.button-small {
+	border: none;
+	outline: none;
+	height: 40px;
+	width: 100px;
+	background-color: #e8b210;
+	color: black;
+	font-size: 15px;
+	border-radius: 10px;
+	transition: 0.3s ease;
+}
+
+.button-danger {
+	border: none;
+	outline: none;
+	height: 40px;
+	width: 100px;
+	background-color: red;
+	color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	transition: 0.3s ease;
+}
+
+
+.button-medium {
+	border: none;
+	outline: none;
+	height: 40px;
+	width: 140px;
+	background-color: #e8b210;
+	color: black;
+	font-size: 15px;
+	border-radius: 10px;
+	transition: 0.3s ease;
+}
+
+.button-long {
+	border: none;
+	outline: none;
+	height: 40px;
+	width: 250px;
+	background-color: #e8b210;
+	color: black;
+	font-size: 15px;
+	border-radius: 10px;
+	transition: 0.3s ease;
+}
+
+.button-medium:hover , .button-small:hover , .button-danger:hover, .button-long:hover{
+	cursor: pointer;
+	background: #ffc000;
+	box-shadow: 0 0 5px #ffc000;
+	box-shadow:	0 0 15px #ffc000;
+	box-shadow:	0 0 30px #ffc000;
+	box-shadow:	0 0 60px ffc000;
+}
+
+
+
+
+
+
 
 .padding {
 	padding: 20px;
@@ -218,7 +255,7 @@ p {
 }
 
 .description-and-price {
-	width: 400px;
+	width: 80%;
 }
 
 .restaurant-name {
@@ -245,12 +282,11 @@ p {
 	width: 90%;
 }
 
-
-
 .user_of_review {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	width: 25%;
 }
 
 .review {
@@ -261,6 +297,7 @@ p {
 	background-image: url('../img/comment-bg.jpg');
 	box-shadow: 2px 2px 2px grey;
 	margin-bottom: 10px;
+	width: 80%;
 }
 
 .review-stars {
@@ -274,7 +311,7 @@ p {
 }
 
 .review-text {
-	width: 600px;
+	width: 90%;
 	height: 100px;
 	overflow-y: auto;
 	display: flex;
@@ -336,6 +373,7 @@ p {
 	display: flex;
 	align-items: center;
 	width: 300px;
+	margin-top: 20px;
 }
 
 .one-comment h4 {
@@ -363,7 +401,9 @@ p {
 	width: 100px;
 	align-items: center;
 	position: relative;
-	left: 10px;
+	left: 40px;
+	top: 10px;
+	margin-bottom: 10px;
 }
 
 .like-area p {

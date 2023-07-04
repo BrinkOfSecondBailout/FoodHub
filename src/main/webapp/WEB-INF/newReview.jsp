@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <script src="https://use.fontawesome.com/10c872287a.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/media.css">
 
 <meta charset="ISO-8859-1">
 <title>New Review</title>

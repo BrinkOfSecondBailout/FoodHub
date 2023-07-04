@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/media.css">
 <meta charset="ISO-8859-1">
 <title>Restaurant Display</title>
 </head>
@@ -118,7 +119,7 @@
 			<p>None available yet..</p>
 		</c:if>
 		<c:if test="${breakfast.size() != 0}">
-			<h3>Breakfast</h3>
+			<u><h3>Breakfast</h3></u>
 			<div class="one-category">
 				<c:forEach var="item" items="${breakfast}">
 					<div class="one-menu-item">
@@ -143,7 +144,7 @@
 
 		
 		<c:if test="${lunch.size() != 0}">
-			<h3>Lunch</h3>
+			<u><h3>Lunch</h3></u>
 			<div class="one-category">
 				<c:forEach var="item" items="${lunch}">
 					<div class="one-menu-item">
@@ -169,7 +170,7 @@
 		
 		
 		<c:if test="${dinner.size() != 0}">
-			<h3>Dinner</h3>
+			<u><h3>Dinner</h3></u>
 			<div class="one-category">
 				<c:forEach var="item" items="${dinner}">
 					<div class="one-menu-item">
@@ -194,7 +195,7 @@
 
 		
 		<c:if test="${dessert.size() != 0}">
-			<h3>Dessert</h3>
+			<u><h3>Dessert</h3></u>
 			<div class="one-category">
 				<c:forEach var="item" items="${dessert}">
 					<div class="one-menu-item">
@@ -219,7 +220,7 @@
 
 		
 		<c:if test="${drinks.size() != 0}">
-			<h3>Drinks</h3>
+			<u><h3>Drinks</h3></u>
 			<div class="one-category">
 			<c:forEach var="item" items="${drinks}">
 				<div class="one-menu-item">
@@ -243,7 +244,7 @@
 		</c:if>
 		
 		<c:if test="${others.size() != 0}">
-			<h3>Others</h3>
+			<u><h3>Others</h3></u>
 			<div class="one-category">
 				<c:forEach var="item" items="${others}">
 					<div class="one-menu-item">

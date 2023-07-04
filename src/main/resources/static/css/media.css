@@ -1,0 +1,7 @@
+@charset "ISO-8859-1";
+
+@media screen and (max-width: 1300px) {
+	.container {
+		width: 80%;	
+	}
+}

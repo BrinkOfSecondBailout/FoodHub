@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/media.css">
 <title>Restaurant Dashboard</title>
 </head>
 <body>

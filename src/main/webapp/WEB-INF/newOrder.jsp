@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/media.css">
 <meta charset="ISO-8859-1">
 <title>New Order</title>
 </head>
@@ -92,15 +93,19 @@
 	</c:if>
 		<c:forEach var="item" items="${breakfast}">
 				<div class="one-food-item">
-					<c:if test="${item.file == null}">
-						<img src="" alt="No Item Picture"/>
-					</c:if>
-					<c:if test="${item.file != null}">
-						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
-					</c:if>
+					<div class="order-pic-and-name">
+						<div class="order-pic">
+							<c:if test="${item.file == null}">
+								<img src="" alt="No Item Picture"/>
+							</c:if>
+							<c:if test="${item.file != null}">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+							</c:if>
+						</div>
 					
-					<div class="item-name">
-						<p><a href="/items/${item.id}">${item.name}</a></p>
+						<div class="item-name">
+							<p><a href="/items/${item.id}">${item.name}</a></p>
+						</div>
 					</div>
 					
 					<div class="item-description">
@@ -115,7 +120,7 @@
                 		<form action="/bags/create/${restaurant.id}" method="post">
                     		<input type="hidden" name="itemId" value="${item.id}">
                     		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
-                  	  		<button class="add-button">Add to bag</button>
+                  	  		<button class="button-small">Add to bag</button>
                 		</form>
             		</div>
 				</div>
@@ -130,15 +135,19 @@
 	</c:if>
 		<c:forEach var="item" items="${lunch}">
 				<div class="one-food-item">
-					<c:if test="${item.file == null}">
-						<img src="" alt="No Item Picture"/>
-					</c:if>
-					<c:if test="${item.file != null}">
-						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
-					</c:if>
+					<div class="order-pic-and-name">
+						<div class="order-pic">
+							<c:if test="${item.file == null}">
+								<img src="" alt="No Item Picture"/>
+							</c:if>
+							<c:if test="${item.file != null}">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+							</c:if>
+						</div>
 					
-					<div class="item-name">
-						<p><a href="/items/${item.id}">${item.name}</a></p>
+						<div class="item-name">
+							<p><a href="/items/${item.id}">${item.name}</a></p>
+						</div>
 					</div>
 					
 					<div class="item-description">
@@ -153,7 +162,7 @@
                 		<form action="/bags/create/${restaurant.id}" method="post">
                     		<input type="hidden" name="itemId" value="${item.id}">
                     		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
-                  	  		<button class="add-button">Add to bag</button>
+                  	  		<button class="button-small"><p>Add to bag</p></button>
                 		</form>
             		</div>
 				</div>
@@ -167,16 +176,22 @@
 	</c:if>
 		<c:forEach var="item" items="${dinner}">
 				<div class="one-food-item">
-					<c:if test="${item.file == null}">
-						<img src="" alt="No Item Picture"/>
-					</c:if>
-					<c:if test="${item.file != null}">
-						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
-					</c:if>
+					<div class="order-pic-and-name">
+						<div class="order-pic">
+							<c:if test="${item.file == null}">
+								<img src="/img/no-image.png" class="item-thumb-sm" alt="No Item Picture"/>
+							</c:if>
+							<c:if test="${item.file != null}">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+							</c:if>
+						</div>
+						
 					
-					<div class="item-name">
-						<p><a href="/items/${item.id}">${item.name}</a></p>
+						<div class="item-name">
+							<p><a href="/items/${item.id}">${item.name}</a></p>
+						</div>
 					</div>
+					
 					
 					<div class="item-description">
 						<p>${item.description}</p>
@@ -190,7 +205,7 @@
                 		<form action="/bags/create/${restaurant.id}" method="post">
                     		<input type="hidden" name="itemId" value="${item.id}">
                     		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
-                  	  		<button class="add-button">Add to bag</button>
+                  	  		<button class="button-small">Add to bag</button>
                 		</form>
             		</div>
 				</div>
@@ -205,15 +220,19 @@
 	</c:if>
 		<c:forEach var="item" items="${dessert}">
 				<div class="one-food-item">
-					<c:if test="${item.file == null}">
-						<img src="" alt="No Item Picture"/>
-					</c:if>
-					<c:if test="${item.file != null}">
-						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
-					</c:if>
+					<div class="order-pic-and-name">
+						<div class="order-pic">
+							<c:if test="${item.file == null}">
+								<img src="" alt="No Item Picture"/>
+							</c:if>
+							<c:if test="${item.file != null}">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+							</c:if>
+						</div>
 					
-					<div class="item-name">
-						<p><a href="/items/${item.id}">${item.name}</a></p>
+						<div class="item-name">
+							<p><a href="/items/${item.id}">${item.name}</a></p>
+						</div>
 					</div>
 					
 					<div class="item-description">
@@ -228,7 +247,7 @@
                 		<form action="/bags/create/${restaurant.id}" method="post">
                     		<input type="hidden" name="itemId" value="${item.id}">
                     		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
-                  	  		<button class="add-button">Add to bag</button>
+                  	  		<button class="button-small">Add to bag</button>
                 		</form>
             		</div>
 				</div>
@@ -243,15 +262,19 @@
 	</c:if>
 		<c:forEach var="item" items="${drinks}">
 				<div class="one-food-item">
-					<c:if test="${item.file == null}">
-						<img src="" alt="No Item Picture"/>
-					</c:if>
-					<c:if test="${item.file != null}">
-						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
-					</c:if>
+					<div class="order-pic-and-name">
+						<div class="order-pic">
+							<c:if test="${item.file == null}">
+								<img src="" alt="No Item Picture"/>
+							</c:if>
+							<c:if test="${item.file != null}">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+							</c:if>
+						</div>
 					
-					<div class="item-name">
-						<p><a href="/items/${item.id}">${item.name}</a></p>
+						<div class="item-name">
+							<p><a href="/items/${item.id}">${item.name}</a></p>
+						</div>
 					</div>
 					
 					<div class="item-description">
@@ -266,7 +289,7 @@
                 		<form action="/bags/create/${restaurant.id}" method="post">
                     		<input type="hidden" name="itemId" value="${item.id}">
                     		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
-                  	  		<button class="add-button">Add to bag</button>
+                  	  		<button class="button-small">Add to bag</button>
                 		</form>
             		</div>
 				</div>
@@ -281,15 +304,19 @@
 	</c:if>
 		<c:forEach var="item" items="${others}">
 				<div class="one-food-item">
-					<c:if test="${item.file == null}">
-						<img src="" alt="No Item Picture"/>
-					</c:if>
-					<c:if test="${item.file != null}">
-						<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
-					</c:if>
+					<div class="order-pic-and-name">
+						<div class="order-pic">
+							<c:if test="${item.file == null}">
+								<img src="" alt="No Item Picture"/>
+							</c:if>
+							<c:if test="${item.file != null}">
+								<img src="data:image/jpg;base64,${item.file}" class="item-thumb-sm" alt="Item Picture"/>
+							</c:if>
+						</div>
 					
-					<div class="item-name">
-						<p><a href="/items/${item.id}">${item.name}</a></p>
+						<div class="item-name">
+							<p><a href="/items/${item.id}">${item.name}</a></p>
+						</div>
 					</div>
 					
 					<div class="item-description">
@@ -304,7 +331,7 @@
                 		<form action="/bags/create/${restaurant.id}" method="post">
                     		<input type="hidden" name="itemId" value="${item.id}">
                     		<input class="quantity-input" type="number" name="quantity" value="1" min="1">
-                  	  		<button class="add-button">Add to bag</button>
+                  	  		<button class="button-small">Add to bag</button>
                 		</form>
             		</div>
 				</div>

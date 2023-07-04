@@ -56,6 +56,8 @@ p {
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     padding: 10px;
     opacity: 0.98;
+    padding-top: 40px;
+    padding-bottom: 40px;
 	
 }
 
@@ -291,6 +293,7 @@ p {
 	width: 90%;
 	box-shadow: 2px 2px 2px black;
 	background-image: url('../img/box-bg.jpg');
+	margin-bottom: 10px;
 }
 
 .one-review {
@@ -515,7 +518,7 @@ p {
 }
 
 .nav-buttons {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 /* newReview */
@@ -581,7 +584,7 @@ p {
 .one-food-item {
 	display: flex;
 	align-items: center;
-	width: 80%;
+	width: 95%;
 } 
 
 .item-thumb-sm {
@@ -590,12 +593,20 @@ p {
 	border-radius: 10px;
 }
 
+.order-pic-and-name {
+	width: 200px;
+}
+
+.order-pic {
+	width: 100px;
+}
+
 .item-name {
 	width: 200px;
 }
 
 .item-description {
-	max-width: 200px;
+	width: 400px;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -614,7 +625,7 @@ p {
 }
 
 .quantity-and-add {
-	width: 250px;
+	width: 400px;
 }
 
 .add-button {
@@ -640,7 +651,7 @@ p {
 .order-restaurant {
 	display: flex;
 	align-items: center;
-	width: 60%;
+	width: 70%;
 }
 
 .order-info {
@@ -677,7 +688,7 @@ p {
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 80%;
+	width: 90%;
 }
 
 .order-total {

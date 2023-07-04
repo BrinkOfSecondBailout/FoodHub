@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/media.css">
 <meta charset="ISO-8859-1">
 <title>Grocery Bag</title>
 </head>
@@ -58,7 +59,7 @@
 		<c:forEach var="order" items="${user.bag.orders}">
 			<div class="one-order">
 				<c:set var="orderTotal" value="0" />
-				<div class="order-restaurant">
+				<div class="order-restaurant logo-and-stars">
 					<div>
 						<a href="/restaurants/${order.restaurant.id}"><c:if test="${order.restaurant.profile == null}">
 						<img class="avatar-thumb-med" src="/img/restaurant.png" alt="No Profile Pic"/>
@@ -68,6 +69,7 @@
 						</c:if>
 					</div>
 					<div class="restaurant-name-bag">
+						<p>Orders for</p>
 						<h2>${order.restaurant.name}</h2></a>
 					</div>
 				</div>

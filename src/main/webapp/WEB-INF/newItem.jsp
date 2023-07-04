@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Quicksand&family=Heebo&family=Ysabeau+SC:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/media.css">
 <meta charset="ISO-8859-1">
 <title>Add New Item</title>
 </head>
@@ -34,16 +35,16 @@
 	
 	
 	<form:form action="/items/new" method="post" modelAttribute="item" >
-		<form:label path="name"><h4>Item Name:</h4></form:label>
+		<form:label path="name"><p>Item Name:</p></form:label>
 		<form:errors path="name" class="error-message"/>
 		<form:input path="name" class="form-field"/><br><br>
-		<form:label path="price"><h4>Item Price:</h4></form:label>
+		<form:label path="price"><p>Item Price:</p></form:label>
 		<form:errors path="price" class="error-message"/>
 		<form:input type="number" path="price" value="0" class="form-field"/><br><br>
-		<form:label path="description"><h4>Item Description:</h4></form:label>
+		<form:label path="description"><p>Item Description:</p></form:label>
 		<form:errors path="description" class="error-message"/>
 		<form:input path="description" class="form-field"/><br><br>
-		<form:label path="category"><h4>Item Category:</h4></form:label>
+		<form:label path="category"><p>Item Category:</p></form:label>
 		<form:errors path="category" class="error-message"/>
 		<form:select path="category">
 			<form:option value="">-- Select Category --</form:option>

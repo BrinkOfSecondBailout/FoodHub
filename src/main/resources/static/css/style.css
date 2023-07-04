@@ -4,14 +4,17 @@
 	margin: 0 auto;
 	padding: 0;
 	text-align: center;
+	box-sizing: border-box;
 }
 
-
+html, body {
+	height: 100%;
+}
 
 body {
 	background-image: url('../img/pig.jpg');
 	background-position: center;
-    background-color: #f1c0d6;
+    background-color: #d2fcf0;
 }
 
 h1 {
@@ -48,7 +51,6 @@ p {
 
 .container {
 	width: 60%;
-	height: max-height;
 	background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.758);
     border-radius: 20px;
@@ -58,12 +60,12 @@ p {
     opacity: 0.98;
     padding-top: 40px;
     padding-bottom: 40px;
-	
 }
 
 .form-field {
 	border-radius: 5px;
 	padding: 5px;
+	width: 300px;
 }
 
 .danger {
@@ -159,6 +161,7 @@ p {
 
 
 /* index */
+
 
 .registration-form {
 	padding: 20px;

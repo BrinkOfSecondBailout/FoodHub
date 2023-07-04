@@ -53,7 +53,7 @@
 	</div>
 	
 	<div class="padding">
-		<a href="/items/edit/${restaurant.id}"><button class="button-medium"><p>Edit Your Menu</p></button></a>
+		<a href="/items/edit/${restaurant.id}"><button class="button-long"><p>Edit Your Menu</p></button></a>
 	</div>
 	
 	<h2>All Other Restaurants</h2>

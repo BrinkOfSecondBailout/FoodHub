@@ -18,45 +18,61 @@
 	<div class="container">
 	<h1>Welcome to <u>FoodHub</u>!</h1>
 	<div class="registration-form">
-		<h2>Register as Restaurant</h2>
+		<div class="padding">
+			<h2>Register as Restaurant</h2>
+		</div>
 		<form:form action="/registerRestaurant" method="post" modelAttribute="newRestaurant" >
-			<form:label path="name"><p>Restaurant Name:</p></form:label>
-			<div>
-			<form:errors path="name" class="error-message"/>
+			<div class="one-field">
+				<form:label path="name"><p>Restaurant Name:</p></form:label>
+				<div>
+					<form:errors path="name" class="error-message"/>
+				</div>
+				<form:input path="name" class="form-field"/><br><br>
 			</div>
-			<form:input path="name" class="form-field"/><br><br>
-			<form:label  path="email"><p>Restaurant Email:</p></form:label>
-			<div>
-			<form:errors path="email" class="error-message"/>
+			<div class="one-field">
+				<form:label  path="email"><p>Restaurant Email:</p></form:label>
+				<div>
+					<form:errors path="email" class="error-message"/>
+				</div>
+				<form:input  type="email" path="email" class="form-field"/><br><br>
 			</div>
-			<form:input  type="email" path="email" class="form-field"/><br><br>
-			<form:label  path="password"><p>Password:</p></form:label>
-			<div>
-			<form:errors path="password" class="error-message"/>
+			<div class="one-field">
+				<form:label  path="password"><p>Password:</p></form:label>
+				<div>
+					<form:errors path="password" class="error-message"/>
+				</div>
+				<form:input  type="password" path="password" class="form-field"/><br><br>
 			</div>
-			<form:input  type="password" path="password" class="form-field"/><br><br>
-			<form:label path="confirmPw"><p>Confirm PW:</p></form:label>
-			<div>
-			<form:errors path="confirmPw" class="error-message"/>
+			<div class="one-field">
+				<form:label path="confirmPw"><p>Confirm PW:</p></form:label>
+				<div>
+					<form:errors path="confirmPw" class="error-message"/>
+				</div>
+				<form:input  type="password" path="confirmPw" class="form-field"/><br><br>
 			</div>
-			<form:input  type="password" path="confirmPw" class="form-field"/><br><br>
 			<button class="button-small">Submit</button>
 		</form:form>
 	</div>
 	
 	<div class="login-form">
-		<h2>Log in as Restaurant</h2>
+		<div class="padding">
+			<h2>Log in as Restaurant</h2>
+		</div>
 		<form:form action="/loginRestaurant" method="post" modelAttribute="newLoginRestaurant">
-			<form:label path="email"><p>Restaurant Email:</p></form:label>
-			<div>
-			<form:errors path="email" class="error-message"/>
+			<div class="one-field">
+				<form:label path="email"><p>Restaurant Email:</p></form:label>
+				<div>
+					<form:errors path="email" class="error-message"/>
+				</div>
+				<form:input type="email" path="email" class="form-field"/><br><br>
 			</div>
-			<form:input type="email" path="email" class="form-field"/><br><br>
-			<form:label  path="password"><p>Password:</p></form:label>
-			<div>
-			<form:errors path="password" class="error-message"/>
+			<div class="one-field">
+				<form:label  path="password"><p>Password:</p></form:label>
+				<div>
+					<form:errors path="password" class="error-message"/>
+				</div>
+				<form:input type="password" path="password" class="form-field"/><br><br>
 			</div>
-			<form:input type="password" path="password" class="form-field"/><br><br>
 			<button class="button-small">Submit</button>
 		</form:form>
 	</div>

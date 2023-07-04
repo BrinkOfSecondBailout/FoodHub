@@ -5,3 +5,38 @@
 		width: 80%;	
 	}
 }
+
+@media screen and (max-width: 1000px) {
+	p {
+		font-size: 22px;
+	}
+	.registration-form {
+		padding: 20px;
+		height: 900px;
+	}
+	.login-form {
+		padding: 20px;
+		height: 500px;
+	}
+	.registration {
+		display: flex;
+		flex-direction: column;
+		height: 800px;
+		justify-content: center;
+	}
+	.login {
+		display: flex;
+		flex-direction: column;
+		height: 300px;
+		justify-content: center;
+	}
+	.one-field {
+		height: 150px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.form-field {
+		height: 50px;
+	}
+}
